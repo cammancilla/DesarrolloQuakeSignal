@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa";
+type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion";
 type CommMode = "normal" | "contingencia";
 
 const NAV_ITEMS = [
@@ -1054,6 +1054,215 @@ export default function App() {
         {screen === "devices" && <DevicesScreen mode={mode} />}
         {screen === "historial" && <HistorialScreen />}
         {screen === "mapa" && <MapScreen mode={mode} />}
+      </div>
+    </div>
+  );
+}
+
+interface AppConfig {
+  // Canales de comunicación
+  telegramBotToken: string;
+  telegramChatId: string;
+  enableTelegram: boolean;
+  
+  // Parámetros de Red y Contingencia
+  rfFrequency: string; // ej: "433 MHz"
+  rfBaudRate: number;  // ej: 9600
+  autoContingency: boolean; // Cambiar a RF si falla Internet
+  pingIntervalSec: number;
+  
+  // Umbrales de Alertas
+  seismicThreshold: number; // Intensidad mínima para activar alerta
+  soundAlarmOnAlert: boolean;
+}
+
+function SaveIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
+      <polyline points="17 21 17 13 7 13 7 21" />
+      <polyline points="7 3 7 8 15 8" />
+    </svg>
+  );
+}
+
+function ServerIcon({ size = 16 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
+      <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
+      <line x1="6" y1="6" x2="6.01" y2="6" />
+      <line x1="6" y1="18" x2="6.01" y2="18" />
+    </svg>
+  );
+}
+
+function ConfigScreen({ currentMode, onModeChange }: { currentMode: CommMode; onModeChange: (mode: CommMode) => void }) {
+  const [config, setConfig] = useState<AppConfig>({
+    telegramBotToken: "7123456789:AAF...",
+    telegramChatId: "-100123456789",
+    enableTelegram: true,
+    rfFrequency: "433 MHz",
+    rfBaudRate: 9600,
+    autoContingency: true,
+    pingIntervalSec: 5,
+    seismicThreshold: 4.5,
+    soundAlarmOnAlert: true,
+  });
+
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    setSaved(true);
+    setTimeout(() => setSaved(false), 3000);
+  };
+
+  return (
+    <div className="flex-1 overflow-y-auto bg-slate-50 p-6 space-y-6">
+      {/* Encabezado con Botón Guardar */}
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-lg font-bold text-gray-900">Configuración del Sistema</h2>
+          <p className="text-xs text-gray-500">Ajusta los canales de transmisión, umbrales y comportamiento de contingencia.</p>
+        </div>
+        <button
+          onClick={handleSave}
+          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors shadow-sm"
+        >
+          <SaveIcon size={16} />
+          {saved ? "¡Guardado!" : "Guardar Cambios"}
+        </button>
+      </div>
+
+      <div className="grid grid-cols-2 gap-6">
+        {/* SECCIÓN 1: Control Manual de Modo de Comunicación */}
+        <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
+            <RadioIcon size={18} />
+            <h3 className="font-semibold text-gray-900 text-sm">Modo Operativo del Sistema</h3>
+          </div>
+          <p className="text-xs text-gray-500">Fuerza el modo de comunicación principal entre la red convencional e infraestructura de respaldo RF.</p>
+          
+          <div className="grid grid-cols-2 gap-3 pt-2">
+            <button
+              onClick={() => onModeChange("normal")}
+              className={`p-3 rounded-lg border text-left flex flex-col gap-1 transition-all ${
+                currentMode === "normal"
+                  ? "border-green-500 bg-green-50/50 ring-1 ring-green-500"
+                  : "border-gray-200 hover:bg-gray-50"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-gray-800">Modo Normal</span>
+                <StatusDot color="green" />
+              </div>
+              <span className="text-[11px] text-gray-500">Internet / Telegram / MQTT</span>
+            </button>
+
+            <button
+              onClick={() => onModeChange("contingencia")}
+              className={`p-3 rounded-lg border text-left flex flex-col gap-1 transition-all ${
+                currentMode === "contingencia"
+                  ? "border-orange-500 bg-orange-50/50 ring-1 ring-orange-500"
+                  : "border-gray-200 hover:bg-gray-50"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-gray-800">Modo Contingencia</span>
+                <StatusDot color="orange" />
+              </div>
+              <span className="text-[11px] text-gray-500">Canal RF Autónomo</span>
+            </button>
+          </div>
+        </div>
+
+        {/* SECCIÓN 2: Parámetros de Red y Contingencia */}
+        <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
+            <ServerIcon size={18} />
+            <h3 className="font-semibold text-gray-900 text-sm">Parámetros RF y Red</h3>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Frecuencia RF</label>
+              <input
+                type="text"
+                value={config.rfFrequency}
+                onChange={(e) => setConfig({ ...config, rfFrequency: e.target.value })}
+                className="w-full text-xs font-mono border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+
+            <div className="flex items-center justify-between pt-2">
+              <div>
+                <div className="text-xs font-medium text-gray-800">Contingencia Automática</div>
+                <div className="text-[11px] text-gray-400">Activa RF si se detecta caída de conexión a Internet.</div>
+              </div>
+              <input
+                type="checkbox"
+                checked={config.autoContingency}
+                onChange={(e) => setConfig({ ...config, autoContingency: e.target.checked })}
+                className="w-4 h-4 text-blue-600 rounded border-gray-300 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN 3: Integración Telegram */}
+        <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
+            <SendIcon size={16} />
+            <h3 className="font-semibold text-gray-900 text-sm">Integración Bot Telegram</h3>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Bot Token API</label>
+              <input
+                type="password"
+                value={config.telegramBotToken}
+                onChange={(e) => setConfig({ ...config, telegramBotToken: e.target.value })}
+                className="w-full text-xs font-mono border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Chat ID Canal / Grupo</label>
+              <input
+                type="text"
+                value={config.telegramChatId}
+                onChange={(e) => setConfig({ ...config, telegramChatId: e.target.value })}
+                className="w-full text-xs font-mono border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* SECCIÓN 4: Umbrales y Alertas */}
+        <div className="bg-white rounded-xl border border-gray-200 p-5 shadow-sm space-y-4">
+          <div className="flex items-center gap-2 pb-2 border-b border-gray-100">
+            <ZapIcon size={18} />
+            <h3 className="font-semibold text-gray-900 text-sm">Umbrales de Activación</h3>
+          </div>
+
+          <div className="space-y-3">
+            <div>
+              <div className="flex justify-between text-xs font-medium text-gray-700 mb-1">
+                <span>Sensibilidad Sísmica Mínima</span>
+                <span className="font-mono">{config.seismicThreshold} Richter</span>
+              </div>
+              <input
+                type="range"
+                min="3.0"
+                max="7.0"
+                step="0.1"
+                value={config.seismicThreshold}
+                onChange={(e) => setConfig({ ...config, seismicThreshold: parseFloat(e.target.value) })}
+                className="w-full accent-blue-600"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
