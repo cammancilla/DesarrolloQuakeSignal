@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+html,
+body,
+#root {
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
+* {
+  scrollbar-width: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+
+@theme inline {
+  --color-navy-950: #0a0f1e;
+  --color-navy-900: #0f172a;
+  --color-navy-800: #1e2942;
+  --color-navy-700: #253352;
+  --color-navy-600: #2d4060;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-alert-red: #dc2626;
+  --color-alert-red-light: #fee2e2;
+  --color-status-green: #16a34a;
+  --color-status-yellow: #d97706;
+  --color-status-blue: #2563eb;
+}

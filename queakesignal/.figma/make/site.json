@@ -1,0 +1,10 @@
+{
+  "description": "Manage and distribute emergency alerts efficiently with a user-friendly interface, enabling operators to monitor and activate alerts from external sources.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
