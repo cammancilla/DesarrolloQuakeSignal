@@ -1,0 +1,11 @@
+[
+  {
+    "id": "ALERT-001",
+    "tipo": "Terremoto",
+    "intensidad": "Sismo Mayor 7.2 Mw",
+    "ubicacion": "Valparaíso, Chile",
+    "fecha": "2026-09-03T23:30:00Z",
+    "activa": false,
+    "despachada": true
+  }
+]
