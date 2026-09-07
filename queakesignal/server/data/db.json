@@ -1,10 +1,46 @@
 [
   {
-    "id": "ALERT-001",
+    "id": "ALERT-005",
+    "tipo": "Aluvión",
+    "intensidad": "Alto Riesgo - Desborde de Quebrada",
+    "ubicacion": "San José de Maipo, Metropolitana",
+    "fecha": "2026-09-07T12:05:00Z",
+    "activa": true,
+    "despachada": false
+  },
+  {
+    "id": "ALERT-004",
+    "tipo": "Alerta de Tsunami",
+    "intensidad": "Evacuación Preventiva Cota 30",
+    "ubicacion": "Borde Costero, Coquimbo",
+    "fecha": "2026-09-07T08:30:00Z",
+    "activa": false,
+    "despachada": true
+  },
+  {
+    "id": "ALERT-003",
+    "tipo": "Incendio Forestal",
+    "intensidad": "Alerta Roja - Propagación Rápida",
+    "ubicacion": "Reserva Nacional Lago Peñuelas, Valparaíso",
+    "fecha": "2026-09-06T15:45:00Z",
+    "activa": false,
+    "despachada": true
+  },
+  {
+    "id": "ALERT-002",
     "tipo": "Terremoto",
-    "intensidad": "Sismo Mayor 7.2 Mw",
-    "ubicacion": "Valparaíso, Chile",
-    "fecha": "2026-09-03T23:30:00Z",
+    "intensidad": "Sismo Mayor 7.8 Mw",
+    "ubicacion": "Santiago Centro, Metropolitana",
+    "fecha": "2026-09-05T23:15:00Z",
+    "activa": false,
+    "despachada": true
+  },
+  {
+    "id": "ALERT-001",
+    "tipo": "Erupción Volcánica",
+    "intensidad": "Alerta Naranja - Pulso de Cenizas",
+    "ubicacion": "Volcán Villarrica, La Araucanía",
+    "fecha": "2026-09-01T04:20:00Z",
     "activa": false,
     "despachada": true
   }

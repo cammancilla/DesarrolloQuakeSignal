@@ -1,7 +1,42 @@
 import { useState, useEffect } from "react";
 
+// --- TIPOS DE DATOS DE LA API ---
+type Alerta = {
+  id: string;
+  tipo: string;
+  intensidad: string;
+  ubicacion: string;
+  fecha: string;
+  activa: boolean;
+  despachada: boolean;
+};
+
+type NodoDetalle = {
+  id: string;
+  ubicacion: string;
+  estado: string;
+};
+
+type NodoStatus = {
+  total: number;
+  online: number;
+  detalle: NodoDetalle[];
+};
+
 type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa";
 type CommMode = "normal" | "contingencia";
+
+const API_URL = "http://localhost:3001/api";
+
+// --- UTILIDAD PARA FORMATEAR FECHAS ---
+function formatDateTime(isoString: string) {
+  if (!isoString) return { date: "--/--/----", time: "--:--:--" };
+  const d = new Date(isoString);
+  return {
+    date: d.toLocaleDateString("es-CL", { day: "2-digit", month: "2-digit", year: "numeric" }),
+    time: d.toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit", second: "2-digit" })
+  };
+}
 
 const NAV_ITEMS = [
   { id: "dashboard", label: "Dashboard", icon: GridIcon },
@@ -13,6 +48,7 @@ const NAV_ITEMS = [
   { id: "usuarios", label: "Usuarios", icon: UsersIcon },
 ];
 
+// --- ICONOS (Sin Cambios) ---
 function GridIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -137,6 +173,7 @@ function ExternalLinkIcon({ size = 14 }: { size?: number }) {
   );
 }
 
+// --- HOOKS Y COMPONENTES BASE ---
 function useTime() {
   const [time, setTime] = useState(new Date());
   useEffect(() => {
@@ -234,7 +271,7 @@ function Sidebar({ active, onNavigate }: { active: string; onNavigate: (id: stri
   );
 }
 
-function Header({ title, onAlert, mode }: { title: string; onAlert?: () => void; mode: CommMode }) {
+function Header({ title, onAlert, mode, alertasActivas }: { title: string; onAlert?: () => void; mode: CommMode, alertasActivas: number }) {
   const now = useTime();
   const timeStr = now.toLocaleTimeString("es-CL", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
   const dateStr = now.toLocaleDateString("es-CL", { day: "2-digit", month: "short", year: "numeric" });
@@ -267,7 +304,9 @@ function Header({ title, onAlert, mode }: { title: string; onAlert?: () => void;
           onClick={onAlert}
         >
           <BellIcon size={16} />
-          <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+          {alertasActivas > 0 && (
+            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full" />
+          )}
         </button>
       </div>
     </header>
@@ -277,7 +316,7 @@ function Header({ title, onAlert, mode }: { title: string; onAlert?: () => void;
 function StatCard({ icon, label, value, sub, accent }: {
   icon: React.ReactNode;
   label: string;
-  value: string;
+  value: string | number;
   sub: string;
   accent: "green" | "red" | "blue" | "gray";
 }) {
@@ -302,7 +341,7 @@ function StatCard({ icon, label, value, sub, accent }: {
   );
 }
 
-function CommStatusCard({ mode }: { mode: CommMode }) {
+function CommStatusCard({ mode, nodos }: { mode: CommMode, nodos: NodoStatus }) {
   const isContingencia = mode === "contingencia";
   return (
     <div className={`bg-white rounded-xl border shadow-sm p-5 ${isContingencia ? "border-orange-200" : "border-gray-200"}`}>
@@ -364,7 +403,7 @@ function CommStatusCard({ mode }: { mode: CommMode }) {
             </div>
             <div className="flex items-center gap-1.5">
               <StatusDot color="green" />
-              <span className="text-xs font-mono font-semibold text-green-600">11/12 disponibles</span>
+              <span className="text-xs font-mono font-semibold text-green-600">{nodos.online}/{nodos.total} disponibles</span>
             </div>
           </div>
         )}
@@ -445,20 +484,12 @@ function SantiagoMap({ compact = false, mode = "normal" }: { compact?: boolean; 
   );
 }
 
-const HISTORY = [
-  { dt: "25/08/2025 12:40:15", tipo: "Terremoto", int: "Moderado", estado: "Activa", canales: "Telegram + IoT" },
-  { dt: "24/08/2025 08:15:22", tipo: "Lluvia intensa", int: "Leve", estado: "Finalizada", canales: "Telegram" },
-  { dt: "23/08/2025 16:30:10", tipo: "Viento fuerte", int: "Leve", estado: "Finalizada", canales: "Telegram + IoT" },
-  { dt: "22/08/2025 09:05:44", tipo: "Terremoto", int: "Leve", estado: "Finalizada", canales: "Telegram + IoT" },
-  { dt: "20/08/2025 14:22:33", tipo: "Lluvia intensa", int: "Moderado", estado: "Finalizada", canales: "Telegram" },
-];
-
-function HistoryTable() {
+function HistoryTable({ alertas }: { alertas: Alerta[] }) {
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
         <h3 className="font-semibold text-gray-900 text-sm">Historial de Alertas</h3>
-        <span className="text-xs text-gray-400 font-mono">{HISTORY.length} registros</span>
+        <span className="text-xs text-gray-400 font-mono">{alertas.length} registros</span>
       </div>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
@@ -472,21 +503,30 @@ function HistoryTable() {
             </tr>
           </thead>
           <tbody>
-            {HISTORY.map((row, i) => (
-              <tr key={i} className="border-t border-gray-100 hover:bg-gray-50/60 transition-colors">
-                <td className="px-5 py-3 font-mono text-xs text-gray-500">{row.dt}</td>
-                <td className="px-4 py-3 font-medium text-gray-800">{row.tipo}</td>
-                <td className="px-4 py-3">
-                  <Badge color={row.int === "Moderado" ? "yellow" : "gray"}>{row.int}</Badge>
-                </td>
-                <td className="px-4 py-3">
-                  <Badge color={row.estado === "Activa" ? "red" : "green"}>
-                    {row.estado === "Activa" ? "● " : "✓ "}{row.estado}
-                  </Badge>
-                </td>
-                <td className="px-4 py-3 text-xs text-gray-500">{row.canales}</td>
-              </tr>
-            ))}
+            {alertas.length === 0 ? (
+              <tr><td colSpan={5} className="text-center py-5 text-gray-400 text-sm">No hay registros</td></tr>
+            ) : (
+              alertas.map((row) => {
+                const { date, time } = formatDateTime(row.fecha);
+                return (
+                  <tr key={row.id} className="border-t border-gray-100 hover:bg-gray-50/60 transition-colors">
+                    <td className="px-5 py-3 font-mono text-xs text-gray-500">{date} {time}</td>
+                    <td className="px-4 py-3 font-medium text-gray-800">{row.tipo}</td>
+                    <td className="px-4 py-3">
+                      <Badge color={row.intensidad.includes("Crítica") ? "red" : row.intensidad.includes("Moderado") ? "yellow" : "gray"}>
+                        {row.intensidad}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3">
+                      <Badge color={row.activa ? "red" : "green"}>
+                        {row.activa ? "● Activa" : "✓ Finalizada"}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3 text-xs text-gray-500">Telegram + IoT</td>
+                  </tr>
+                )
+              })
+            )}
           </tbody>
         </table>
       </div>
@@ -494,7 +534,9 @@ function HistoryTable() {
   );
 }
 
-function PhoneNotification() {
+function PhoneNotification({ alerta }: { alerta?: Alerta }) {
+  const { date, time } = formatDateTime(alerta?.fecha || "");
+  
   return (
     <div className="mx-auto" style={{ width: 200 }}>
       <div className="rounded-3xl overflow-hidden border-4 border-gray-800 shadow-2xl" style={{ background: "#1c1c1e" }}>
@@ -515,32 +557,38 @@ function PhoneNotification() {
           </div>
         </div>
         <div className="px-3 py-3 space-y-3" style={{ background: "#121212" }}>
-          <div className="bg-red-950/60 border border-red-700/50 rounded-xl p-2.5">
-            <div className="flex items-center gap-1.5 mb-1.5">
-              <span className="text-red-400 text-[10px]">🔴</span>
-              <span className="text-red-300 text-[10px] font-bold tracking-wide">ALERTA ACTIVA</span>
+          {alerta ? (
+            <div className="bg-red-950/60 border border-red-700/50 rounded-xl p-2.5">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <span className="text-red-400 text-[10px]">🔴</span>
+                <span className="text-red-300 text-[10px] font-bold tracking-wide">ALERTA ACTIVA</span>
+              </div>
+              <div className="text-white text-[11px] font-semibold mb-1">{alerta.tipo}</div>
+              <div className="text-gray-300 text-[9px] space-y-0.5">
+                <div>Intensidad: <span className="text-white font-medium">{alerta.intensidad}</span></div>
+                <div>Zona: <span className="text-white font-medium">{alerta.ubicacion}</span></div>
+                <div className="font-mono">Fecha: {date}</div>
+                <div className="font-mono">Hora: {time}</div>
+              </div>
+              <p className="text-gray-400 text-[8px] mt-2 leading-relaxed">Manténgase informado mediante canales oficiales.</p>
+              <div className="flex gap-1.5 mt-2">
+                <button className="bg-red-600 text-white text-[8px] font-medium px-2 py-1 rounded-md flex-1">Ver detalles</button>
+                <button className="bg-white/10 text-white text-[8px] font-medium px-2 py-1 rounded-md flex-1">Mapa</button>
+              </div>
             </div>
-            <div className="text-white text-[11px] font-semibold mb-1">Terremoto Moderado</div>
-            <div className="text-gray-300 text-[9px] space-y-0.5">
-              <div>Intensidad: <span className="text-white font-medium">Moderado</span></div>
-              <div>Zona: <span className="text-white font-medium">Santiago, Chile</span></div>
-              <div className="font-mono">Fecha: 25/08/2025</div>
-              <div className="font-mono">Hora: 12:40:15</div>
-            </div>
-            <p className="text-gray-400 text-[8px] mt-2 leading-relaxed">Manténgase informado mediante nuestros canales oficiales.</p>
-            <div className="flex gap-1.5 mt-2">
-              <button className="bg-red-600 text-white text-[8px] font-medium px-2 py-1 rounded-md flex-1">Ver detalles</button>
-              <button className="bg-white/10 text-white text-[8px] font-medium px-2 py-1 rounded-md flex-1">Mapa</button>
-            </div>
-          </div>
-          <div className="text-center text-gray-600 text-[8px]">25/08/2025 · 12:40</div>
+          ) : (
+            <div className="text-center text-gray-500 text-xs py-4">Sin alertas recientes</div>
+          )}
+          <div className="text-center text-gray-600 text-[8px]">{date} · {time}</div>
         </div>
       </div>
     </div>
   );
 }
 
-function PhoneStatus() {
+function PhoneStatus({ alerta }: { alerta?: Alerta }) {
+  const { date, time } = formatDateTime(alerta?.fecha || "");
+
   return (
     <div className="mx-auto" style={{ width: 200 }}>
       <div className="rounded-3xl overflow-hidden border-4 border-gray-800 shadow-2xl" style={{ background: "#f8fafc" }}>
@@ -558,11 +606,17 @@ function PhoneStatus() {
               <StatusDot color="green" />
               <span className="text-white text-[11px] font-semibold">Sistema Operativo</span>
             </div>
-            <div className="text-gray-300 text-[9px] mb-2">Última alerta:</div>
-            <div className="bg-red-900/40 border border-red-600/40 rounded-lg px-2.5 py-1.5 mb-3">
-              <div className="text-red-300 text-[9px] font-semibold">● Terremoto — Moderado</div>
-              <div className="text-gray-400 text-[8px] font-mono">25/08/2025 12:40:15</div>
-            </div>
+            
+            {alerta && (
+              <>
+                <div className="text-gray-300 text-[9px] mb-2">Última alerta:</div>
+                <div className="bg-red-900/40 border border-red-600/40 rounded-lg px-2.5 py-1.5 mb-3">
+                  <div className="text-red-300 text-[9px] font-semibold">● {alerta.tipo}</div>
+                  <div className="text-gray-400 text-[8px] font-mono">{date} {time}</div>
+                </div>
+              </>
+            )}
+
             <div className="space-y-1.5">
               {[
                 { label: "Telegram conectado", ok: true },
@@ -582,37 +636,37 @@ function PhoneStatus() {
   );
 }
 
-function DashboardScreen({ onViewDetail, mode }: { onViewDetail: () => void; mode: CommMode }) {
-  const [panicPressed, setPanicPressed] = useState(false);
+function DashboardScreen({ onViewDetail, mode, alertas, nodos, onPanico }: { onViewDetail: () => void; mode: CommMode, alertas: Alerta[], nodos: NodoStatus, onPanico: () => void }) {
   const isContingencia = mode === "contingencia";
+  const alertasActivas = alertas.filter(a => a.activa).length;
+  const ultimaAlerta = alertas[0];
+  const { date, time } = formatDateTime(ultimaAlerta?.fecha);
 
   return (
     <div className="flex-1 overflow-y-auto bg-slate-50 p-6 space-y-5">
       <div className="grid grid-cols-4 gap-4">
         <StatCard icon={<ActivityIcon />} label="Estado General" value="Normal" sub="Sistema funcionando correctamente" accent="green" />
-        <StatCard icon={<AlertTriangleIcon />} label="Alertas Activas" value="1" sub="Requiere atención" accent="red" />
-        <StatCard icon={<CpuIcon />} label="Nodos IoT" value={isContingencia ? "11" : "12"} sub={isContingencia ? "11/12 Online" : "Online"} accent="blue" />
+        <StatCard icon={<AlertTriangleIcon />} label="Alertas Activas" value={alertasActivas} sub="Requiere atención" accent={alertasActivas > 0 ? "red" : "gray"} />
+        <StatCard icon={<CpuIcon />} label="Nodos IoT" value={isContingencia ? nodos.online - 1 : nodos.online} sub={isContingencia ? `${nodos.online - 1}/${nodos.total} Online` : "Online"} accent="blue" />
         <StatCard icon={<ActivityIcon />} label="Usuarios / Destinatarios" value="248" sub="Destinatarios disponibles" accent="gray" />
       </div>
 
-      <CommStatusCard mode={mode} />
+      <CommStatusCard mode={mode} nodos={nodos} />
 
       <div className="grid grid-cols-3 gap-4">
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
           <h3 className="font-semibold text-gray-900 text-sm mb-4">Activación Rápida</h3>
           <div className="flex flex-col items-center gap-3">
             <button
-              onClick={() => setPanicPressed(!panicPressed)}
-              className={`w-full py-5 rounded-xl flex flex-col items-center gap-2 transition-all font-bold text-white text-sm tracking-wide shadow-lg ${
-                panicPressed ? "bg-red-700 shadow-red-300" : "bg-red-600 hover:bg-red-700 shadow-red-200"
-              }`}
+              onClick={onPanico}
+              className="w-full py-5 rounded-xl flex flex-col items-center gap-2 transition-all font-bold text-white text-sm tracking-wide shadow-lg bg-red-600 hover:bg-red-700 shadow-red-200 active:scale-95"
             >
               <BellIcon size={24} />
               BOTÓN DE PÁNICO
               <span className="text-xs font-normal opacity-80">Enviar alerta inmediata</span>
             </button>
             <p className="text-[11px] text-gray-400 text-center leading-relaxed">
-              Al activar esta opción se distribuirá una alerta a los canales configurados.
+              Al activar esta opción se distribuirá una alerta a los canales configurados en tu backend.
             </p>
           </div>
         </div>
@@ -620,69 +674,68 @@ function DashboardScreen({ onViewDetail, mode }: { onViewDetail: () => void; mod
         <div className={`bg-white rounded-xl border shadow-sm p-5 ${isContingencia ? "border-orange-200" : "border-gray-200"}`}>
           <div className="flex items-center justify-between mb-3">
             <h3 className="font-semibold text-gray-900 text-sm">Última Alerta</h3>
-            <Badge color="red">● ACTIVA</Badge>
+            {ultimaAlerta?.activa ? <Badge color="red">● ACTIVA</Badge> : <Badge color="gray">✓ RESUELTA</Badge>}
           </div>
-          <div className="bg-red-50 border border-red-100 rounded-lg p-3 mb-3">
-            <div className="text-red-700 font-bold text-base mb-1">Terremoto</div>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-gray-500">
-              <span>Intensidad:</span><span className="font-medium text-gray-700">Moderada</span>
-              <span>Ubicación:</span><span className="font-medium text-gray-700">Santiago, Chile</span>
-              <span>Fecha:</span><span className="font-mono text-gray-700">25/08/2025</span>
-              <span>Hora:</span><span className="font-mono text-gray-700">12:40:15</span>
-            </div>
-          </div>
-          <div className="space-y-1.5 mb-3">
-            {isContingencia ? (
-              <>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Telegram</span>
-                  <span className="font-medium text-red-500 font-mono">No disponible</span>
+          
+          {ultimaAlerta ? (
+            <>
+              <div className="bg-red-50 border border-red-100 rounded-lg p-3 mb-3">
+                <div className="text-red-700 font-bold text-base mb-1">{ultimaAlerta.tipo}</div>
+                <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-gray-500">
+                  <span>Intensidad:</span><span className="font-medium text-gray-700">{ultimaAlerta.intensidad}</span>
+                  <span>Ubicación:</span><span className="font-medium text-gray-700">{ultimaAlerta.ubicacion}</span>
+                  <span>Fecha:</span><span className="font-mono text-gray-700">{date}</span>
+                  <span>Hora:</span><span className="font-mono text-gray-700">{time}</span>
                 </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">MQTT / Internet</span>
-                  <span className="font-medium text-red-500 font-mono">No disponible</span>
-                </div>
-                <div className="flex items-center justify-between text-xs border-t border-orange-100 pt-1.5">
-                  <span className="flex items-center gap-1 text-gray-600 font-medium">
-                    <RadioIcon size={11} /> RF
-                  </span>
-                  <span className="font-semibold text-orange-600 font-mono">Distribución activa ✓</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Nodos</span>
-                  <span className="font-medium text-green-600">11/12 recibieron</span>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Telegram</span>
-                  <span className="font-medium text-green-600">Enviado ✓</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">MQTT / IoT</span>
-                  <span className="font-medium text-green-600">Enviado ✓</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="flex items-center gap-1 text-gray-500">
-                    <RadioIcon size={11} /> RF
-                  </span>
-                  <span className="font-medium text-green-600">Disponible ✓</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Nodos</span>
-                  <span className="font-medium text-green-600">12/12 recibieron</span>
-                </div>
-              </>
-            )}
-          </div>
-          <button
-            onClick={onViewDetail}
-            className="w-full text-xs py-2 rounded-lg border border-blue-200 text-blue-600 hover:bg-blue-50 transition-colors font-medium flex items-center justify-center gap-1.5"
-          >
-            <ExternalLinkIcon size={12} />
-            Ver detalles
-          </button>
+              </div>
+              <div className="space-y-1.5 mb-3">
+                {isContingencia ? (
+                  <>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-gray-500">Telegram</span>
+                      <span className="font-medium text-red-500 font-mono">No disponible</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-gray-500">MQTT / Internet</span>
+                      <span className="font-medium text-red-500 font-mono">No disponible</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs border-t border-orange-100 pt-1.5">
+                      <span className="flex items-center gap-1 text-gray-600 font-medium">
+                        <RadioIcon size={11} /> RF
+                      </span>
+                      <span className="font-semibold text-orange-600 font-mono">Distribución activa ✓</span>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-gray-500">Telegram</span>
+                      <span className="font-medium text-green-600">Enviado ✓</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="text-gray-500">MQTT / IoT</span>
+                      <span className="font-medium text-green-600">Enviado ✓</span>
+                    </div>
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="flex items-center gap-1 text-gray-500">
+                        <RadioIcon size={11} /> RF
+                      </span>
+                      <span className="font-medium text-green-600">Disponible ✓</span>
+                    </div>
+                  </>
+                )}
+              </div>
+              <button
+                onClick={onViewDetail}
+                className="w-full text-xs py-2 rounded-lg border border-blue-200 text-blue-600 hover:bg-blue-50 transition-colors font-medium flex items-center justify-center gap-1.5"
+              >
+                <ExternalLinkIcon size={12} />
+                Ver detalles
+              </button>
+            </>
+          ) : (
+            <div className="text-center text-sm text-gray-500 py-10">No hay alertas registradas</div>
+          )}
         </div>
 
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
@@ -706,18 +759,18 @@ function DashboardScreen({ onViewDetail, mode }: { onViewDetail: () => void; mod
         </div>
       </div>
 
-      <HistoryTable />
+      <HistoryTable alertas={alertas} />
 
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
         <h3 className="font-semibold text-gray-900 text-sm mb-1">Vistas Móviles</h3>
         <p className="text-xs text-gray-400 mb-5">Representación de la notificación recibida por el usuario final</p>
         <div className="flex gap-8 justify-center">
           <div className="text-center">
-            <PhoneNotification />
+            <PhoneNotification alerta={ultimaAlerta} />
             <p className="text-xs text-gray-400 mt-3">Notificación de alerta</p>
           </div>
           <div className="text-center">
-            <PhoneStatus />
+            <PhoneStatus alerta={ultimaAlerta} />
             <p className="text-xs text-gray-400 mt-3">Estado del sistema</p>
           </div>
         </div>
@@ -726,28 +779,34 @@ function DashboardScreen({ onViewDetail, mode }: { onViewDetail: () => void; mod
   );
 }
 
-function AlertDetailScreen({ mode }: { mode: CommMode }) {
+function AlertDetailScreen({ mode, alerta }: { mode: CommMode, alerta?: Alerta }) {
   const isContingencia = mode === "contingencia";
+  const { date, time } = formatDateTime(alerta?.fecha || "");
+
+  if (!alerta) return <div className="p-10 text-center text-gray-500">No hay alertas activas para visualizar.</div>
+
   return (
     <div className="flex-1 overflow-y-auto bg-slate-50 p-6 space-y-4">
-      <div className="bg-red-600 rounded-xl p-5 flex items-center justify-between text-white shadow-lg shadow-red-100">
+      <div className={`${alerta.activa ? "bg-red-600 shadow-red-100" : "bg-gray-600 shadow-gray-100"} rounded-xl p-5 flex items-center justify-between text-white shadow-lg`}>
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
             <AlertTriangleIcon size={22} />
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="bg-white text-red-600 text-xs font-bold px-2 py-0.5 rounded">ACTIVA</span>
-              {isContingencia && (
+              <span className={`bg-white text-xs font-bold px-2 py-0.5 rounded ${alerta.activa ? "text-red-600" : "text-gray-700"}`}>
+                {alerta.activa ? "ACTIVA" : "RESUELTA"}
+              </span>
+              {isContingencia && alerta.activa && (
                 <span className="bg-orange-400/80 text-white text-xs font-semibold px-2 py-0.5 rounded">VÍA RF</span>
               )}
             </div>
-            <div className="text-white font-bold text-lg mt-0.5">Terremoto — Moderado</div>
+            <div className="text-white font-bold text-lg mt-0.5">{alerta.tipo} — {alerta.intensidad}</div>
           </div>
         </div>
         <div className="text-right font-mono text-sm opacity-80">
-          <div>25/08/2025</div>
-          <div className="text-base font-semibold">12:40:15</div>
+          <div>{date}</div>
+          <div className="text-base font-semibold">{time}</div>
         </div>
       </div>
 
@@ -759,23 +818,18 @@ function AlertDetailScreen({ mode }: { mode: CommMode }) {
           </h3>
           <div className="space-y-3">
             {[
-              { label: "Tipo de alerta", value: "Terremoto" },
-              { label: "Intensidad", value: "Moderado" },
-              { label: "Fecha y hora", value: "25/08/2025 — 12:40:15", mono: true },
-              { label: "Fuente de datos", value: "API externa" },
-              { label: "Ubicación", value: "Santiago, Chile" },
+              { label: "ID Alerta", value: alerta.id, mono: true },
+              { label: "Tipo de alerta", value: alerta.tipo },
+              { label: "Intensidad", value: alerta.intensidad },
+              { label: "Fecha y hora", value: `${date} — ${time}`, mono: true },
+              { label: "Fuente de datos", value: "API Externa / Botón de Pánico" },
+              { label: "Ubicación", value: alerta.ubicacion },
             ].map(({ label, value, mono }) => (
               <div key={label} className="flex items-start justify-between border-b border-gray-50 pb-2 last:border-0 last:pb-0">
                 <span className="text-xs text-gray-400 pt-0.5">{label}</span>
                 <span className={`text-sm font-medium text-gray-800 text-right ${mono ? "font-mono" : ""}`}>{value}</span>
               </div>
             ))}
-            <div className="border-t border-gray-100 pt-2">
-              <span className="text-xs text-gray-400">Descripción</span>
-              <p className="text-xs text-gray-600 mt-1 leading-relaxed bg-blue-50 rounded-lg p-2.5 border border-blue-100">
-                Evento recibido desde la fuente de datos y preparado para distribución.
-              </p>
-            </div>
           </div>
         </div>
 
@@ -802,21 +856,6 @@ function AlertDetailScreen({ mode }: { mode: CommMode }) {
                     </div>
                   </div>
                 ))}
-                {[
-                  { channel: "Comunicación RF", status: "Operativa", detail: "Distribución activa — canal independiente", icon: "📡" },
-                  { channel: "Dispositivos", status: "11/12 recibieron", detail: "Estado de recepción: 91.7%", icon: "🔌" },
-                ].map(({ channel, status, detail, icon }) => (
-                  <div key={channel} className="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
-                    <span className="text-lg">{icon}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-semibold text-gray-800">{channel}</span>
-                        <Badge color="green">🟢 {status}</Badge>
-                      </div>
-                      <div className="text-[10px] text-gray-400 font-mono mt-0.5">{detail}</div>
-                    </div>
-                  </div>
-                ))}
                 <div className="bg-orange-50 border border-orange-100 rounded-lg px-3 py-2">
                   <p className="text-[10px] text-orange-700 leading-relaxed font-medium">
                     El sistema opera en modo contingencia. La alerta está siendo distribuida a través del canal RF independiente de Internet.
@@ -826,10 +865,8 @@ function AlertDetailScreen({ mode }: { mode: CommMode }) {
             ) : (
               <>
                 {[
-                  { channel: "Telegram", status: "Enviado", detail: "Hora de envío: 12:40:18", icon: "💬" },
-                  { channel: "MQTT / IoT", status: "Enviado", detail: "Hora de publicación: 12:40:17", icon: "📡" },
-                  { channel: "Comunicación RF", status: "Operativa", detail: "Estado de distribución: Activo", icon: "📡" },
-                  { channel: "Dispositivos", status: "12/12 Online", detail: "Estado de recepción: Completo", icon: "🔌" },
+                  { channel: "Telegram", status: "Enviado", detail: `Hora de envío: ${time}`, icon: "💬" },
+                  { channel: "MQTT / IoT", status: "Enviado", detail: `Hora de publicación: ${time}`, icon: "📡" },
                   { channel: "Teléfonos", status: "248 notificados", detail: "Estado de distribución: Completo", icon: "📱" },
                 ].map(({ channel, status, detail, icon }) => (
                   <div key={channel} className="flex items-center gap-3 p-3 rounded-lg bg-green-50 border border-green-100">
@@ -848,48 +885,20 @@ function AlertDetailScreen({ mode }: { mode: CommMode }) {
           </div>
         </div>
       </div>
-
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-        <h3 className="font-semibold text-gray-900 text-sm mb-4">Cobertura de distribución</h3>
-        <SantiagoMap mode={mode} />
-        <div className="flex items-center gap-5 mt-3 text-xs text-gray-500">
-          <span>🔴 Alerta activa — Santiago centro</span>
-          <span>{isContingencia ? "🟠 11 nodos activos vía RF" : "🟢 7 nodos online"}</span>
-          <span>⚪ 1 nodo offline</span>
-          <span className="flex items-center gap-1">
-            <RadioIcon size={11} />
-            <span>Cobertura RF</span>
-          </span>
-        </div>
-      </div>
     </div>
   );
 }
 
-function DevicesScreen({ mode }: { mode: CommMode }) {
+function DevicesScreen({ mode, nodos }: { mode: CommMode, nodos: NodoStatus }) {
   const isContingencia = mode === "contingencia";
-  const devices = [
-    { id: "Nodo 01", zona: "Centro", online: true, last: "12:40:10", level: 98 },
-    { id: "Nodo 02", zona: "Providencia", online: true, last: "12:40:12", level: 95 },
-    { id: "Nodo 03", zona: "Las Condes", online: true, last: "12:40:09", level: 91 },
-    { id: "Nodo 04", zona: "Pudahuel", online: false, last: "10:15:33", level: 0 },
-    { id: "Nodo 05", zona: "Maipú", online: true, last: "12:40:11", level: 87 },
-    { id: "Nodo 06", zona: "La Florida", online: true, last: "12:40:13", level: 93 },
-    { id: "Nodo 07", zona: "Ñuñoa", online: true, last: "12:40:08", level: 89 },
-    { id: "Nodo 08", zona: "Peñalolén", online: true, last: "12:40:14", level: 96 },
-    { id: "Nodo 09", zona: "Recoleta", online: true, last: "12:40:07", level: 82 },
-    { id: "Nodo 10", zona: "Quilicura", online: true, last: "12:40:15", level: 90 },
-    { id: "Nodo 11", zona: "Lo Barnechea", online: true, last: "12:40:06", level: 78 },
-    { id: "Nodo 12", zona: "San Bernardo", online: true, last: "12:40:16", level: 94 },
-  ];
-
+  
   return (
     <div className="flex-1 overflow-y-auto bg-slate-50 p-6">
       <div className="flex items-center justify-between mb-5">
         <div>
           <h2 className="font-semibold text-gray-900">Dispositivos registrados</h2>
           <p className="text-xs text-gray-400 mt-0.5">
-            {isContingencia ? "11 online vía RF · 1 offline" : "11 online · 1 offline"}
+            {nodos.online} online · {nodos.total - nodos.online} offline
           </p>
         </div>
         <div className="flex items-center gap-2">
@@ -898,58 +907,60 @@ function DevicesScreen({ mode }: { mode: CommMode }) {
               <RadioIcon size={10} /> Canal RF activo
             </Badge>
           )}
-          <Badge color="blue">12 total</Badge>
+          <Badge color="blue">{nodos.total} total</Badge>
         </div>
       </div>
       <div className="grid grid-cols-3 gap-3">
-        {devices.map((d) => (
-          <div
-            key={d.id}
-            className={`bg-white rounded-xl border shadow-sm p-4 ${
-              !d.online ? "border-red-100 bg-red-50/30" : isContingencia ? "border-orange-100" : "border-gray-200"
-            }`}
-          >
-            <div className="flex items-center justify-between mb-3">
-              <div className="flex items-center gap-2">
-                <StatusDot color={d.online ? (isContingencia ? "orange" : "green") : "red"} />
-                <span className="font-semibold text-sm text-gray-800">{d.id}</span>
+        {nodos.detalle.map((d, index) => {
+          const isOnline = d.estado === "online";
+          // Mock data visual ya que el backend devuelve pocos campos
+          const mockLevel = isOnline ? 85 + (index % 10) : 0; 
+          
+          return (
+            <div
+              key={d.id}
+              className={`bg-white rounded-xl border shadow-sm p-4 ${
+                !isOnline ? "border-red-100 bg-red-50/30" : isContingencia ? "border-orange-100" : "border-gray-200"
+              }`}
+            >
+              <div className="flex items-center justify-between mb-3">
+                <div className="flex items-center gap-2">
+                  <StatusDot color={isOnline ? (isContingencia ? "orange" : "green") : "red"} />
+                  <span className="font-semibold text-sm text-gray-800">{d.id}</span>
+                </div>
+                <Badge color={isOnline ? (isContingencia ? "orange" : "green") : "red"}>
+                  {d.estado.toUpperCase()}
+                </Badge>
               </div>
-              <Badge color={d.online ? (isContingencia ? "orange" : "green") : "red"}>
-                {d.online ? "Online" : "Offline"}
-              </Badge>
-            </div>
-            <div className="space-y-1.5 text-xs text-gray-500">
-              <div className="flex justify-between">
-                <span>Zona</span>
-                <span className="text-gray-700 font-medium">{d.zona}</span>
-              </div>
-              {d.online && (
+              <div className="space-y-1.5 text-xs text-gray-500">
                 <div className="flex justify-between">
-                  <span>Canal</span>
-                  <span className={`font-semibold flex items-center gap-1 ${isContingencia ? "text-orange-600" : "text-blue-600"}`}>
-                    <RadioIcon size={10} /> RF
-                  </span>
+                  <span>Zona</span>
+                  <span className="text-gray-700 font-medium">{d.ubicacion}</span>
                 </div>
-              )}
-              <div className="flex justify-between">
-                <span>Última conexión</span>
-                <span className="font-mono text-gray-700">{d.last}</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Disponibilidad</span>
-                <span className="font-mono text-gray-700">{d.level}%</span>
-              </div>
-              {d.online && (
-                <div className="w-full bg-gray-100 rounded-full h-1 mt-1">
-                  <div
-                    className={`h-1 rounded-full transition-all ${isContingencia ? "bg-orange-400" : "bg-green-500"}`}
-                    style={{ width: `${d.level}%` }}
-                  />
+                {isOnline && (
+                  <div className="flex justify-between">
+                    <span>Canal</span>
+                    <span className={`font-semibold flex items-center gap-1 ${isContingencia ? "text-orange-600" : "text-blue-600"}`}>
+                      <RadioIcon size={10} /> RF
+                    </span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center mt-2">
+                  <span>Disponibilidad</span>
+                  <span className="font-mono text-gray-700">{mockLevel}%</span>
                 </div>
-              )}
+                {isOnline && (
+                  <div className="w-full bg-gray-100 rounded-full h-1 mt-1">
+                    <div
+                      className={`h-1 rounded-full transition-all ${isContingencia ? "bg-orange-400" : "bg-green-500"}`}
+                      style={{ width: `${mockLevel}%` }}
+                    />
+                  </div>
+                )}
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </div>
   );
@@ -967,7 +978,7 @@ function MapScreen({ mode }: { mode: CommMode }) {
           </div>
           <div className="flex items-center gap-2">
             {isContingencia && <Badge color="orange"><RadioIcon size={10} /> RF activo</Badge>}
-            <Badge color="red">● 1 alerta activa</Badge>
+            <Badge color="red">● Alertas Georeferenciadas</Badge>
           </div>
         </div>
         <SantiagoMap mode={mode} />
@@ -985,10 +996,10 @@ function MapScreen({ mode }: { mode: CommMode }) {
   );
 }
 
-function HistorialScreen() {
+function HistorialScreen({ alertas }: { alertas: Alerta[] }) {
   return (
     <div className="flex-1 overflow-y-auto bg-slate-50 p-6">
-      <HistoryTable />
+      <HistoryTable alertas={alertas} />
     </div>
   );
 }
@@ -997,6 +1008,49 @@ export default function App() {
   const [screen, setScreen] = useState<Screen>("dashboard");
   const [navActive, setNavActive] = useState("dashboard");
   const [mode, setMode] = useState<CommMode>("normal");
+  
+  // --- NUEVOS ESTADOS PARA LA API ---
+  const [alertas, setAlertas] = useState<Alerta[]>([]);
+  const [nodos, setNodos] = useState<NodoStatus>({ total: 0, online: 0, detalle: [] });
+
+  // --- EFECTO DE POLLING (FETCH CADA 3 SEGUNDOS) ---
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const resAlertas = await fetch(`${API_URL}/alertas`);
+        const dataAlertas = await resAlertas.json();
+        setAlertas(dataAlertas);
+
+        const resNodos = await fetch(`${API_URL}/nodos/status`);
+        const dataNodos = await resNodos.json();
+        setNodos(dataNodos);
+      } catch (error) {
+        console.error("[ERROR] No se pudo conectar con la API:", error);
+      }
+    };
+    
+    fetchData(); // Llamada inicial
+    const interval = setInterval(fetchData, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // --- FUNCIÓN DEL BOTÓN DE PÁNICO ---
+  const handleActivarPanico = async () => {
+    try {
+      await fetch(`${API_URL}/alertas/panico`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          tipo: "Terremoto (Manual)",
+          intensidad: "Alerta Crítica",
+          ubicacion: "Santiago Centro, Chile"
+        })
+      });
+      // La API actualizará su base local, y el polling de 3 segundos lo reflejará en la pantalla.
+    } catch (error) {
+      console.error("[ERROR] Falló la activación del botón de pánico:", error);
+    }
+  };
 
   const navigate = (id: string) => {
     setNavActive(id);
@@ -1014,6 +1068,8 @@ export default function App() {
     mapa: "Mapa de Cobertura",
   };
 
+  const alertasActivas = alertas.filter(a => a.activa).length;
+
   return (
     <div className="flex h-full overflow-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
       <Sidebar active={navActive} onNavigate={navigate} />
@@ -1022,6 +1078,7 @@ export default function App() {
           title={titles[screen]}
           onAlert={() => { setScreen("detail"); setNavActive("alertas"); }}
           mode={mode}
+          alertasActivas={alertasActivas}
         />
         <div className={`px-8 py-2 flex items-center gap-3 text-xs border-b ${
           mode === "contingencia" ? "bg-orange-50 border-orange-200" : "bg-gray-50 border-gray-200"
@@ -1049,10 +1106,18 @@ export default function App() {
             </span>
           )}
         </div>
-        {screen === "dashboard" && <DashboardScreen onViewDetail={() => { setScreen("detail"); setNavActive("alertas"); }} mode={mode} />}
-        {screen === "detail" && <AlertDetailScreen mode={mode} />}
-        {screen === "devices" && <DevicesScreen mode={mode} />}
-        {screen === "historial" && <HistorialScreen />}
+        {screen === "dashboard" && (
+          <DashboardScreen 
+            onViewDetail={() => { setScreen("detail"); setNavActive("alertas"); }} 
+            mode={mode} 
+            alertas={alertas} 
+            nodos={nodos} 
+            onPanico={handleActivarPanico}
+          />
+        )}
+        {screen === "detail" && <AlertDetailScreen mode={mode} alerta={alertas[0]} />}
+        {screen === "devices" && <DevicesScreen mode={mode} nodos={nodos} />}
+        {screen === "historial" && <HistorialScreen alertas={alertas} />}
         {screen === "mapa" && <MapScreen mode={mode} />}
       </div>
     </div>

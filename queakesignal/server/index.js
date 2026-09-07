@@ -21,14 +21,14 @@ app.get('/api/alertas', (req, res) => {
   res.json(alertas);
 });
 
-// POST: Activar Botón de Pánico desde el Dashboard
+// POST: Activar Boton de Panico desde el Dashboard
 app.post('/api/alertas/panico', (req, res) => {
   const alertas = getAlertas();
   
   const nuevaAlerta = {
     id: `ALERT-${Date.now().toString().slice(-4)}`,
     tipo: req.body.tipo || "Sismo de Gran Magnitud",
-    intensidad: req.body.intensidad || "Alerta Crítica",
+    intensidad: req.body.intensidad || "Alerta Critica",
     ubicacion: req.body.ubicacion || "Zona Central, Chile",
     fecha: new Date().toISOString(),
     activa: true,
@@ -38,12 +38,63 @@ app.post('/api/alertas/panico', (req, res) => {
   alertas.unshift(nuevaAlerta);
   saveAlertas(alertas);
 
-  console.log(`\n ¡BOTÓN DE PÁNICO ACTIVADO! Alerta ${nuevaAlerta.id} guardada en BD.`);
+  console.log(`[INFO] BOTON DE PANICO ACTIVADO. Alerta ${nuevaAlerta.id} guardada en BD.`);
   res.status(201).json({ status: "OK", alerta: nuevaAlerta });
 });
 
+// PUT: Finalizar una alerta activa
+app.put('/api/alertas/:id/resolver', (req, res) => {
+  const alertas = getAlertas();
+  const index = alertas.findIndex(a => a.id === req.params.id);
+
+  if (index === -1) {
+    return res.status(404).json({ error: "Alerta no encontrada" });
+  }
+
+  alertas[index].activa = false;
+  saveAlertas(alertas);
+
+  console.log(`[INFO] Alerta ${req.params.id} marcada como FINALIZADA.`);
+  res.json({ status: "OK", alerta: alertas[index] });
+});
+
+// GET: Estado dummy de Nodos IoT para el Dashboard
+app.get('/api/nodos/status', (req, res) => {
+  const nodosDummy = [
+    { id: "Nodo 01", ubicacion: "Santiago Centro", estado: "online" },
+    { id: "Nodo 02", ubicacion: "Providencia", estado: "online" },
+    { id: "Nodo 03", ubicacion: "Pudahuel", estado: "offline" }
+  ];
+  res.json({ total: 12, online: 11, detalle: nodosDummy });
+});
+
+// --- SIMULADOR DE EMERGENCIAS (Para la presentacion) ---
+const emergenciasRandom = [
+  { tipo: "Terremoto", intensidad: "8.2 Mw", ubicacion: "Concepcion, Chile" },
+  { tipo: "Alerta de Tsunami", intensidad: "Evacuacion Inmediata", ubicacion: "Iquique, Chile" },
+  { tipo: "Incendio Forestal", intensidad: "Alerta Roja", ubicacion: "Vina del Mar, Chile" }
+];
+
+setInterval(() => {
+  const alertas = getAlertas();
+  const randomActiva = emergenciasRandom[Math.floor(Math.random() * emergenciasRandom.length)];
+  
+  const alertaSorpresa = {
+    id: `ALERT-SIM-${Date.now().toString().slice(-4)}`,
+    ...randomActiva,
+    fecha: new Date().toISOString(),
+    activa: true,
+    despachada: false
+  };
+
+  alertas.unshift(alertaSorpresa);
+  saveAlertas(alertas);
+  console.log(`[SIMULADOR] Nueva alerta generada automaticamente: ${alertaSorpresa.tipo}`);
+}, 30000); 
+// -------------------------------------------------------
+
 // Iniciar servidor y CRON
 app.listen(PORT, () => {
-  console.log(`Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
+  console.log(`[SYSTEM] Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
   iniciarCron();
 });
