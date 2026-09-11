@@ -7,6 +7,7 @@ import AlertDetailScreen from "./screens/AlertDetailScreen.tsx";
 import DevicesScreen from "./screens/DevicesScreen.tsx";
 import MapScreen from "./screens/MapScreen.tsx";
 import HistorialScreen from "./screens/HistorialScreen.tsx";
+import LoginScreen from "./screens/LoginScreen";
 
 const TITLES: Record<Screen, string> = {
   dashboard: "Dashboard",
@@ -17,9 +18,14 @@ const TITLES: Record<Screen, string> = {
 };
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [screen, setScreen] = useState<Screen>("dashboard");
   const [navActive, setNavActive] = useState("dashboard");
   const [mode, setMode] = useState<CommMode>("normal");
+
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={() => setIsAuthenticated(true)} />;
+  }
 
   const navigate = (id: string) => {
     setNavActive(id);
