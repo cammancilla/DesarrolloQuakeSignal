@@ -3,23 +3,43 @@ import { BellIcon } from "../components/icons";
 
 interface LoginScreenProps {
   onLogin: () => void;
+  onGoToRegister: () => void;
 }
 
-export default function LoginScreen({ onLogin }: LoginScreenProps) {
-  // Prellenamos con los datos del Administrador para facilitar las pruebas
+export default function LoginScreen({ onLogin, onGoToRegister }: LoginScreenProps) {
   const [email, setEmail] = useState("admin@quakesignal.com");
   const [password, setPassword] = useState("admin123");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
-    // Validación de usuario Administrador
-    if (email === "admin@quakesignal.com" && password === "admin123") {
-      onLogin();
-    } else {
-      setError("Credenciales incorrectas. Acceso permitido solo para Administrador.");
+    try {
+      // Petición al Backend Node.js
+      const res = await fetch("http://localhost:5000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || "Credenciales incorrectas.");
+      }
+
+      // Guardar token JWT y datos de sesión en localStorage
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+
+      onLogin(); // Entrar a la aplicación
+    } catch (err: any) {
+      setError(err.message || "Error al conectar con el servidor.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -33,7 +53,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
             <BellIcon size={24} />
           </div>
           <h1 className="text-2xl font-bold text-slate-800">QuakeSignal</h1>
-          <p className="text-sm text-slate-500 mt-1">Acceso Administrativo al Sistema</p>
+          <p className="text-sm text-slate-500 mt-1">Acceso al Sistema</p>
         </div>
 
         {/* Mensaje de Error */}
@@ -47,7 +67,7 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
-              Correo del Administrador
+              Correo Electrónico
             </label>
             <input
               type="email"
@@ -75,14 +95,26 @@ export default function LoginScreen({ onLogin }: LoginScreenProps) {
 
           <button
             type="submit"
-            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-lg text-sm transition-colors shadow-sm mt-2 cursor-pointer"
+            disabled={loading}
+            className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-lg text-sm transition-colors shadow-sm mt-2 cursor-pointer disabled:opacity-50"
           >
-            Iniciar Sesión como Administrador
+            {loading ? "Verificando..." : "Iniciar Sesión"}
           </button>
         </form>
 
-        <p className="text-[11px] text-slate-400 text-center mt-6">
-          Credenciales de prueba: <span className="font-mono text-slate-600">admin@quakesignal.com</span> / <span className="font-mono text-slate-600">admin123</span>
+        {/* Enlace para ir al Registro */}
+        <p className="text-xs text-slate-500 text-center mt-6">
+          ¿No tienes una cuenta?{" "}
+          <button 
+            onClick={onGoToRegister} 
+            className="text-red-600 hover:underline font-semibold cursor-pointer"
+          >
+            Regístrate aquí
+          </button>
+        </p>
+
+        <p className="text-[11px] text-slate-400 text-center mt-4">
+          Admin por defecto: <span className="font-mono text-slate-600">admin@quakesignal.com</span> / <span className="font-mono text-slate-600">admin123</span>
         </p>
       </div>
     </div>
