@@ -2,14 +2,25 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const connectDB = require("./config/db");
 const { iniciarCron } = require('./cron');
 
 const app = express();
 const PORT = 3001;
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
 
+// Conectar a MongoDB
+connectDB();
+
 app.use(cors());
 app.use(express.json());
+
+
+// Endpoints
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/users", require("./routes/users"));
+
+
 
 // Leer alertas de la base dummy
 const getAlertas = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
@@ -43,7 +54,13 @@ app.post('/api/alertas/panico', (req, res) => {
 });
 
 // Iniciar servidor y CRON
-app.listen(PORT, () => {
-  console.log(`Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
-  iniciarCron();
-});
+const startServer = async () => {
+  await connectDB();
+  
+  app.listen(PORT, () => {
+    console.log(` Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
+    iniciarCron();
+  });
+};
+
+startServer();

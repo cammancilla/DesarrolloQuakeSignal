@@ -9,11 +9,20 @@ const NAV_ITEMS = [
   { id: "historial", label: "Historial", icon: ClockIcon },
   { id: "configuracion", label: "Configuración", icon: GearIcon },
   { id: "usuarios", label: "Usuarios", icon: UsersIcon },
+  { id: "profile", label: "Perfil", icon: UsersIcon },
 ];
 
-const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas"]; 
+
+const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas", "profile", "usuarios"]; 
 
 export default function Sidebar({ active, onNavigate }: { active: string; onNavigate: (id: string) => void }) {
+  const userStorage = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const user = userStorage ? JSON.parse(userStorage) : null;
+
+  // Obtiene el nombre completo/email y la primera letra para el Avatar
+  const userName = user?.nombre || user?.email || "Usuario";
+  const initialLetter = userName.charAt(0).toUpperCase();
+
   return (
     <aside className="w-56 flex-shrink-0 flex flex-col" style={{ background: "#0f1b35" }}>
       <div className="px-5 py-5 border-b border-white/10">
@@ -51,16 +60,28 @@ export default function Sidebar({ active, onNavigate }: { active: string; onNavi
       </nav>
 
       <div className="px-4 py-4 border-t border-white/10">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-semibold">A</div>
+        {/*  Convertido en un botón interactivo que llama a onNavigate("profile") */}
+        <button
+          onClick={() => onNavigate("profile")}
+          className="w-full flex items-center gap-2.5 p-1.5 -mx-1.5 rounded-lg hover:bg-white/5 transition-colors text-left cursor-pointer group"
+        >
+          {/* Avatar dinámico */}
+          <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-semibold group-hover:bg-blue-500 transition-colors">
+            {initialLetter}
+          </div>
+
           <div>
-            <div className="text-white text-xs font-medium">Administrador</div>
+            {/* Nombre dinámico */}
+            <div className="text-white text-xs font-medium truncate max-w-[120px] group-hover:text-blue-400 transition-colors">
+              {userName}
+            </div>
+
             <div className="flex items-center gap-1 mt-0.5">
               <StatusDot color="green" />
               <span className="text-white/40 text-[10px]">Sesión activa</span>
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </aside>
   );

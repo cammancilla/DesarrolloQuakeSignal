@@ -9,6 +9,9 @@ import MapScreen from "./screens/MapScreen";
 import HistorialScreen from "./screens/HistorialScreen";
 import LoginScreen from "./screens/LoginScreen"; 
 import RegisterScreen from "./screens/RegisterScreen";
+import ProfileScreen  from './screens/ProfileScreen.tsx';
+import UsersScreen from "./screens/UsersScreen";
+import { Route, Routes } from "react-router-dom";
 
 const TITLES: Record<string, string> = {
   dashboard: "Dashboard",
@@ -16,6 +19,8 @@ const TITLES: Record<string, string> = {
   devices: "Dispositivos",
   historial: "Historial de Alertas",
   mapa: "Mapa de Cobertura",
+  profile: "Perfil de Usuario",
+  usuarios: "Gestión de Usuarios"
 };
 
 export default function App() {
@@ -35,6 +40,8 @@ export default function App() {
       historial: "historial",
       mapa: "mapa",
       alertas: "detail",
+      profile: "profile", 
+      usuarios: "usuarios"
     };
     if (screenMap[id]) setScreen(screenMap[id]);
   };
@@ -44,6 +51,10 @@ export default function App() {
     setNavActive("alertas");
   };
 
+  <Routes>
+  {/* Otras rutas de tu app */}
+  <Route path="/profile" element={<ProfileScreen />} />
+</Routes>
 // 1. Guard de autenticación
   if (!isAuthenticated) {
     if (authView === "register") {
@@ -123,6 +134,9 @@ export default function App() {
           {screen === "devices" && <DevicesScreen mode={mode} />}
           {screen === "historial" && <HistorialScreen />}
           {screen === "mapa" && <MapScreen />}
+         {screen === "profile" && (
+          <ProfileScreen onLogout={() => setIsAuthenticated(false)} />)}
+          {screen === "usuarios" && <UsersScreen />}
         </main>
       </div>
     </div>
