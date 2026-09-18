@@ -4,32 +4,94 @@ const path = require('path');
 
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
 
+// Helpers para manejar la DB limpiamente
+const readDB = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
+const writeDB = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+
 const iniciarCron = () => {
-  console.log("[CRON] Servicio de monitoreo ciclico inicializado (Cada 1 minuto)");
+  console.log("[CRON] Motores de segundo plano inicializados.");
 
-  cron.schedule('* * * * *', () => {
+  // 1. DESPACHADOR DE ALERTAS: Revisa cada 10 segundos
+  // En eventos sísmicos, 1 minuto de espera es una eternidad.
+  cron.schedule('*/10 * * * * *', () => {
     try {
-      const alertas = JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
-      
-      const alertaPendiente = alertas.find(a => a.activa === true && a.despachada === false);
+      const db = readDB();
+      // Soporta tanto si db.json es un array directo (old) o un objeto { alertas: [] } (new)
+      const alertas = db.alertas || db; 
+      let dbModificada = false;
 
-      if (alertaPendiente) {
-        console.log(`[CRON] Evento detectado. Procesando ${alertaPendiente.id}...`);
+      alertas.forEach(alerta => {
+        if (alerta.activa && !alerta.despachada) {
+          console.log(`[CRON: DESPACHO] Evento detectado. Procesando ${alerta.id}...`);
+          
+          // Aquí irían tus fetch() reales hacia las APIs
+          console.log(`[CANAL A] HTTP POST a Telegram API: Notificación Push enviada.`);
+          console.log(`[CANAL B] MQTT Publish en tópico 'chile/alertas' hacia Broker GCP.`);
 
-        // Canal A: Telegram API (Simulacion)
-        console.log(`[CANAL A] HTTP POST a Telegram API: Notificacion Push enviada.`);
+          alerta.despachada = true;
+          dbModificada = true;
+        }
+      });
 
-        // Canal B: Broker MQTT GCP (Simulacion)
-        console.log(`[CANAL B] MQTT Publish en topico 'chile/alertas' hacia Broker GCP.`);
-
-        // Marcar la alerta como procesada
-        alertaPendiente.despachada = true;
-        fs.writeFileSync(DB_PATH, JSON.stringify(alertas, null, 2));
-
-        console.log(`[CRON] Tarea completada. Alerta ${alertaPendiente.id} despachada a Telegram y Nodos ESP32.`);
+      if (dbModificada) {
+        if (db.alertas) db.alertas = alertas;
+        writeDB(db.alertas ? db : alertas);
+        console.log(`[CRON: DESPACHO] Cola de alertas procesada exitosamente.`);
       }
     } catch (error) {
-      console.error("[ERROR] Fallo en el proceso CRON:", error.message);
+      console.error("[ERROR: DESPACHO]", error.message);
+    }
+  });
+
+  // 2. WATCHDOG DE NODOS: Revisa cada 1 minuto
+  // Evalúa si algún dispositivo ESP32 dejó de mandar su "ping".
+  cron.schedule('* * * * *', () => {
+    try {
+      const db = readDB();
+      if (!db.nodos) return; // Si aún no configuras los nodos en el JSON, lo ignora
+
+      const TIEMPO_OFFLINE_MS = 60000 * 5; // 5 minutos sin ping = offline
+      const ahora = Date.now();
+      let dbModificada = false;
+
+      db.nodos.forEach(nodo => {
+        if (nodo.status === 'online' && (ahora - new Date(nodo.lastPing).getTime()) > TIEMPO_OFFLINE_MS) {
+          console.log(`[CRON: WATCHDOG] Nodo ${nodo.id} sin respuesta. Marcando como OFFLINE.`);
+          nodo.status = 'offline';
+          dbModificada = true;
+        }
+      });
+
+      if (dbModificada) writeDB(db);
+    } catch (error) {
+      console.error("[ERROR: WATCHDOG]", error.message);
+    }
+  });
+
+  // 3. LIMPIEZA AUTOMÁTICA: Revisa cada hora
+  // Evita que el frontend se llene de alertas antiguas desactivándolas.
+  cron.schedule('0 * * * *', () => {
+    try {
+      const db = readDB();
+      const alertas = db.alertas || db;
+      const EXPIRACION_MS = 1000 * 60 * 60 * 2; // Alertas expiran a las 2 horas
+      const ahora = Date.now();
+      let dbModificada = false;
+
+      alertas.forEach(alerta => {
+        if (alerta.activa && (ahora - new Date(alerta.timestamp || ahora).getTime()) > EXPIRACION_MS) {
+          console.log(`[CRON: LIMPIEZA] Desactivando alerta expirada ${alerta.id}`);
+          alerta.activa = false;
+          dbModificada = true;
+        }
+      });
+
+      if (dbModificada) {
+        if (db.alertas) db.alertas = alertas;
+        writeDB(db.alertas ? db : alertas);
+      }
+    } catch (error) {
+      console.error("[ERROR: LIMPIEZA]", error.message);
     }
   });
 };

@@ -16,7 +16,7 @@ body,
   display: none;
 }
 
-@theme inline {
+theme inline {
   --color-navy-950: #0a0f1e;
   --color-navy-900: #0f172a;
   --color-navy-800: #1e2942;

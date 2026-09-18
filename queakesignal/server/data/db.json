@@ -1,47 +1,408 @@
-[
-  {
-    "id": "ALERT-005",
-    "tipo": "Aluvión",
-    "intensidad": "Alto Riesgo - Desborde de Quebrada",
-    "ubicacion": "San José de Maipo, Metropolitana",
-    "fecha": "2026-09-07T12:05:00Z",
-    "activa": true,
-    "despachada": false
-  },
-  {
-    "id": "ALERT-004",
-    "tipo": "Alerta de Tsunami",
-    "intensidad": "Evacuación Preventiva Cota 30",
-    "ubicacion": "Borde Costero, Coquimbo",
-    "fecha": "2026-09-07T08:30:00Z",
-    "activa": false,
-    "despachada": true
-  },
-  {
-    "id": "ALERT-003",
-    "tipo": "Incendio Forestal",
-    "intensidad": "Alerta Roja - Propagación Rápida",
-    "ubicacion": "Reserva Nacional Lago Peñuelas, Valparaíso",
-    "fecha": "2026-09-06T15:45:00Z",
-    "activa": false,
-    "despachada": true
-  },
-  {
-    "id": "ALERT-002",
-    "tipo": "Terremoto",
-    "intensidad": "Sismo Mayor 7.8 Mw",
-    "ubicacion": "Santiago Centro, Metropolitana",
-    "fecha": "2026-09-05T23:15:00Z",
-    "activa": false,
-    "despachada": true
-  },
-  {
-    "id": "ALERT-001",
-    "tipo": "Erupción Volcánica",
-    "intensidad": "Alerta Naranja - Pulso de Cenizas",
-    "ubicacion": "Volcán Villarrica, La Araucanía",
-    "fecha": "2026-09-01T04:20:00Z",
-    "activa": false,
-    "despachada": true
-  }
-]
+{
+  "alertas": [
+    {
+      "id": "ALERT-SIM-5133",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T04:29:25.133Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5131",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T04:27:25.131Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5118",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T04:25:25.118Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5103",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T04:23:25.103Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5087",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T04:21:25.087Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5083",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:19:25.083Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5069",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T04:17:25.069Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5057",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:15:25.057Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5045",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:13:25.045Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5042",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:11:25.042Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5029",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:09:25.029Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5014",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:07:25.014Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5001",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T04:05:25.001Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4998",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T04:03:24.998Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4998",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T04:01:24.998Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4986",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:59:24.986Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4977",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T03:57:24.977Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4976",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T03:55:24.976Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4970",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T03:53:24.970Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4958",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T03:51:24.958Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4949",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T03:49:24.949Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4936",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T03:47:24.936Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4927",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:45:24.927Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4918",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:43:24.918Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4919",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:41:24.919Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4915",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:39:24.915Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4906",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T03:37:24.906Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4891",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T03:35:24.891Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4889",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T03:33:24.889Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4882",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T03:31:24.882Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4880",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:29:24.880Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4879",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-18T03:27:24.879Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4876",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-18T03:25:24.876Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4875",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:23:24.875Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4871",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:21:24.871Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4864",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-18T03:19:24.864Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-9398",
+      "tipo": "Terremoto (Manual)",
+      "intensidad": "Alerta Crítica",
+      "ubicacion": "Santiago Centro, Chile",
+      "fecha": "2026-09-18T03:19:09.398Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-6581",
+      "tipo": "Terremoto (Manual)",
+      "intensidad": "Alerta Crítica",
+      "ubicacion": "Santiago Centro, Chile",
+      "fecha": "2026-09-18T03:18:16.581Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-4865",
+      "tipo": "Terremoto (Manual)",
+      "intensidad": "Alerta Crítica",
+      "ubicacion": "Santiago Centro, Chile",
+      "fecha": "2026-09-18T03:18:14.865Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-005",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo - Desborde de Quebrada",
+      "ubicacion": "San José de Maipo, Metropolitana",
+      "fecha": "2026-09-07T12:05:00Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-004",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Preventiva Cota 30",
+      "ubicacion": "Borde Costero, Coquimbo",
+      "fecha": "2026-09-07T08:30:00Z",
+      "activa": false,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-003",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja - Propagación Rápida",
+      "ubicacion": "Reserva Nacional Lago Peñuelas, Valparaíso",
+      "fecha": "2026-09-06T15:45:00Z",
+      "activa": false,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-002",
+      "tipo": "Terremoto",
+      "intensidad": "Sismo Mayor 7.8 Mw",
+      "ubicacion": "Santiago Centro, Metropolitana",
+      "fecha": "2026-09-05T23:15:00Z",
+      "activa": false,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-001",
+      "tipo": "Erupción Volcánica",
+      "intensidad": "Alerta Naranja - Pulso de Cenizas",
+      "ubicacion": "Volcán Villarrica, La Araucanía",
+      "fecha": "2026-09-01T04:20:00Z",
+      "activa": false,
+      "despachada": true
+    }
+  ],
+  "nodos": [
+    {
+      "id": "ESP32-Alfa",
+      "ubicacion": "Hall Principal",
+      "status": "offline",
+      "lastPing": "2026-09-18T03:17:51.337Z"
+    }
+  ]
+}
