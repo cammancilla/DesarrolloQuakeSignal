@@ -1,13 +1,640 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-5389",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T19:49:05.389Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5387",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T19:47:05.387Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5378",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T19:45:05.378Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5377",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T19:43:05.377Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5369",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T19:41:05.369Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5365",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:39:05.365Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5349",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T19:37:05.349Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5340",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T19:35:05.340Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5335",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T19:33:05.335Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5335",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T19:31:05.335Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5321",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T19:29:05.321Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5308",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T19:27:05.308Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5308",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T19:25:05.308Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5305",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:23:05.305Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5294",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:21:05.294Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5281",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:19:05.281Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5267",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T19:17:05.268Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5262",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T19:15:05.262Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5261",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:13:05.261Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5258",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T19:11:05.258Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5245",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T19:09:05.245Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5239",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T19:07:05.239Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5237",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T19:05:05.237Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5222",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:03:05.222Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5210",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T19:01:05.210Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5197",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T18:59:05.197Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5182",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T18:57:05.182Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5174",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T18:55:05.174Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5161",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T18:53:05.161Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5149",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T18:51:05.149Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5135",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T18:49:05.135Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5125",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T18:47:05.125Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-5114",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T18:45:05.114Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-4310",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-27T18:41:44.310Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
+    },
+    {
+      "id": "ALERT-SIM-4306",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:39:44.306Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4302",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:37:44.302Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4290",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:35:44.290Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
+      "id": "ALERT-SIM-4276",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-27T18:33:44.276Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
+    },
+    {
+      "id": "ALERT-SIM-4263",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:31:44.263Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
+      "id": "ALERT-SIM-4250",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:29:44.250Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
+      "id": "ALERT-SIM-4241",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:27:44.241Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4234",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:25:44.234Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
+      "id": "ALERT-SIM-4233",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:23:44.233Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4223",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:21:44.223Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4217",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:19:44.217Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4210",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:17:44.210Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
+      "id": "ALERT-SIM-4197",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-27T18:15:44.197Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
+    },
+    {
+      "id": "ALERT-SIM-4183",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "fecha": "2026-09-27T18:13:44.183Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
+    },
+    {
+      "id": "ALERT-SIM-4181",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:11:44.181Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4166",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:09:44.166Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
+      "id": "ALERT-SIM-4160",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "fecha": "2026-09-27T18:07:44.160Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
+    },
+    {
+      "id": "ALERT-SIM-4149",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "fecha": "2026-09-27T18:05:44.149Z",
+      "activa": true,
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
+    },
+    {
       "id": "ALERT-SIM-5133",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T04:29:25.133Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-5131",
@@ -16,7 +643,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T04:27:25.131Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-5118",
@@ -25,7 +655,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T04:25:25.118Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-5103",
@@ -34,7 +667,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T04:23:25.103Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-5087",
@@ -43,7 +679,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T04:21:25.087Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-5083",
@@ -52,7 +691,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:19:25.083Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-5069",
@@ -61,7 +703,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T04:17:25.069Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-5057",
@@ -70,7 +715,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:15:25.057Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-5045",
@@ -79,7 +727,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:13:25.045Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-5042",
@@ -88,7 +739,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:11:25.042Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-5029",
@@ -97,7 +751,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:09:25.029Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-5014",
@@ -106,7 +763,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:07:25.014Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-5001",
@@ -115,7 +775,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T04:05:25.001Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4998",
@@ -124,7 +787,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T04:03:24.998Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4998",
@@ -133,7 +799,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T04:01:24.998Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4986",
@@ -142,7 +811,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:59:24.986Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4977",
@@ -151,7 +823,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T03:57:24.977Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4976",
@@ -160,7 +835,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T03:55:24.976Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-4970",
@@ -169,7 +847,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T03:53:24.970Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4958",
@@ -178,7 +859,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T03:51:24.958Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4949",
@@ -187,7 +871,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T03:49:24.949Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4936",
@@ -196,7 +883,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T03:47:24.936Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-4927",
@@ -205,7 +895,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:45:24.927Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4918",
@@ -214,7 +907,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:43:24.918Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4919",
@@ -223,7 +919,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:41:24.919Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4915",
@@ -232,7 +931,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:39:24.915Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4906",
@@ -241,7 +943,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T03:37:24.906Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-4891",
@@ -250,7 +955,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T03:35:24.891Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-4889",
@@ -259,7 +967,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T03:33:24.889Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-4882",
@@ -268,7 +979,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T03:31:24.882Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4880",
@@ -277,7 +991,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:29:24.880Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4879",
@@ -286,7 +1003,10 @@
       "ubicacion": "Iquique, Chile",
       "fecha": "2026-09-18T03:27:24.879Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25
     },
     {
       "id": "ALERT-SIM-4876",
@@ -295,7 +1015,10 @@
       "ubicacion": "Concepción, Chile",
       "fecha": "2026-09-18T03:25:24.876Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35
     },
     {
       "id": "ALERT-SIM-4875",
@@ -304,7 +1027,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:23:24.875Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4871",
@@ -313,7 +1039,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:21:24.871Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-SIM-4864",
@@ -322,7 +1051,10 @@
       "ubicacion": "Viña del Mar, Chile",
       "fecha": "2026-09-18T03:19:24.864Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15
     },
     {
       "id": "ALERT-9398",
@@ -331,7 +1063,10 @@
       "ubicacion": "Santiago Centro, Chile",
       "fecha": "2026-09-18T03:19:09.398Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20
     },
     {
       "id": "ALERT-6581",
@@ -340,7 +1075,10 @@
       "ubicacion": "Santiago Centro, Chile",
       "fecha": "2026-09-18T03:18:16.581Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20
     },
     {
       "id": "ALERT-4865",
@@ -349,7 +1087,10 @@
       "ubicacion": "Santiago Centro, Chile",
       "fecha": "2026-09-18T03:18:14.865Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20
     },
     {
       "id": "ALERT-005",
@@ -358,7 +1099,10 @@
       "ubicacion": "San José de Maipo, Metropolitana",
       "fecha": "2026-09-07T12:05:00Z",
       "activa": true,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12
     },
     {
       "id": "ALERT-004",
@@ -367,7 +1111,10 @@
       "ubicacion": "Borde Costero, Coquimbo",
       "fecha": "2026-09-07T08:30:00Z",
       "activa": false,
-      "despachada": true
+      "despachada": true,
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 20
     },
     {
       "id": "ALERT-003",
@@ -376,7 +1123,10 @@
       "ubicacion": "Reserva Nacional Lago Peñuelas, Valparaíso",
       "fecha": "2026-09-06T15:45:00Z",
       "activa": false,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 15
     },
     {
       "id": "ALERT-002",
@@ -385,7 +1135,10 @@
       "ubicacion": "Santiago Centro, Metropolitana",
       "fecha": "2026-09-05T23:15:00Z",
       "activa": false,
-      "despachada": true
+      "despachada": true,
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20
     },
     {
       "id": "ALERT-001",
@@ -394,15 +1147,129 @@
       "ubicacion": "Volcán Villarrica, La Araucanía",
       "fecha": "2026-09-01T04:20:00Z",
       "activa": false,
-      "despachada": true
+      "despachada": true,
+      "lat": -39.4203,
+      "lng": -71.9396,
+      "radioKm": 20
     }
   ],
   "nodos": [
     {
       "id": "ESP32-Alfa",
-      "ubicacion": "Hall Principal",
+      "zona": "Centro",
+      "ubicacion": "Hall Principal — Santiago Centro",
       "status": "offline",
-      "lastPing": "2026-09-18T03:17:51.337Z"
+      "lastPing": "2026-09-27T18:32:38.727Z",
+      "lat": -33.4429,
+      "lng": -70.6539
+    },
+    {
+      "id": "Nodo 01",
+      "zona": "Centro",
+      "ubicacion": "Santiago Centro — Hall Cívico",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.4429,
+      "lng": -70.6539
+    },
+    {
+      "id": "Nodo 02",
+      "zona": "Providencia",
+      "ubicacion": "Providencia — Pedro de Valdivia",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.4255,
+      "lng": -70.6148
+    },
+    {
+      "id": "Nodo 03",
+      "zona": "Las Condes",
+      "ubicacion": "Las Condes — Apoquindo / Manquehue",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.4117,
+      "lng": -70.5802
+    },
+    {
+      "id": "Nodo 04",
+      "zona": "Pudahuel",
+      "ubicacion": "Pudahuel — Parque Enea",
+      "status": "offline",
+      "lastPing": "2026-09-27T10:15:33.000Z",
+      "lat": -33.4427,
+      "lng": -70.7656
+    },
+    {
+      "id": "Nodo 05",
+      "zona": "Maipú",
+      "ubicacion": "Maipú — Plaza Monumento",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.511,
+      "lng": -70.7578
+    },
+    {
+      "id": "Nodo 06",
+      "zona": "La Florida",
+      "ubicacion": "La Florida — Bellavista",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.5227,
+      "lng": -70.5983
+    },
+    {
+      "id": "Nodo 07",
+      "zona": "Ñuñoa",
+      "ubicacion": "Ñuñoa — Plaza Ñuñoa Sur",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.4569,
+      "lng": -70.5976
+    },
+    {
+      "id": "Nodo 08",
+      "zona": "Peñalolén",
+      "ubicacion": "Peñalolén — Quebrada de Macul",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.4831,
+      "lng": -70.5475
+    },
+    {
+      "id": "Nodo 09",
+      "zona": "Recoleta",
+      "ubicacion": "Recoleta — Cerro Blanco",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.4072,
+      "lng": -70.6358
+    },
+    {
+      "id": "Nodo 10",
+      "zona": "Quilicura",
+      "ubicacion": "Quilicura — Parque Industrial",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.3644,
+      "lng": -70.7297
+    },
+    {
+      "id": "Nodo 11",
+      "zona": "Lo Barnechea",
+      "ubicacion": "Lo Barnechea — El Rodeo",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.3547,
+      "lng": -70.5186
+    },
+    {
+      "id": "Nodo 12",
+      "zona": "San Bernardo",
+      "ubicacion": "San Bernardo — Plaza de Armas",
+      "status": "offline",
+      "lastPing": "2026-09-27T18:32:38.728Z",
+      "lat": -33.5922,
+      "lng": -70.7047
     }
   ]
 }

@@ -125,25 +125,21 @@ export default function DashboardScreen({
         </div>
 
         {/* Mapa */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h3 className="font-semibold text-gray-900 text-sm mb-3">Mapa de Cobertura</h3>
-          <SantiagoMap compact mode={mode} />
-          <div className="flex items-center gap-3 mt-3 text-[10px] text-gray-500 flex-wrap justify-center">
-            <span>🔴 Alerta activa</span>
-            <span>🟢 Nodo online</span>
-            <span>⚪ Nodo offline</span>
-            <span className="flex items-center gap-0.5">
-              <span className="inline-block w-3 border-t border-dashed border-green-400" />
-              <span> Cob. RF</span>
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-4 flex flex-col justify-between">
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold text-gray-900 text-sm">Mapa de Cobertura en Tiempo Real</h3>
+            <span className="text-[11px] text-emerald-600 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+              GPS Activo
             </span>
           </div>
-          {/* 🔴 Botón actualizado con onClick */}
+          <SantiagoMap compact mode={mode} height="290px" />
           <button 
             onClick={onNavigateMap}
-            className="w-full mt-2 text-xs py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full mt-2.5 text-xs py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
           >
-            <MapIcon size={12} />
-            Ver mapa completo
+            <MapIcon size={13} />
+            Ver mapa interactivo completo
           </button>
         </div>
       </div>
