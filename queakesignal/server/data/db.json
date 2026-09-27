@@ -1,6 +1,54 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-2281",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T21:07:32.281Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2278",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T21:05:32.278Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2264",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T21:03:32.264Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2256",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T21:01:32.256Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
       "id": "ALERT-SIM-2251",
       "tipo": "Aluvión",
       "intensidad": "Alto Riesgo",
