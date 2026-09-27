@@ -2,11 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import 'tailwindcss';
 
+@variant dark (&:where(.dark, .dark *));
+
 html,
 body,
 #root {
   height: 100%;
   font-family: 'Inter', sans-serif;
+}
+
+html.dark,
+html.dark body,
+html.dark #root {
+  background-color: #0b1120;
+  color: #f8fafc;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  color-scheme: dark;
 }
 
 * {

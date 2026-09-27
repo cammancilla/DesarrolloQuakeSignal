@@ -10,6 +10,8 @@ import {
   obtenerNodoMasCercano,
 } from "../utils/geo";
 
+import { useConfig } from "../context/ConfigContext";
+
 interface SantiagoMapProps {
   compact?: boolean;
   mode?: CommMode;
@@ -46,9 +48,14 @@ export default function SantiagoMap({
   const mapInstanceRef = useRef<L.Map | null>(null);
   const layersGroupRef = useRef<L.LayerGroup | null>(null);
 
-  const [mapTheme, setMapTheme] = useState<"dark" | "voyager">("voyager");
+  const { isDark } = useConfig();
+  const [mapTheme, setMapTheme] = useState<"dark" | "voyager">(() => isDark ? "dark" : "voyager");
   const [showRFCoverage, setShowRFCoverage] = useState(true);
   const [isMapReady, setIsMapReady] = useState(false);
+
+  useEffect(() => {
+    setMapTheme(isDark ? "dark" : "voyager");
+  }, [isDark]);
 
   const isContingencia = mode === "contingencia";
 
