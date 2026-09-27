@@ -1,4 +1,4 @@
-export interface SismicAlert {
+export interface SeismicAlert {
   id: string;
   tipo: string;
   intensidad: string;
@@ -8,4 +8,4 @@ export interface SismicAlert {
   despachada: boolean;
 }
 
-export type CommMode = "normal" | "contingencia";s
+export type CommMode = "normal" | "contingencia";

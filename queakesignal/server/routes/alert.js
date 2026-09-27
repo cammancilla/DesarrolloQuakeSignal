@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-// 1. Declarar los datos dummy
+
 const dummyAlerts = [
   {
     id: "ALERT-001",
@@ -14,7 +14,7 @@ const dummyAlerts = [
   }
 ];
 
-// 2. Definir la ruta relativa (solo '/alerts')
+
 router.get('/alerts', (req, res) => {
   res.json(dummyAlerts);
 });
