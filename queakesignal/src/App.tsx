@@ -18,13 +18,26 @@ const TITLES: Record<Screen, string> = {
 };
 
 export default function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
+    // Mantener la sesión activa de forma persistente para no interrumpir la demostración
+    return localStorage.getItem("quakesignal_auth") === "true";
+  });
   const [screen, setScreen] = useState<Screen>("dashboard");
   const [navActive, setNavActive] = useState("dashboard");
   const [mode, setMode] = useState<CommMode>("normal");
 
+  const handleLogin = () => {
+    localStorage.setItem("quakesignal_auth", "true");
+    setIsAuthenticated(true);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("quakesignal_auth");
+    setIsAuthenticated(false);
+  };
+
   if (!isAuthenticated) {
-    return <LoginScreen onLogin={() => setIsAuthenticated(true)} />;
+    return <LoginScreen onLogin={handleLogin} />;
   }
 
   const navigate = (id: string) => {
@@ -46,7 +59,7 @@ export default function App() {
 
   return (
     <div className="flex h-full overflow-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
-      <Sidebar active={navActive} onNavigate={navigate} />
+      <Sidebar active={navActive} onNavigate={navigate} onLogout={handleLogout} />
 
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <Header title={TITLES[screen]} onAlert={openDetail} mode={mode} />

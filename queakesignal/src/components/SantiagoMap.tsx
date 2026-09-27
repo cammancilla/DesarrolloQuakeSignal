@@ -93,11 +93,12 @@ export default function SantiagoMap({
         attributionControl: false,
       });
 
-      // Añadir capa de tiles
+      // Añadir capa de tiles con la API Key oficial de CARTO
+      const CARTO_KEY = "cb1_40kj_1_0f712efa28ebcb1947fa1a84";
       const tileUrl =
         mapTheme === "dark"
-          ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+          ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`
+          : `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`;
 
       L.tileLayer(tileUrl, {
         subdomains: "abcd",
@@ -125,7 +126,7 @@ export default function SantiagoMap({
     };
   }, []);
 
-  // 2. Cambio dinámico de capa de mapa (Dark / Voyager)
+  // 2. Cambio dinámico de capa de mapa (Dark / Voyager) con API Key
   useEffect(() => {
     if (!mapInstanceRef.current) return;
     const map = mapInstanceRef.current;
@@ -137,10 +138,11 @@ export default function SantiagoMap({
       }
     });
 
+    const CARTO_KEY = "cb1_40kj_1_0f712efa28ebcb1947fa1a84";
     const tileUrl =
       mapTheme === "dark"
-        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png";
+        ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`
+        : `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`;
 
     L.tileLayer(tileUrl, {
       subdomains: "abcd",

@@ -13,7 +13,15 @@ const NAV_ITEMS = [
 
 const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas"]; 
 
-export default function Sidebar({ active, onNavigate }: { active: string; onNavigate: (id: string) => void }) {
+export default function Sidebar({
+  active,
+  onNavigate,
+  onLogout,
+}: {
+  active: string;
+  onNavigate: (id: string) => void;
+  onLogout?: () => void;
+}) {
   return (
     <aside className="w-56 flex-shrink-0 flex flex-col" style={{ background: "#0f1b35" }}>
       <div className="px-5 py-5 border-b border-white/10">
@@ -51,15 +59,26 @@ export default function Sidebar({ active, onNavigate }: { active: string; onNavi
       </nav>
 
       <div className="px-4 py-4 border-t border-white/10">
-        <div className="flex items-center gap-2.5">
-          <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-semibold">A</div>
-          <div>
-            <div className="text-white text-xs font-medium">Administrador</div>
-            <div className="flex items-center gap-1 mt-0.5">
-              <StatusDot color="green" />
-              <span className="text-white/40 text-[10px]">Sesión activa</span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-semibold">A</div>
+            <div>
+              <div className="text-white text-xs font-medium">Administrador</div>
+              <div className="flex items-center gap-1 mt-0.5">
+                <StatusDot color="green" />
+                <span className="text-white/40 text-[10px]">Sesión activa</span>
+              </div>
             </div>
           </div>
+          {onLogout && (
+            <button
+              onClick={onLogout}
+              title="Cerrar sesión"
+              className="text-white/40 hover:text-red-400 p-1 rounded transition-colors text-xs cursor-pointer"
+            >
+              ✕
+            </button>
+          )}
         </div>
       </div>
     </aside>

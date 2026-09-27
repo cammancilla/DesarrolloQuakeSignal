@@ -7,6 +7,38 @@ const { iniciarCron } = require('./cron');
 const app = express();
 const PORT = 3001;
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
+const LOGS_DIR = path.join(__dirname, 'logs');
+const ALERTAS_LOG_PATH = path.join(LOGS_DIR, 'alertas.log');
+
+// Asegurar que la carpeta logs exista
+if (!fs.existsSync(LOGS_DIR)) {
+  fs.mkdirSync(LOGS_DIR, { recursive: true });
+}
+
+/**
+ * Registra en alertas.log cada consulta a la API de alertas,
+ * ÚNICAMENTE cuando SI hay al menos una alerta activa (no cuando no hay nada).
+ */
+const registrarConsultaAlertaLog = (alertas, origen = '127.0.0.1') => {
+  const activas = (alertas || []).filter(a => a.activa === true);
+  // Si no hay alertas activas, NO registramos nada (requisito estricto)
+  if (activas.length === 0) {
+    return;
+  }
+
+  const timestamp = new Date().toISOString();
+  const resumenAlertas = activas
+    .map(a => `[ID: ${a.id} | Tipo: ${a.tipo} | Intensidad: ${a.intensidad} | Ubicación: ${a.ubicacion}]`)
+    .join(' ; ');
+
+  const linea = `[${timestamp}] [CONSULTA API] ${activas.length} alerta(s) activa(s) detectada(s) desde IP: ${origen} -> ${resumenAlertas}\n`;
+
+  try {
+    fs.appendFileSync(ALERTAS_LOG_PATH, linea, 'utf-8');
+  } catch (err) {
+    console.error("[LOG ERROR] Error al escribir en alertas.log:", err.message);
+  }
+};
 
 app.use(cors());
 app.use(express.json());
@@ -90,7 +122,42 @@ inicializarDB();
 
 app.get('/api/alertas', (req, res) => {
   const db = getDB();
-  res.json(db.alertas);
+  const alertas = db.alertas || [];
+  
+  // Registrar en alertas.log ÚNICAMENTE si hay alertas activas
+  registrarConsultaAlertaLog(alertas, req.ip || req.socket?.remoteAddress || '127.0.0.1');
+
+  res.json(alertas);
+});
+
+app.get('/api/alertas/:id', (req, res) => {
+  const db = getDB();
+  const alertas = db.alertas || [];
+  const alerta = alertas.find(a => a.id === req.params.id);
+  if (!alerta) {
+    return res.status(404).json({ error: "Alerta no encontrada" });
+  }
+
+  // Registrar si la alerta consultada está activa
+  if (alerta.activa) {
+    registrarConsultaAlertaLog([alerta], req.ip || req.socket?.remoteAddress || '127.0.0.1');
+  }
+
+  res.json(alerta);
+});
+
+// Endpoint para consultar el contenido del archivo de logs
+app.get('/api/logs/alertas', (req, res) => {
+  try {
+    if (fs.existsSync(ALERTAS_LOG_PATH)) {
+      const contenido = fs.readFileSync(ALERTAS_LOG_PATH, 'utf-8');
+      res.type('text/plain').send(contenido);
+    } else {
+      res.type('text/plain').send("Aún no se han generado registros en alertas.log.");
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Error al leer el archivo de log" });
+  }
 });
 
 app.post('/api/alertas/panico', (req, res) => {
