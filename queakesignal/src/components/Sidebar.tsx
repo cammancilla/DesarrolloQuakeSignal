@@ -16,14 +16,7 @@ const NAV_ITEMS = [
 
 const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas", "profile", "usuarios", "configuracion"]; 
 
-export default function Sidebar({ active, onNavigate }: { active: string; onNavigate: (id: string) => void }) {
-  const userStorage = typeof window !== "undefined" ? localStorage.getItem("user") : null;
-  const user = userStorage ? JSON.parse(userStorage) : null;
-
-  // Obtiene el nombre completo/email y la primera letra para el Avatar
-  const userName = user?.nombre || user?.email || "Usuario";
-  const initialLetter = userName.charAt(0).toUpperCase();
- export default function Sidebar({
+export default function Sidebar({
   active,
   onNavigate,
   onLogout,
@@ -32,6 +25,14 @@ export default function Sidebar({ active, onNavigate }: { active: string; onNavi
   onNavigate: (id: string) => void;
   onLogout?: () => void;
 }) {
+  // Lógica del usuario dentro de la función
+  const userStorage = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const user = userStorage ? JSON.parse(userStorage) : null;
+
+  const userName = user?.name || user?.nombre || user?.email || "Usuario";
+  const initialLetter = userName.charAt(0).toUpperCase();
+
+  
 
   return (
     <aside className="w-56 flex-shrink-0 flex flex-col" style={{ background: "#0f1b35" }}>

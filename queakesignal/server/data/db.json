@@ -1,6 +1,54 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-6841",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T23:28:16.841Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-6835",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T23:26:16.835Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-6831",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T23:24:16.831Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2029",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T23:19:32.029Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
       "id": "ALERT-SIM-2251",
       "tipo": "Aluvión",
       "intensidad": "Alto Riesgo",
@@ -1722,7 +1770,7 @@
     },
     "interfaz": {
       "vistaInicial": "dashboard",
-      "temaVisual": "oscuro"
+      "temaVisual": "claro"
     }
   }
 }

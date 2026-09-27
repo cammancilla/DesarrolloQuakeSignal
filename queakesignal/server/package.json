@@ -21,5 +21,19 @@
   },
   "devDependencies": {
     "nodemon": "^3.1.14"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "index.js",
+      "cron.js",
+      "config",
+      "models",
+      "routes"
+    ],
+    "ignore": [
+      "data/*",
+      "logs/*",
+      "*.log"
+    ]
   }
 }

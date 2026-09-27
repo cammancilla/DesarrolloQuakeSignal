@@ -1,0 +1,16 @@
+{
+  "watch": [
+    "index.js",
+    "cron.js",
+    "config",
+    "models",
+    "routes"
+  ],
+  "ignore": [
+    "data/*",
+    "logs/*",
+    "*.log",
+    "node_modules"
+  ],
+  "ext": "js,json"
+}

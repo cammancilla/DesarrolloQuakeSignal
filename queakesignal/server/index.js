@@ -41,9 +41,6 @@ const registrarConsultaAlertaLog = (alertas, origen = '127.0.0.1') => {
   }
 };
 
-// Conectar a MongoDB
-connectDB();
-
 app.use(cors());
 app.use(express.json());
 
@@ -113,12 +110,18 @@ const inicializarDB = () => {
   } catch (e) {
     db = { alertas: [], nodos: [] };
   }
-  if (!db.alertas) db.alertas = [];
+  let modificado = false;
+  if (!db.alertas) {
+    db.alertas = [];
+    modificado = true;
+  }
   if (!db.nodos || db.nodos.length <= 1) {
     db.nodos = NODOS_INICIALES;
+    modificado = true;
   }
   if (!db.configuracion) {
     db.configuracion = CONFIGURACION_DEFAULT;
+    modificado = true;
   }
 
   // Geocodificar automáticamente alertas existentes que no tengan lat/lng
@@ -154,14 +157,18 @@ const inicializarDB = () => {
         a.lng = -70.6539;
         a.radioKm = 18;
       }
+      modificado = true;
     }
   });
 
-  saveDB(db);
+  if (modificado) {
+    saveDB(db);
+  }
 };
 inicializarDB();
 
 // --- RUTAS DE ALERTAS ---
+
 
 // Endpoints
 app.use("/api/auth", require("./routes/auth"));
@@ -387,18 +394,22 @@ setInterval(() => {
 
 // Iniciar servidor y CRON
 
-app.listen(PORT, () => {
-  console.log(`[SYSTEM] Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
-  iniciarCron();
-});
-
 const startServer = async () => {
   await connectDB();
   
-  app.listen(PORT, () => {
+  const server = app.listen(PORT, () => {
     console.log(` Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
     iniciarCron();
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+      console.error(`[ERROR] El puerto ${PORT} ya está en uso.`);
+    } else {
+      console.error(`[ERROR] Error en el servidor:`, err.message);
+    }
   });
 };
 
 startServer();
+
