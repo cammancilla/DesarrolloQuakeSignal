@@ -1,6 +1,222 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-2147",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T20:35:32.147Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2144",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T20:33:32.144Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2138",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T20:31:32.138Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2133",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T20:29:32.133Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2129",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T20:27:32.129Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2119",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T20:25:32.119Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2115",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T20:23:32.115Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2114",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T20:21:32.114Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2103",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T20:19:32.103Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2101",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T20:17:32.101Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2087",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T20:15:32.087Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2083",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T20:13:32.083Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2072",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T20:11:32.072Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2065",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T20:09:32.065Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2056",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T20:07:32.056Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2044",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-09-27T20:05:32.044Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2036",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-09-27T20:03:32.036Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2030",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T20:01:32.030Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
       "id": "ALERT-SIM-2017",
       "tipo": "Sismo Mayor",
       "intensidad": "7.1 Mw",
@@ -1331,5 +1547,38 @@
       "lat": -33.5922,
       "lng": -70.7047
     }
-  ]
+  ],
+  "configuracion": {
+    "comunicaciones": {
+      "telegram": {
+        "botToken": "7198234821:AAH8Fq2Pz89_qkSignalBot",
+        "chatId": "-1002938472910",
+        "activo": true
+      },
+      "mqtt": {
+        "broker": "broker.emqx.io",
+        "puerto": 1883,
+        "usuario": "quakesignal_core",
+        "password": "qs_secure_pwd_2026",
+        "topico": "chile/alertas",
+        "activo": true
+      },
+      "radiofrecuencia": {
+        "banda": "915 MHz (Chile / Américas)",
+        "canal": "CH-04 (915.2 MHz)",
+        "frecuenciaMhz": 915.2,
+        "potenciaTxDbm": 20,
+        "spreadingFactor": "SF7"
+      }
+    },
+    "automatizacion": {
+      "umbralDesconexionSegundos": 180,
+      "autoContingencia": true,
+      "tasaRefrescoSegundos": 3
+    },
+    "interfaz": {
+      "vistaInicial": "dashboard",
+      "temaVisual": "oscuro"
+    }
+  }
 }

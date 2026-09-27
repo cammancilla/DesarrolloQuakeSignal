@@ -11,7 +11,7 @@ const NAV_ITEMS = [
   { id: "usuarios", label: "Usuarios", icon: UsersIcon },
 ];
 
-const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas"]; 
+const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas", "configuracion"]; 
 
 export default function Sidebar({
   active,

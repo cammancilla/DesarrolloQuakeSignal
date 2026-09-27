@@ -8,6 +8,7 @@ import DevicesScreen from "./screens/DevicesScreen.tsx";
 import MapScreen from "./screens/MapScreen.tsx";
 import HistorialScreen from "./screens/HistorialScreen.tsx";
 import LoginScreen from "./screens/LoginScreen";
+import ConfiguracionScreen from "./screens/ConfiguracionScreen.tsx";
 
 const TITLES: Record<Screen, string> = {
   dashboard: "Dashboard",
@@ -15,6 +16,7 @@ const TITLES: Record<Screen, string> = {
   devices: "Dispositivos",
   historial: "Historial de Alertas",
   mapa: "Mapa de Cobertura",
+  configuracion: "Configuración del Sistema",
 };
 
 export default function App() {
@@ -22,8 +24,26 @@ export default function App() {
     // Mantener la sesión activa de forma persistente para no interrumpir la demostración
     return localStorage.getItem("quakesignal_auth") === "true";
   });
-  const [screen, setScreen] = useState<Screen>("dashboard");
-  const [navActive, setNavActive] = useState("dashboard");
+  const [screen, setScreen] = useState<Screen>(() => {
+    try {
+      const saved = localStorage.getItem("quakesignal_config");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.interfaz?.vistaInicial === "mapa") return "mapa";
+      }
+    } catch {}
+    return "dashboard";
+  });
+  const [navActive, setNavActive] = useState<string>(() => {
+    try {
+      const saved = localStorage.getItem("quakesignal_config");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed?.interfaz?.vistaInicial === "mapa") return "mapa";
+      }
+    } catch {}
+    return "dashboard";
+  });
   const [mode, setMode] = useState<CommMode>("normal");
 
   const handleLogin = () => {
@@ -48,6 +68,7 @@ export default function App() {
       historial: "historial",
       mapa: "mapa",
       alertas: "detail", // This will be handled separately in the onAlert function
+      configuracion: "configuracion",
     };
     if (screenMap[id]) setScreen(screenMap[id]);
   };
@@ -106,6 +127,7 @@ export default function App() {
         {screen === "devices" && <DevicesScreen mode={mode} />}
         {screen === "historial" && <HistorialScreen />}
         {screen === "mapa" && <MapScreen />}
+        {screen === "configuracion" && <ConfiguracionScreen />}
        
         </main>
       </div>
