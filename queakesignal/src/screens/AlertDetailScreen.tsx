@@ -130,9 +130,8 @@ export default function AlertDetailScreen({ mode }: { mode: CommMode }) {
 
       {/* Mapa */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-        <h3 className="font-semibold text-gray-900 text-sm mb-4">Cobertura de distribución</h3>
-        <SantiagoMap mode={mode} />
-        <MapLegend mode={mode} />
+        <h3 className="font-semibold text-gray-900 text-sm mb-3">Cobertura de distribución georreferenciada</h3>
+        <SantiagoMap mode={mode} height="420px" />
       </div>
     </div>
   );
