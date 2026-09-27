@@ -10,6 +10,8 @@ import {
   obtenerNodoMasCercano,
 } from "../utils/geo";
 
+import { useConfig } from "../context/ConfigContext";
+
 interface SantiagoMapProps {
   compact?: boolean;
   mode?: CommMode;
@@ -46,9 +48,14 @@ export default function SantiagoMap({
   const mapInstanceRef = useRef<L.Map | null>(null);
   const layersGroupRef = useRef<L.LayerGroup | null>(null);
 
-  const [mapTheme, setMapTheme] = useState<"dark" | "voyager">("dark");
+  const { isDark } = useConfig();
+  const [mapTheme, setMapTheme] = useState<"dark" | "voyager">(() => isDark ? "dark" : "voyager");
   const [showRFCoverage, setShowRFCoverage] = useState(true);
   const [isMapReady, setIsMapReady] = useState(false);
+
+  useEffect(() => {
+    setMapTheme(isDark ? "dark" : "voyager");
+  }, [isDark]);
 
   const isContingencia = mode === "contingencia";
 
@@ -93,16 +100,16 @@ export default function SantiagoMap({
         attributionControl: false,
       });
 
-      // Añadir capa de tiles con la API Key oficial de CARTO
+      // Añadir capa de tiles con la API Key oficial de CARTO (?key=)
       const CARTO_KEY = "cb1_40kj_1_0f712efa28ebcb1947fa1a84";
       const tileUrl =
         mapTheme === "dark"
-          ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`
-          : `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`;
+          ? `https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=${CARTO_KEY}`
+          : `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_KEY}`;
 
       L.tileLayer(tileUrl, {
-        subdomains: "abcd",
         maxZoom: 19,
+        attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
       }).addTo(map);
 
       // Si es pantalla completa y zoomControl no está, agregarlo abajo a la derecha
@@ -141,12 +148,12 @@ export default function SantiagoMap({
     const CARTO_KEY = "cb1_40kj_1_0f712efa28ebcb1947fa1a84";
     const tileUrl =
       mapTheme === "dark"
-        ? `https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`
-        : `https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?api_key=${CARTO_KEY}`;
+        ? `https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=${CARTO_KEY}`
+        : `https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_KEY}`;
 
     L.tileLayer(tileUrl, {
-      subdomains: "abcd",
       maxZoom: 19,
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
     }).addTo(map);
   }, [mapTheme]);
 
@@ -387,7 +394,7 @@ export default function SantiagoMap({
             title="Cambiar capa de mapa (Oscuro / Claro)"
             className="px-2 py-1 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg text-xs border border-slate-700 transition-colors cursor-pointer"
           >
-            {mapTheme === "dark" ? "🌙 Oscuro" : "☀️ Claro"}
+            {mapTheme === "dark" ? "🌙 Modo Oscuro" : "🗺️ Calles (Voyager)"}
           </button>
         </div>
       </div>

@@ -50,7 +50,9 @@ const iniciarCron = () => {
       const db = readDB();
       if (!db.nodos) return; // Si aún no configuras los nodos en el JSON, lo ignora
 
-      const TIEMPO_OFFLINE_MS = 60000 * 5; // 5 minutos sin ping = offline
+      // Umbral configurable por el operador (en segundos)
+      const segundosUmbral = db.configuracion?.automatizacion?.umbralDesconexionSegundos || 180;
+      const TIEMPO_OFFLINE_MS = segundosUmbral * 1000;
       const ahora = Date.now();
       let dbModificada = false;
 

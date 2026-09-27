@@ -1,4 +1,4 @@
-export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa";
+export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion";
 export type CommMode = "normal" | "contingencia";
 
 export interface Alerta {
@@ -25,4 +25,38 @@ export interface NodoIoT {
   lat: number;
   lng: number;
   status?: "online" | "offline";
+}
+
+export interface ConfiguracionSistema {
+  comunicaciones: {
+    telegram: {
+      botToken: string;
+      chatId: string;
+      activo: boolean;
+    };
+    mqtt: {
+      broker: string;
+      puerto: number;
+      usuario: string;
+      password: string;
+      topico: string;
+      activo: boolean;
+    };
+    radiofrecuencia: {
+      banda: string;
+      canal: string;
+      frecuenciaMhz: number;
+      potenciaTxDbm: number;
+      spreadingFactor: string;
+    };
+  };
+  automatizacion: {
+    umbralDesconexionSegundos: number;
+    autoContingencia: boolean;
+    tasaRefrescoSegundos: number;
+  };
+  interfaz: {
+    vistaInicial: "dashboard" | "mapa";
+    temaVisual: "oscuro" | "claro";
+  };
 }

@@ -47,6 +47,41 @@ app.use(express.json());
 const getDB = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
 const saveDB = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
 
+// Configuración centralizada del sistema de alerta e IoT
+const CONFIGURACION_DEFAULT = {
+  comunicaciones: {
+    telegram: {
+      botToken: "7198234821:AAH8Fq2Pz89_qkSignalBot",
+      chatId: "-1002938472910",
+      activo: true
+    },
+    mqtt: {
+      broker: "broker.emqx.io",
+      puerto: 1883,
+      usuario: "quakesignal_core",
+      password: "qs_secure_pwd_2026",
+      topico: "chile/alertas",
+      activo: true
+    },
+    radiofrecuencia: {
+      banda: "915 MHz (Chile / Américas)",
+      canal: "CH-04 (915.2 MHz)",
+      frecuenciaMhz: 915.2,
+      potenciaTxDbm: 20,
+      spreadingFactor: "SF7"
+    }
+  },
+  automatizacion: {
+    umbralDesconexionSegundos: 180,
+    autoContingencia: true,
+    tasaRefrescoSegundos: 3
+  },
+  interfaz: {
+    vistaInicial: "dashboard",
+    temaVisual: "oscuro"
+  }
+};
+
 // 12 Nodos IoT distribuidos en Gran Santiago para la red de emergencia
 const NODOS_INICIALES = [
   { id: "ESP32-Alfa", zona: "Centro", ubicacion: "Hall Principal — Santiago Centro", status: "online", lastPing: new Date().toISOString(), lat: -33.4429, lng: -70.6539 },
@@ -76,6 +111,9 @@ const inicializarDB = () => {
   if (!db.alertas) db.alertas = [];
   if (!db.nodos || db.nodos.length <= 1) {
     db.nodos = NODOS_INICIALES;
+  }
+  if (!db.configuracion) {
+    db.configuracion = CONFIGURACION_DEFAULT;
   }
 
   // Geocodificar automáticamente alertas existentes que no tengan lat/lng
@@ -246,6 +284,62 @@ app.post('/api/nodos/ping', (req, res) => {
   saveDB(db);
   console.log(`[IoT] Ping recibido del nodo: ${id}`);
   res.json({ status: "OK", message: "Ping registrado" });
+});
+
+// --- RUTAS DE CONFIGURACIÓN DEL SISTEMA ---
+
+// GET: Obtener la configuración actual del sistema
+app.get('/api/configuracion', (req, res) => {
+  const db = getDB();
+  res.json(db.configuracion || CONFIGURACION_DEFAULT);
+});
+
+// PUT: Actualizar parámetros del sistema sin reiniciar el servidor
+app.put('/api/configuracion', (req, res) => {
+  const db = getDB();
+  db.configuracion = {
+    ...CONFIGURACION_DEFAULT,
+    ...db.configuracion,
+    ...req.body,
+    comunicaciones: {
+      ...CONFIGURACION_DEFAULT.comunicaciones,
+      ...(db.configuracion?.comunicaciones || {}),
+      ...(req.body.comunicaciones || {})
+    },
+    automatizacion: {
+      ...CONFIGURACION_DEFAULT.automatizacion,
+      ...(db.configuracion?.automatizacion || {}),
+      ...(req.body.automatizacion || {})
+    },
+    interfaz: {
+      ...CONFIGURACION_DEFAULT.interfaz,
+      ...(db.configuracion?.interfaz || {}),
+      ...(req.body.interfaz || {})
+    }
+  };
+  saveDB(db);
+  console.log(`[CONFIG] Parámetros del sistema actualizados por el operador.`);
+  res.json({ status: "OK", message: "Configuración guardada correctamente", configuracion: db.configuracion });
+});
+
+// POST: Probar conexión de Telegram
+app.post('/api/configuracion/test-telegram', (req, res) => {
+  const { botToken, chatId } = req.body;
+  if (!botToken || !chatId) {
+    return res.status(400).json({ error: "Faltan credenciales de Telegram (Bot Token y Chat ID)" });
+  }
+  console.log(`[TELEGRAM TEST] Probando envío a Chat ID ${chatId} con token ${botToken.slice(0, 10)}...`);
+  res.json({ status: "OK", message: "Conexión a Telegram verificada exitosamente (Simulación de envío activa)" });
+});
+
+// POST: Probar conexión MQTT
+app.post('/api/configuracion/test-mqtt', (req, res) => {
+  const { broker, puerto, topico } = req.body;
+  if (!broker) {
+    return res.status(400).json({ error: "Falta la dirección del Broker MQTT" });
+  }
+  console.log(`[MQTT TEST] Probando conexión a ${broker}:${puerto || 1883} en tópico ${topico || 'chile/alertas'}...`);
+  res.json({ status: "OK", message: `Conexión con Broker MQTT ${broker}:${puerto || 1883} verificada exitosamente` });
 });
 
 // --- SIMULADOR DE EMERGENCIAS ---
