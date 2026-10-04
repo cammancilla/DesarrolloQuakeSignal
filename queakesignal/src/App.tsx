@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react"; // 👈 Asegúrate de importar useEffect
 import { Screen, CommMode } from "./types";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
@@ -27,12 +27,23 @@ const TITLES: Record<string, string> = {
   usuarios: "Gestión de Usuarios",
 };
 
+// Mapa inverso para saber qué navActive corresponde a cada Screen
+const SCREEN_TO_NAV: Record<Screen, string> = {
+  dashboard: "dashboard",
+  devices: "devices",
+  historial: "historial",
+  mapa: "mapa",
+  detail: "alertas",
+  configuracion: "configuracion",
+  profile: "profile",
+  usuarios: "usuarios",
+};
+
 function AppContent() {
   const { config } = useConfig();
   
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
     try {
-      // Limpiar residuos previos de localStorage para forzar inicio de sesión
       localStorage.removeItem("quakesignal_auth");
       localStorage.removeItem("token");
       localStorage.removeItem("user");
@@ -74,14 +85,43 @@ function AppContent() {
 
   const [mode, setMode] = useState<CommMode>("normal");
 
+  //  1. Manejo del evento de retroceso / avance en el navegador y ratón
+  useEffect(() => {
+    const handlePopState = (event: PopStateEvent) => {
+      if (event.state && event.state.screen) {
+        const targetScreen = event.state.screen as Screen;
+        const targetNav = event.state.navActive || SCREEN_TO_NAV[targetScreen] || targetScreen;
+
+        setScreen(targetScreen);
+        setNavActive(targetNav);
+
+        sessionStorage.setItem("quakesignal_active_screen", targetScreen);
+        sessionStorage.setItem("quakesignal_active_nav", targetNav);
+      }
+    };
+
+    // Guardar el estado inicial en history si la página se recarga por primera vez
+    if (!window.history.state) {
+      window.history.replaceState({ screen, navActive }, "", `#${screen}`);
+    }
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
   const handleLogin = () => {
     sessionStorage.setItem("quakesignal_auth", "true");
     setIsAuthenticated(true);
-    const vista = config?.interfaz?.vistaInicial || "dashboard";
-    setScreen(vista as Screen);
-    setNavActive(vista);
+    const vista = (config?.interfaz?.vistaInicial || "dashboard") as Screen;
+    const nav = SCREEN_TO_NAV[vista] || vista;
+
+    setScreen(vista);
+    setNavActive(nav);
     sessionStorage.setItem("quakesignal_active_screen", vista);
-    sessionStorage.setItem("quakesignal_active_nav", vista);
+    sessionStorage.setItem("quakesignal_active_nav", nav);
+
+    // Registrar en el historial del navegador
+    window.history.pushState({ screen: vista, navActive: nav }, "", `#${vista}`);
   };
 
   const handleLogout = () => {
@@ -96,9 +136,8 @@ function AppContent() {
     setIsAuthenticated(false);
   };
 
+  // 2. Función navigate actualizada para guardar la entrada en window.history
   const navigate = (id: string) => {
-    setNavActive(id);
-    sessionStorage.setItem("quakesignal_active_nav", id);
     const screenMap: Record<string, Screen> = {
       dashboard: "dashboard",
       devices: "devices",
@@ -109,17 +148,27 @@ function AppContent() {
       profile: "profile",
       usuarios: "usuarios",
     };
-    if (screenMap[id]) {
-      setScreen(screenMap[id]);
-      sessionStorage.setItem("quakesignal_active_screen", screenMap[id]);
-    }
+
+    const targetScreen = screenMap[id] || (id as Screen);
+
+    setNavActive(id);
+    setScreen(targetScreen);
+
+    sessionStorage.setItem("quakesignal_active_nav", id);
+    sessionStorage.setItem("quakesignal_active_screen", targetScreen);
+
+    // Push al historial del navegador
+    window.history.pushState({ screen: targetScreen, navActive: id }, "", `#${targetScreen}`);
   };
 
+  //  3. Función openDetail actualizada para guardar la entrada en window.history
   const openDetail = () => {
     setScreen("detail");
     setNavActive("alertas");
     sessionStorage.setItem("quakesignal_active_screen", "detail");
     sessionStorage.setItem("quakesignal_active_nav", "alertas");
+
+    window.history.pushState({ screen: "detail", navActive: "alertas" }, "", "#detail");
   };
 
   // Guard de autenticación

@@ -28,7 +28,8 @@
       "cron.js",
       "config",
       "models",
-      "routes"
+      "routes",
+      "utils"
     ],
     "ignore": [
       "data/*",

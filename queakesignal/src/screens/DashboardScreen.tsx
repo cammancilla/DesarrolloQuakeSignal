@@ -28,53 +28,77 @@ export default function DashboardScreen({
   mode,
 }: DashboardScreenProps) {
   const [panicPressed, setPanicPressed] = useState(false);
+  const [sendingPanic, setSendingPanic] = useState(false); // 👈 1. Estado de carga agregado
   const [alerts, setAlerts] = useState<SeismicAlert[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const isContingencia = mode === "contingencia";
 
-  
   const fetchAlerts = async () => {
     try {
-       
-       const response = await fetch("http://localhost:3001/api/alertas");
-      
+      const response = await fetch("http://localhost:3001/api/alertas");
       console.log("Respuesta servidor HTTP Status:", response.status);
 
       if (!response.ok) {
         throw new Error(`Error ${response.status}: No se pudo obtener las alertas`);
       }
-      
+
       const data: SeismicAlert[] = await response.json();
-      console.log(" Alertas recibidas:", data);
-      
+      console.log("Alertas recibidas:", data);
+
       setAlerts(data);
       setError(null);
     } catch (err: any) {
-      console.error(" Detalle del error:", err);
+      console.error("Detalle del error:", err);
       setError(err.message || "Error al conectar con la API");
     } finally {
       setLoading(false);
     }
   };
 
+  //  FUNCIÓN DEL BOTÓN DE PÁNICO
+  const handlePanicButton = async () => {
+    setSendingPanic(true);
+    try {
+      const response = await fetch("http://localhost:3001/api/alertas/panico", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tipo: "Terremoto (Manual)",
+          intensidad: "Alerta Crítica",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al activar la alerta de pánico");
+      }
+
+      const data = await response.json();
+      console.log("Alerta enviada correctamente:", data);
+
+      setPanicPressed(true);
+      fetchAlerts(); // Refresca las alertas inmediatamente
+    } catch (err: any) {
+      console.error(" Error al activar botón de pánico:", err);
+      alert("No se pudo enviar la alerta de pánico.");
+    } finally {
+      setSendingPanic(false);
+    }
+  };
+
   useEffect(() => {
     fetchAlerts();
-    const interval = setInterval(fetchAlerts, 5000); // Frecuencia corregida a 5s (5000ms)
-    return () => clearInterval(interval);
-  }, []);
-  useEffect(() => {
-    fetchAlerts();
-    const interval = setInterval(fetchAlerts, 3001); // Polling cada 5s
+    const interval = setInterval(fetchAlerts, 5000); // Polling cada 5 segundos
     return () => clearInterval(interval);
   }, []);
 
-  //  Datos procesados en tiempo real
+  // Datos procesados en tiempo real
   const activeAlert = alerts.find((a) => a.activa);
-  const latestAlert = activeAlert || alerts[0]; // Toma la activa o la más reciente
+  const latestAlert = activeAlert || alerts[0];
 
-  
   const formattedDate = latestAlert?.fecha
     ? new Date(latestAlert.fecha).toLocaleDateString("es-CL")
     : "--/--/----";
@@ -124,25 +148,33 @@ export default function DashboardScreen({
       <CommStatusCard mode={mode} />
 
       <div className="grid grid-cols-3 gap-4">
-        {/* Activación Rápida */}
+       {/* Activación Rápida */}
         <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
           <h3 className="font-semibold text-gray-900 text-sm mb-4">Activación Rápida</h3>
           <div className="flex flex-col items-center gap-3">
             <button
-              onClick={() => setPanicPressed(!panicPressed)}
+              disabled={sendingPanic}
+              onClick={handlePanicButton}
               className={`w-full py-5 rounded-xl flex flex-col items-center gap-2 transition-all font-bold text-white text-sm tracking-wide shadow-lg cursor-pointer ${
-                panicPressed ? "bg-red-700 shadow-red-300" : "bg-red-600 hover:bg-red-700 shadow-red-200"
+                sendingPanic
+                  ? "bg-red-800 opacity-70 cursor-wait"
+                  : panicPressed
+                  ? "bg-red-700 shadow-red-300"
+                  : "bg-red-600 hover:bg-red-700 shadow-red-200"
               }`}
             >
               <BellIcon size={24} />
-              BOTÓN DE PÁNICO
-              <span className="text-xs font-normal opacity-80">Enviar alerta inmediata</span>
+              {sendingPanic ? "ENVIANDO ALERTA..." : "BOTÓN DE PÁNICO"}
+              <span className="text-xs font-normal opacity-80">
+                {sendingPanic ? "Conectando con Backend Core..." : "Enviar alerta inmediata"}
+              </span>
             </button>
             <p className="text-[11px] text-gray-400 text-center leading-relaxed">
               Al activar esta opción se distribuirá una alerta a los canales configurados.
             </p>
           </div>
         </div>
+       
 
   
         <div className={`bg-white rounded-xl border shadow-sm p-5 ${isContingencia ? "border-orange-200" : "border-gray-200"}`}>

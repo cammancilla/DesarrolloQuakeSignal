@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const connectDB = require("./config/db");
 const { iniciarCron } = require('./cron');
-
+const { formatToCAP } = require('./utils/capFormatter');
 const app = express();
 const PORT = 3001;
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
@@ -191,6 +191,50 @@ app.get('/api/alertas', (req, res) => {
   res.json(alertas);
 });
 
+// Formateador CAP v1.2 (JSON) para la última alerta o por query ?id=...
+app.get('/api/alertas/cap', (req, res) => {
+  const db = getDB();
+  const alertas = db.alertas || [];
+  if (alertas.length === 0) {
+    return res.status(404).json({ error: "No hay alertas disponibles" });
+  }
+
+  // Si envían ?todas=true o ?activas=true
+  if (req.query.todas === 'true' || req.query.all === 'true') {
+    return res.json(alertas.map(a => a.cap || formatToCAP(a)));
+  }
+  if (req.query.activas === 'true') {
+    return res.json(alertas.filter(a => a.activa).map(a => a.cap || formatToCAP(a)));
+  }
+
+  // Si envían ?id=ALERT-XXXX
+  if (req.query.id) {
+    const alerta = alertas.find(a => a.id === req.query.id);
+    if (!alerta) {
+      return res.status(404).json({ error: "Alerta no encontrada" });
+    }
+    return res.json(alerta.cap || formatToCAP(alerta));
+  }
+
+  // Por defecto, retorna la última alerta emitida (ej. botón de pánico más reciente)
+  const ultimaAlerta = alertas[0];
+  const capMensaje = ultimaAlerta.cap || formatToCAP(ultimaAlerta);
+
+  res.json(capMensaje);
+});
+
+// Endpoint para obtener una alerta específica en formato CAP: /api/alertas/:id/cap
+app.get('/api/alertas/:id/cap', (req, res) => {
+  const db = getDB();
+  const alertas = db.alertas || [];
+  const alerta = alertas.find(a => a.id === req.params.id);
+  if (!alerta) {
+    return res.status(404).json({ error: "Alerta no encontrada" });
+  }
+
+  res.json(alerta.cap || formatToCAP(alerta));
+});
+
 app.get('/api/alertas/:id', (req, res) => {
   const db = getDB();
   const alertas = db.alertas || [];
@@ -247,11 +291,17 @@ app.post('/api/alertas/panico', (req, res) => {
     despachada: false
   };
 
+  const capMensaje = formatToCAP(nuevaAlerta);
+  nuevaAlerta.cap = capMensaje;
+
   db.alertas.unshift(nuevaAlerta);
   saveDB(db);
 
   console.log(`[INFO] BOTÓN DE PÁNICO ACTIVADO. Alerta ${nuevaAlerta.id} guardada en BD.`);
-  res.status(201).json({ status: "OK", alerta: nuevaAlerta });
+  console.log(`[CAP v1.2] Payload preparado para despacho:`, JSON.stringify(capMensaje?.alert?.info?.headline || ""));
+
+  // Retornar la alerta nativa y el objeto CAP listo
+  res.status(201).json({ status: "OK", alerta: nuevaAlerta, cap: capMensaje });
 });
 
 app.put('/api/alertas/:id/resolver', (req, res) => {
@@ -387,6 +437,7 @@ setInterval(() => {
     despachada: false
   };
 
+  alertaSorpresa.cap = formatToCAP(alertaSorpresa);
   db.alertas.unshift(alertaSorpresa);
   saveDB(db);
   console.log(`[SIMULADOR] Nueva alerta generada automáticamente: ${alertaSorpresa.tipo}`);
