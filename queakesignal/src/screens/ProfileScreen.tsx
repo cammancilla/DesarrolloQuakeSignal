@@ -4,12 +4,20 @@ interface ProfileScreenProps {
 
 export default function ProfileScreen({ onLogout }: ProfileScreenProps) {
   // Obtenemos la información guardada del usuario
-  const userStorage = typeof window !== "undefined" ? localStorage.getItem("user") : null;
+  const userStorage = typeof window !== "undefined"
+    ? (sessionStorage.getItem("user") || localStorage.getItem("user"))
+    : null;
   const user = userStorage ? JSON.parse(userStorage) : null;
 
   const handleLogout = () => {
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("quakesignal_auth");
+    sessionStorage.removeItem("quakesignal_active_screen");
+    sessionStorage.removeItem("quakesignal_active_nav");
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("quakesignal_auth");
 
     if (onLogout) {
       onLogout();

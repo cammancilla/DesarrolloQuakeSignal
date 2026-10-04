@@ -31,7 +31,13 @@ function AppContent() {
   const { config } = useConfig();
   
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
-    return localStorage.getItem("quakesignal_auth") === "true";
+    try {
+      // Limpiar residuos previos de localStorage para forzar inicio de sesión
+      localStorage.removeItem("quakesignal_auth");
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    } catch {}
+    return sessionStorage.getItem("quakesignal_auth") === "true";
   });
   
   const [authView, setAuthView] = useState<"login" | "register">("login");
@@ -69,7 +75,7 @@ function AppContent() {
   const [mode, setMode] = useState<CommMode>("normal");
 
   const handleLogin = () => {
-    localStorage.setItem("quakesignal_auth", "true");
+    sessionStorage.setItem("quakesignal_auth", "true");
     setIsAuthenticated(true);
     const vista = config?.interfaz?.vistaInicial || "dashboard";
     setScreen(vista as Screen);
@@ -79,9 +85,14 @@ function AppContent() {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("quakesignal_auth");
+    sessionStorage.removeItem("quakesignal_auth");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("user");
     sessionStorage.removeItem("quakesignal_active_screen");
     sessionStorage.removeItem("quakesignal_active_nav");
+    localStorage.removeItem("quakesignal_auth");
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
     setIsAuthenticated(false);
   };
 

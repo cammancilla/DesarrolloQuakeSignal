@@ -31,9 +31,12 @@ export default function LoginScreen({ onLogin, onGoToRegister }: LoginScreenProp
         throw new Error(data.message || "Credenciales incorrectas.");
       }
 
-      // Guardar token JWT y datos de sesión en localStorage
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      // Guardar token JWT y datos de sesión en sessionStorage
+      sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("quakesignal_auth");
 
       onLogin(); // Entrar a la aplicación
     } catch (err: any) {
