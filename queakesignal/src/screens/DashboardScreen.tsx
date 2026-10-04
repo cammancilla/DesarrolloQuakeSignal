@@ -28,12 +28,13 @@ export default function DashboardScreen({
   mode,
 }: DashboardScreenProps) {
   const [panicPressed, setPanicPressed] = useState(false);
-  const [sendingPanic, setSendingPanic] = useState(false); // 👈 1. Estado de carga agregado
+  const [sendingPanic, setSendingPanic] = useState(false);
   const [alerts, setAlerts] = useState<SeismicAlert[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const isContingencia = mode === "contingencia";
+  const HistoryTableWithAlerts = HistoryTable as any;
 
   const fetchAlerts = async () => {
     try {
@@ -56,7 +57,7 @@ export default function DashboardScreen({
       setLoading(false);
     }
   };
-
+ 
   //  FUNCIÓN DEL BOTÓN DE PÁNICO
   const handlePanicButton = async () => {
     setSendingPanic(true);
@@ -287,7 +288,7 @@ export default function DashboardScreen({
         </div>
       </div>
 
-      <HistoryTable />
+      <HistoryTableWithAlerts alerts={alerts.slice(0, 5)} />
 
       {/* Vistas móviles */}
       <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">

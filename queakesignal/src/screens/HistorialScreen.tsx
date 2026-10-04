@@ -9,6 +9,75 @@ type SeismicAlert = {
   activa: boolean;
 };
 
+// Componente secundario para renderizar la tabla
+interface HistoryTableProps {
+  alerts?: SeismicAlert[];
+}
+
+function HistoryTable({ alerts = [] }: HistoryTableProps) {
+  return (
+    <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
+      <table className="w-full text-left text-xs">
+        <thead className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
+          <tr>
+            <th className="px-5 py-3">ID / Fecha</th>
+            <th className="px-5 py-3">Tipo de Evento</th>
+            <th className="px-5 py-3">Ubicación</th>
+            <th className="px-5 py-3">Intensidad</th>
+            <th className="px-5 py-3">Estado</th>
+          </tr>
+        </thead>
+        <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
+          {alerts.length === 0 ? (
+            <tr>
+              <td colSpan={5} className="px-5 py-8 text-center text-slate-400">
+                No se encontraron alertas con los filtros aplicados.
+              </td>
+            </tr>
+          ) : (
+            alerts.map((alerta) => (
+              <tr key={alerta.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-colors">
+                <td className="px-5 py-4">
+                  <span className="font-mono font-bold text-slate-800 dark:text-slate-200 block">
+                    #{alerta.id}
+                  </span>
+                  <span className="text-[11px] text-slate-400">
+                    {new Date(alerta.fecha).toLocaleString("es-CL")}
+                  </span>
+                </td>
+                <td className="px-5 py-4 font-semibold text-slate-700 dark:text-slate-300">
+                  {alerta.tipo}
+                </td>
+                <td className="px-5 py-4 text-slate-600 dark:text-slate-400">
+                  {alerta.ubicacion || "N/A"}
+                </td>
+                <td className="px-5 py-4">
+                  <span className="px-2 py-1 rounded bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 font-semibold text-[11px]">
+                    {alerta.intensidad}
+                  </span>
+                </td>
+                <td className="px-5 py-4">
+                  {alerta.activa ? (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-400">
+                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                      ACTIVA
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400">
+                      ✓ FINALIZADA
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// Componente Principal de la Pantalla
 export default function HistorialScreen() {
   const [alerts, setAlerts] = useState<SeismicAlert[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -21,7 +90,6 @@ export default function HistorialScreen() {
   const [startDate, setStartDate] = useState<string>("");
   const [endDate, setEndDate] = useState<string>("");
 
-  // Función para consultar las alertas desde la API Node.js
   const fetchHistorial = async () => {
     try {
       const response = await fetch("http://localhost:3001/api/alertas");
@@ -45,35 +113,30 @@ export default function HistorialScreen() {
     return () => clearInterval(interval);
   }, []);
 
-  // Lógica de filtrado en tiempo real usando useMemo
   const filteredAlerts = useMemo(() => {
     const normalizedSearchTerm = searchTerm.trim().toLowerCase();
 
     return alerts.filter((alerta) => {
       const idText = String(alerta.id).toLowerCase();
-      const ubicacionText = alerta.ubicacion.toLowerCase();
-      const tipoText = alerta.tipo.toLowerCase();
-      const intensidadText = String(alerta.intensidad).toLowerCase();
+      const ubicacionText = (alerta.ubicacion || "").toLowerCase();
+      const tipoText = (alerta.tipo || "").toLowerCase();
+      const intensidadText = String(alerta.intensidad || "").toLowerCase();
 
-      // 1. Búsqueda por texto (Ubicación, Tipo o ID)
       const matchSearch =
         !normalizedSearchTerm ||
         ubicacionText.includes(normalizedSearchTerm) ||
         tipoText.includes(normalizedSearchTerm) ||
         idText.includes(normalizedSearchTerm);
 
-      // 2. Filtro por Intensidad
       const matchIntensidad =
         selectedIntensidad === "todas" ||
         intensidadText.includes(selectedIntensidad.toLowerCase());
 
-      // 3. Filtro por Estado (Activa / Inactiva)
       const matchEstado =
         selectedEstado === "todos" ||
         (selectedEstado === "activa" && alerta.activa) ||
         (selectedEstado === "inactiva" && !alerta.activa);
 
-      // 4. Filtro por Rango de Fechas
       const alertDate = new Date(alerta.fecha).getTime();
       const start = startDate ? new Date(startDate).getTime() : null;
       const end = endDate ? new Date(`${endDate}T23:59:59`).getTime() : null;
@@ -85,7 +148,6 @@ export default function HistorialScreen() {
     });
   }, [alerts, searchTerm, selectedIntensidad, selectedEstado, startDate, endDate]);
 
-  // Limpiar todos los filtros
   const handleResetFilters = () => {
     setSearchTerm("");
     setSelectedIntensidad("todas");
@@ -122,14 +184,13 @@ export default function HistorialScreen() {
           onClick={fetchHistorial}
           className="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
         >
-          🔄 Actualizar
+          Actualizar
         </button>
       </div>
 
-      {/* 🔍 Barra de Filtros */}
+      {/* Barra de Filtros */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl mb-6 shadow-sm space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          {/* Buscar por texto */}
           <div className="flex flex-col gap-1">
             <label className="text-[11px] font-semibold text-slate-500">Búsqueda</label>
             <input
@@ -141,7 +202,6 @@ export default function HistorialScreen() {
             />
           </div>
 
-          {/* Filtro por Estado */}
           <div className="flex flex-col gap-1">
             <label className="text-[11px] font-semibold text-slate-500">Estado</label>
             <select
@@ -155,7 +215,6 @@ export default function HistorialScreen() {
             </select>
           </div>
 
-          {/* Fecha Desde */}
           <div className="flex flex-col gap-1">
             <label className="text-[11px] font-semibold text-slate-500">Desde</label>
             <input
@@ -166,7 +225,6 @@ export default function HistorialScreen() {
             />
           </div>
 
-          {/* Fecha Hasta */}
           <div className="flex flex-col gap-1">
             <label className="text-[11px] font-semibold text-slate-500">Hasta</label>
             <input
@@ -177,7 +235,6 @@ export default function HistorialScreen() {
             />
           </div>
 
-          {/* Botón Limpiar */}
           <div className="flex items-end">
             <button
               onClick={handleResetFilters}
@@ -193,65 +250,8 @@ export default function HistorialScreen() {
         </div>
       </div>
 
-      {/* Tabla de Resultados */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl overflow-hidden shadow-sm">
-        <table className="w-full text-left text-xs">
-          <thead className="bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">
-            <tr>
-              <th className="px-5 py-3">ID / Fecha</th>
-              <th className="px-5 py-3">Tipo de Evento</th>
-              <th className="px-5 py-3">Ubicación</th>
-              <th className="px-5 py-3">Intensidad</th>
-              <th className="px-5 py-3">Estado</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100 dark:divide-slate-800">
-            {filteredAlerts.length === 0 ? (
-              <tr>
-                <td colSpan={5} className="px-5 py-8 text-center text-slate-400">
-                  No se encontraron alertas con los filtros aplicados.
-                </td>
-              </tr>
-            ) : (
-              filteredAlerts.map((alerta) => (
-                <tr key={alerta.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-colors">
-                  <td className="px-5 py-4">
-                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200 block">
-                      {alerta.id}
-                    </span>
-                    <span className="text-[11px] text-slate-400">
-                      {new Date(alerta.fecha).toLocaleString("es-CL")}
-                    </span>
-                  </td>
-                  <td className="px-5 py-4 font-semibold text-slate-700 dark:text-slate-300">
-                    {alerta.tipo}
-                  </td>
-                  <td className="px-5 py-4 text-slate-600 dark:text-slate-400">
-                    {alerta.ubicacion}
-                  </td>
-                  <td className="px-5 py-4">
-                    <span className="px-2 py-1 rounded bg-red-100 dark:bg-red-950/60 text-red-700 dark:text-red-400 font-semibold text-[11px]">
-                      {alerta.intensidad}
-                    </span>
-                  </td>
-                  <td className="px-5 py-4">
-                    {alerta.activa ? (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                        ACTIVA
-                      </span>
-                    ) : (
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-400">
-                        INACTIVA
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
+      {/* Tabla reutilizada con la prop 'alerts' */}
+      <HistoryTable alerts={filteredAlerts} />
     </div>
   );
 }
