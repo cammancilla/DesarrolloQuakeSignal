@@ -5,6 +5,7 @@ const path = require('path');
 const connectDB = require("./config/db");
 const { iniciarCron } = require('./cron');
 const { formatToCAP } = require('./utils/capFormatter');
+const { enviarAlertaTelegram, probarConexionTelegram, DEFAULT_BOT_TOKEN, DEFAULT_CHAT_ID } = require('./utils/telegram');
 const app = express();
 const PORT = 3001;
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
@@ -53,8 +54,8 @@ const saveDB = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2)
 const CONFIGURACION_DEFAULT = {
   comunicaciones: {
     telegram: {
-      botToken: "7198234821:AAH8Fq2Pz89_qkSignalBot",
-      chatId: "-1002938472910",
+      botToken: DEFAULT_BOT_TOKEN,
+      chatId: DEFAULT_CHAT_ID,
       activo: true
     },
     mqtt: {
@@ -265,7 +266,7 @@ app.get('/api/logs/alertas', (req, res) => {
   }
 });
 
-app.post('/api/alertas/panico', (req, res) => {
+app.post('/api/alertas/panico', async (req, res) => {
   const db = getDB();
   
   const ubicacion = req.body.ubicacion || "Santiago Centro, Chile";
@@ -299,6 +300,9 @@ app.post('/api/alertas/panico', (req, res) => {
 
   console.log(`[INFO] BOTÓN DE PÁNICO ACTIVADO. Alerta ${nuevaAlerta.id} guardada en BD.`);
   console.log(`[CAP v1.2] Payload preparado para despacho:`, JSON.stringify(capMensaje?.alert?.info?.headline || ""));
+
+  // Enviar mensaje al canal de Telegram inmediatamente
+  await enviarAlertaTelegram(nuevaAlerta);
 
   // Retornar la alerta nativa y el objeto CAP listo
   res.status(201).json({ status: "OK", alerta: nuevaAlerta, cap: capMensaje });
@@ -396,13 +400,23 @@ app.put('/api/configuracion', (req, res) => {
 });
 
 // POST: Probar conexión de Telegram
-app.post('/api/configuracion/test-telegram', (req, res) => {
+app.post('/api/configuracion/test-telegram', async (req, res) => {
   const { botToken, chatId } = req.body;
-  if (!botToken || !chatId) {
-    return res.status(400).json({ error: "Faltan credenciales de Telegram (Bot Token y Chat ID)" });
+  const token = botToken || DEFAULT_BOT_TOKEN;
+  const chat = chatId || DEFAULT_CHAT_ID;
+
+  console.log(`[TELEGRAM TEST] Probando envío a Chat ID ${chat} con token ${token.slice(0, 10)}...`);
+
+  try {
+    const data = await probarConexionTelegram(token, chat);
+    if (data.ok) {
+      res.json({ status: "OK", message: "Conexión a Telegram verificada exitosamente y mensaje enviado al canal." });
+    } else {
+      res.status(400).json({ error: `Error de Telegram: ${data.description || 'No se pudo enviar el mensaje'}` });
+    }
+  } catch (err) {
+    res.status(500).json({ error: `Error de conexión con Telegram: ${err.message}` });
   }
-  console.log(`[TELEGRAM TEST] Probando envío a Chat ID ${chatId} con token ${botToken.slice(0, 10)}...`);
-  res.json({ status: "OK", message: "Conexión a Telegram verificada exitosamente (Simulación de envío activa)" });
 });
 
 // POST: Probar conexión MQTT
