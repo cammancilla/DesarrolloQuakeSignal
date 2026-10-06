@@ -1,6 +1,7 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-2401",
       "id": "ALERT-SIM-4559",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -1863,11 +1864,13 @@
       "lat": -33.6389,
       "lng": -70.3503,
       "radioKm": 12,
+      "fecha": "2026-09-27T21:37:32.401Z",
       "fecha": "2026-10-04T18:11:43.848Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2396",
       "id": "ALERT-SIM-3842",
       "tipo": "Sismo Mayor",
       "intensidad": "7.1 Mw",
@@ -1875,6 +1878,7 @@
       "lat": -33.4429,
       "lng": -70.6539,
       "radioKm": 20,
+      "fecha": "2026-09-27T21:35:32.396Z",
       "fecha": "2026-10-04T18:09:43.842Z",
       "activa": true,
       "despachada": true
@@ -1892,6 +1896,7 @@
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2396",
       "id": "ALERT-SIM-7000",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -1899,11 +1904,13 @@
       "lat": -33.0245,
       "lng": -71.5518,
       "radioKm": 15,
+      "fecha": "2026-09-27T21:33:32.396Z",
       "fecha": "2026-09-28T00:20:17.000Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2394",
       "id": "ALERT-SIM-6988",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -1911,11 +1918,13 @@
       "lat": -20.2133,
       "lng": -70.1503,
       "radioKm": 25,
+      "fecha": "2026-09-27T21:31:32.394Z",
       "fecha": "2026-09-28T00:18:16.988Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2386",
       "id": "ALERT-SIM-6983",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -1923,11 +1932,20 @@
       "lat": -33.0245,
       "lng": -71.5518,
       "radioKm": 15,
+      "fecha": "2026-09-27T21:29:32.386Z",
       "fecha": "2026-09-28T00:16:16.983Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2373",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T21:27:32.373Z",
       "id": "ALERT-SIM-6981",
       "tipo": "Terremoto",
       "intensidad": "8.2 Mw",
@@ -2012,6 +2030,7 @@
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2365",
       "id": "ALERT-SIM-6918",
       "tipo": "Terremoto",
       "intensidad": "8.2 Mw",
@@ -2031,11 +2050,13 @@
       "lat": -33.0245,
       "lng": -71.5518,
       "radioKm": 15,
+      "fecha": "2026-09-27T21:25:32.365Z",
       "fecha": "2026-09-27T23:58:16.918Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2360",
       "id": "ALERT-SIM-6909",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -2043,6 +2064,7 @@
       "lat": -20.2133,
       "lng": -70.1503,
       "radioKm": 25,
+      "fecha": "2026-09-27T21:23:32.360Z",
       "fecha": "2026-09-27T23:56:16.909Z",
       "activa": true,
       "despachada": true
@@ -2060,6 +2082,7 @@
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2348",
       "id": "ALERT-SIM-6903",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -2067,11 +2090,13 @@
       "lat": -20.2133,
       "lng": -70.1503,
       "radioKm": 25,
+      "fecha": "2026-09-27T21:21:32.348Z",
       "fecha": "2026-09-27T23:52:16.903Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2342",
       "id": "ALERT-SIM-6899",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -2079,11 +2104,20 @@
       "lat": -33.0245,
       "lng": -71.5518,
       "radioKm": 15,
+      "fecha": "2026-09-27T21:19:32.342Z",
       "fecha": "2026-09-27T23:50:16.899Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2333",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T21:17:32.334Z",
       "id": "ALERT-SIM-6896",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -2108,6 +2142,7 @@
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2322",
       "id": "ALERT-SIM-6894",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -2115,11 +2150,20 @@
       "lat": -20.2133,
       "lng": -70.1503,
       "radioKm": 25,
+      "fecha": "2026-09-27T21:15:32.322Z",
       "fecha": "2026-09-27T23:44:16.894Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2308",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-09-27T21:13:32.308Z",
       "id": "ALERT-SIM-6891",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -2156,6 +2200,7 @@
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2301",
       "id": "ALERT-SIM-6866",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -2163,11 +2208,13 @@
       "lat": -33.0245,
       "lng": -71.5518,
       "radioKm": 15,
+      "fecha": "2026-09-27T21:11:32.301Z",
       "fecha": "2026-09-27T23:36:16.866Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2292",
       "id": "ALERT-SIM-6852",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -2175,11 +2222,25 @@
       "lat": -33.0245,
       "lng": -71.5518,
       "radioKm": 15,
+      "fecha": "2026-09-27T21:09:32.292Z",
+      "activa": true,
+      "despachada": true
+    },
+    {
+      "id": "ALERT-SIM-2281",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-09-27T21:07:32.281Z",
       "fecha": "2026-09-27T23:34:16.853Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2278",
       "id": "ALERT-SIM-6846",
       "tipo": "Aluvión",
       "intensidad": "Alto Riesgo",
@@ -2187,11 +2248,20 @@
       "lat": -33.6389,
       "lng": -70.3503,
       "radioKm": 12,
+      "fecha": "2026-09-27T21:05:32.278Z",
       "fecha": "2026-09-27T23:32:16.846Z",
       "activa": true,
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2264",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-09-27T21:03:32.264Z",
       "id": "ALERT-SIM-6843",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -2216,6 +2286,7 @@
       "despachada": true
     },
     {
+      "id": "ALERT-SIM-2256",
       "id": "ALERT-SIM-6835",
       "tipo": "Terremoto",
       "intensidad": "8.2 Mw",
@@ -2223,6 +2294,7 @@
       "lat": -36.827,
       "lng": -73.0503,
       "radioKm": 35,
+      "fecha": "2026-09-27T21:01:32.256Z",
       "fecha": "2026-09-27T23:26:16.835Z",
       "activa": true,
       "despachada": true
