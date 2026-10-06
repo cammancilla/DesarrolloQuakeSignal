@@ -4,8 +4,8 @@ import { ConfiguracionSistema } from "../types";
 export const CONFIG_DEFAULT: ConfiguracionSistema = {
   comunicaciones: {
     telegram: {
-      botToken: "7198234821:AAH8Fq2Pz89_qkSignalBot",
-      chatId: "-1002938472910",
+      botToken: "8734767607:AAGAra5dEivH3fSCAJ5l8x1v7065ZpbYKBQ",
+      chatId: "-1003929496016",
       activo: true,
     },
     mqtt: {

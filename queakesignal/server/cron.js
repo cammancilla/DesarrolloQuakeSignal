@@ -1,6 +1,7 @@
 const cron = require('node-cron');
 const fs = require('fs');
 const path = require('path');
+const { enviarAlertaTelegram } = require('./utils/telegram');
 
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
 
@@ -13,25 +14,26 @@ const iniciarCron = () => {
 
   // 1. DESPACHADOR DE ALERTAS: Revisa cada 10 segundos
   // En eventos sísmicos, 1 minuto de espera es una eternidad.
-  cron.schedule('*/10 * * * * *', () => {
+  cron.schedule('*/10 * * * * *', async () => {
     try {
       const db = readDB();
       // Soporta tanto si db.json es un array directo (old) o un objeto { alertas: [] } (new)
       const alertas = db.alertas || db; 
       let dbModificada = false;
 
-      alertas.forEach(alerta => {
+      for (const alerta of alertas) {
         if (alerta.activa && !alerta.despachada) {
           console.log(`[CRON: DESPACHO] Evento detectado. Procesando ${alerta.id}...`);
           
-          // Aquí irían tus fetch() reales hacia las APIs
-          console.log(`[CANAL A] HTTP POST a Telegram API: Notificación Push enviada.`);
+          // Enviar a Telegram real
+          await enviarAlertaTelegram(alerta);
+          console.log(`[CANAL A] HTTP POST a Telegram API: Notificación enviada.`);
           console.log(`[CANAL B] MQTT Publish en tópico 'chile/alertas' hacia Broker GCP.`);
 
           alerta.despachada = true;
           dbModificada = true;
         }
-      });
+      }
 
       if (dbModificada) {
         if (db.alertas) db.alertas = alertas;
