@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { CommMode } from "../types";
+import { useState, useEffect } from "react";
+import { CommMode, SeismicAlert } from "../types/types";
 import StatCard from "../components/StatCard";
 import CommStatusCard from "../components/CommStatusCard";
 import SantiagoMap from "../components/SantiagoMap";
@@ -13,7 +13,7 @@ import {
   BellIcon,
   RadioIcon,
   ExternalLinkIcon,
-  MapIcon,
+  MapIcon
 } from "../components/icons";
 
 interface DashboardScreenProps {
@@ -28,25 +28,107 @@ export default function DashboardScreen({
   mode,
 }: DashboardScreenProps) {
   const [panicPressed, setPanicPressed] = useState(false);
+  const [sendingPanic, setSendingPanic] = useState(false);
+  const [alerts, setAlerts] = useState<SeismicAlert[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
   const isContingencia = mode === "contingencia";
+  const HistoryTableWithAlerts = HistoryTable as any;
+
+  const fetchAlerts = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/api/alertas");
+      console.log("Respuesta servidor HTTP Status:", response.status);
+
+      if (!response.ok) {
+        throw new Error(`Error ${response.status}: No se pudo obtener las alertas`);
+      }
+
+      const data: SeismicAlert[] = await response.json();
+      console.log("Alertas recibidas:", data);
+
+      setAlerts(data);
+      setError(null);
+    } catch (err: any) {
+      console.error("Detalle del error:", err);
+      setError(err.message || "Error al conectar con la API");
+    } finally {
+      setLoading(false);
+    }
+  };
+ 
+  //  FUNCIÓN DEL BOTÓN DE PÁNICO
+  const handlePanicButton = async () => {
+    setSendingPanic(true);
+    try {
+      const response = await fetch("http://localhost:3001/api/alertas/panico", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          tipo: "Terremoto (Manual)",
+          intensidad: "Alerta Crítica",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Error al activar la alerta de pánico");
+      }
+
+      const data = await response.json();
+      console.log("Alerta enviada correctamente:", data);
+
+      setPanicPressed(true);
+      fetchAlerts(); // Refresca las alertas inmediatamente
+    } catch (err: any) {
+      console.error(" Error al activar botón de pánico:", err);
+      alert("No se pudo enviar la alerta de pánico.");
+    } finally {
+      setSendingPanic(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchAlerts();
+    const interval = setInterval(fetchAlerts, 5000); // Polling cada 5 segundos
+    return () => clearInterval(interval);
+  }, []);
+
+  // Datos procesados en tiempo real
+  const activeAlert = alerts.find((a) => a.activa);
+  const latestAlert = activeAlert || alerts[0];
+
+  const formattedDate = latestAlert?.fecha
+    ? new Date(latestAlert.fecha).toLocaleDateString("es-CL")
+    : "--/--/----";
+
+  const formattedTime = latestAlert?.fecha
+    ? new Date(latestAlert.fecha).toLocaleTimeString("es-CL", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      })
+    : "--:--:--";
 
   return (
-    <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950 p-6 space-y-5 transition-colors">
-      {/* Stat cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="flex-1 overflow-y-auto bg-slate-50 p-6 space-y-5">
+      {/* Stat cards dinámicas */}
+      <div className="grid grid-cols-4 gap-4">
         <StatCard
           icon={<ActivityIcon />}
           label="Estado General"
-          value="Normal"
-          sub="Sistema funcionando correctamente"
-          accent="green"
+          value={activeAlert ? "Alerta" : "Normal"}
+          sub={activeAlert ? "Evento en progreso" : "Sistema funcionando correctamente"}
+          accent={activeAlert ? "red" : "green"}
         />
         <StatCard
           icon={<AlertTriangleIcon />}
           label="Alertas Activas"
-          value="1"
-          sub="Requiere atención"
-          accent="red"
+          value={activeAlert ? "1" : "0"}
+          sub={activeAlert ? "Requiere atención" : "Sin emergencias"}
+          accent={activeAlert ? "red" : "green"}
         />
         <StatCard
           icon={<CpuIcon />}
@@ -66,100 +148,117 @@ export default function DashboardScreen({
 
       <CommStatusCard mode={mode} />
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        {/* Activación Rápida */}
-        <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm p-5 transition-colors">
-          <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-4">Activación Rápida</h3>
+      <div className="grid grid-cols-3 gap-4">
+       {/* Activación Rápida */}
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+          <h3 className="font-semibold text-gray-900 text-sm mb-4">Activación Rápida</h3>
           <div className="flex flex-col items-center gap-3">
             <button
-              onClick={() => setPanicPressed(!panicPressed)}
+              disabled={sendingPanic}
+              onClick={handlePanicButton}
               className={`w-full py-5 rounded-xl flex flex-col items-center gap-2 transition-all font-bold text-white text-sm tracking-wide shadow-lg cursor-pointer ${
-                panicPressed
-                  ? "bg-red-700 shadow-red-300 dark:shadow-red-950"
-                  : "bg-red-600 hover:bg-red-700 shadow-red-200 dark:shadow-red-950"
+                sendingPanic
+                  ? "bg-red-800 opacity-70 cursor-wait"
+                  : panicPressed
+                  ? "bg-red-700 shadow-red-300"
+                  : "bg-red-600 hover:bg-red-700 shadow-red-200"
               }`}
             >
               <BellIcon size={24} />
-              BOTÓN DE PÁNICO
-              <span className="text-xs font-normal opacity-80">Enviar alerta inmediata</span>
+              {sendingPanic ? "ENVIANDO ALERTA..." : "BOTÓN DE PÁNICO"}
+              <span className="text-xs font-normal opacity-80">
+                {sendingPanic ? "Conectando con Backend Core..." : "Enviar alerta inmediata"}
+              </span>
             </button>
-            <p className="text-[11px] text-gray-400 dark:text-slate-500 text-center leading-relaxed">
+            <p className="text-[11px] text-gray-400 text-center leading-relaxed">
               Al activar esta opción se distribuirá una alerta a los canales configurados.
             </p>
           </div>
         </div>
+       
 
-        {/* Última Alerta */}
-        <div
-          className={`bg-white dark:bg-slate-900 rounded-xl border shadow-sm p-5 transition-colors ${
-            isContingencia ? "border-orange-200 dark:border-orange-800/60" : "border-gray-200 dark:border-slate-800"
-          }`}
-        >
+  
+        <div className={`bg-white rounded-xl border shadow-sm p-5 ${isContingencia ? "border-orange-200" : "border-gray-200"}`}>
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Última Alerta</h3>
-            <Badge color="red">● ACTIVA</Badge>
+            <h3 className="font-semibold text-gray-900 text-sm">Última Alerta</h3>
+            {latestAlert?.activa ? (
+              <Badge color="red">● ACTIVA</Badge>
+            ) : (
+              <Badge color="gray">FINALIZADA</Badge>
+            )}
           </div>
-          <div className="bg-red-50 dark:bg-rose-950/40 border border-red-100 dark:border-rose-900/40 rounded-lg p-3 mb-3">
-            <div className="text-red-700 dark:text-rose-300 font-bold text-base mb-1">Terremoto</div>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-gray-500 dark:text-slate-400">
-              <span>Intensidad:</span>
-              <span className="font-medium text-gray-700 dark:text-slate-200">Moderada</span>
-              <span>Ubicación:</span>
-              <span className="font-medium text-gray-700 dark:text-slate-200">Santiago, Chile</span>
-              <span>Fecha:</span>
-              <span className="font-mono text-gray-700 dark:text-slate-200">25/08/2025</span>
-              <span>Hora:</span>
-              <span className="font-mono text-gray-700 dark:text-slate-200">12:40:15</span>
+
+          {loading ? (
+            <div className="p-4 text-xs text-gray-400 text-center">Cargando datos de la API...</div>
+          ) : error ? (
+            <div className="p-3 text-xs text-red-600 bg-red-50 rounded border border-red-100">⚠️ {error}</div>
+          ) : !latestAlert ? (
+            <div className="p-4 text-xs text-gray-400 text-center">No hay registros en la API.</div>
+          ) : (
+            <div className="bg-red-50 border border-red-100 rounded-lg p-3 mb-3">
+              <div className="text-red-700 font-bold text-base mb-1">{latestAlert.tipo}</div>
+              <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-gray-500">
+                <span>Intensidad:</span>
+                <span className="font-medium text-gray-700">{latestAlert.intensidad}</span>
+                <span>Ubicación:</span>
+                <span className="font-medium text-gray-700 truncate">{latestAlert.ubicacion}</span>
+                <span>Fecha:</span>
+                <span className="font-mono text-gray-700">{formattedDate}</span>
+                <span>Hora:</span>
+                <span className="font-mono text-gray-700">{formattedTime}</span>
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="space-y-1.5 mb-3">
             {isContingencia ? (
               <>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500 dark:text-slate-400">Telegram</span>
-                  <span className="font-medium text-red-500 dark:text-rose-400 font-mono">No disponible</span>
+                  <span className="text-gray-500">Telegram</span>
+                  <span className="font-medium text-red-500 font-mono">No disponible</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500 dark:text-slate-400">MQTT / Internet</span>
-                  <span className="font-medium text-red-500 dark:text-rose-400 font-mono">No disponible</span>
+                  <span className="text-gray-500">MQTT / Internet</span>
+                  <span className="font-medium text-red-500 font-mono">No disponible</span>
                 </div>
-                <div className="flex items-center justify-between text-xs border-t border-orange-100 dark:border-orange-900/40 pt-1.5">
-                  <span className="flex items-center gap-1 text-gray-600 dark:text-slate-300 font-medium">
+                <div className="flex items-center justify-between text-xs border-t border-orange-100 pt-1.5">
+                  <span className="flex items-center gap-1 text-gray-600 font-medium">
                     <RadioIcon size={11} /> RF
                   </span>
-                  <span className="font-semibold text-orange-600 dark:text-orange-400 font-mono">Distribución activa ✓</span>
+                  <span className="font-semibold text-orange-600 font-mono">Distribución activa ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500 dark:text-slate-400">Nodos</span>
-                  <span className="font-medium text-green-600 dark:text-emerald-400">11/12 recibieron</span>
+                  <span className="text-gray-500">Nodos</span>
+                  <span className="font-medium text-green-600">11/12 recibieron</span>
                 </div>
               </>
             ) : (
               <>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500 dark:text-slate-400">Telegram</span>
-                  <span className="font-medium text-green-600 dark:text-emerald-400">Enviado ✓</span>
+                  <span className="text-gray-500">Telegram</span>
+                  <span className="font-medium text-green-600">Enviado ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500 dark:text-slate-400">MQTT / IoT</span>
-                  <span className="font-medium text-green-600 dark:text-emerald-400">Enviado ✓</span>
+                  <span className="text-gray-500">MQTT / IoT</span>
+                  <span className="font-medium text-green-600">Enviado ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="flex items-center gap-1 text-gray-500 dark:text-slate-400">
+                  <span className="flex items-center gap-1 text-gray-500">
                     <RadioIcon size={11} /> RF
                   </span>
-                  <span className="font-medium text-green-600 dark:text-emerald-400">Disponible ✓</span>
+                  <span className="font-medium text-green-600">Disponible ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500 dark:text-slate-400">Nodos</span>
-                  <span className="font-medium text-green-600 dark:text-emerald-400">12/12 recibieron</span>
+                  <span className="text-gray-500">Nodos</span>
+                  <span className="font-medium text-green-600">12/12 recibieron</span>
                 </div>
               </>
             )}
           </div>
+
           <button
             onClick={onViewDetail}
-            className="w-full text-xs py-2 rounded-lg border border-blue-200 dark:border-blue-800 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full text-xs py-2 rounded-lg border border-blue-200 text-blue-600 hover:bg-blue-50 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <ExternalLinkIcon size={12} />
             Ver detalles
@@ -167,41 +266,42 @@ export default function DashboardScreen({
         </div>
 
         {/* Mapa */}
-        <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm p-4 flex flex-col justify-between transition-colors">
-          <div className="flex items-center justify-between mb-2">
-            <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Mapa de Cobertura en Tiempo Real</h3>
-            <span className="text-[11px] text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200 dark:border-emerald-800 px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
-              GPS Activo
+        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
+          <h3 className="font-semibold text-gray-900 text-sm mb-3">Mapa de Cobertura</h3>
+          <SantiagoMap compact mode={mode} />
+          <div className="flex items-center gap-3 mt-3 text-[10px] text-gray-500 flex-wrap justify-center">
+            <span>🔴 Alerta activa</span>
+            <span>🟢 Nodo online</span>
+            <span>⚪ Nodo offline</span>
+            <span className="flex items-center gap-0.5">
+              <span className="inline-block w-3 border-t border-dashed border-green-400" />
+              <span> Cob. RF</span>
             </span>
           </div>
-          <SantiagoMap compact mode={mode} height="290px" />
-          <button
+          <button 
             onClick={onNavigateMap}
-            className="w-full mt-2.5 text-xs py-2 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/80 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
+            className="w-full mt-2 text-xs py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
           >
-            <MapIcon size={13} />
-            Ver mapa interactivo completo
+            <MapIcon size={12} />
+            Ver mapa completo
           </button>
         </div>
       </div>
 
-      <HistoryTable />
+      <HistoryTableWithAlerts alerts={alerts.slice(0, 5)} />
 
       {/* Vistas móviles */}
-      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm p-6 transition-colors">
-        <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Vistas Móviles</h3>
-        <p className="text-xs text-gray-400 dark:text-slate-500 mb-5">
-          Representación de la notificación recibida por el usuario final
-        </p>
-        <div className="flex gap-8 justify-center flex-wrap">
+      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
+        <h3 className="font-semibold text-gray-900 text-sm mb-1">Vistas Móviles</h3>
+        <p className="text-xs text-gray-400 mb-5">Representación de la notificación recibida por el usuario final</p>
+        <div className="flex gap-8 justify-center">
           <div className="text-center">
             <PhoneNotification />
-            <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">Notificación de alerta</p>
+            <p className="text-xs text-gray-400 mt-3">Notificación de alerta</p>
           </div>
           <div className="text-center">
             <PhoneStatus />
-            <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">Estado del sistema</p>
+            <p className="text-xs text-gray-400 mt-3">Estado del sistema</p>
           </div>
         </div>
       </div>

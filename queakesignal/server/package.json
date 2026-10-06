@@ -1,18 +1,40 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "backend para la aplicación de alertas de terremotos",
   "main": "index.js",
   "scripts": {
-    "dev": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.6",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.10.0",
     "node-cron": "^4.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "index.js",
+      "cron.js",
+      "config",
+      "models",
+      "routes",
+      "utils"
+    ],
+    "ignore": [
+      "data/*",
+      "logs/*",
+      "*.log"
+    ]
   }
 }

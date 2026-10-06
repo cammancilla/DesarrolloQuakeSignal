@@ -1,4 +1,5 @@
-export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion";
+
+export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion" | "profile" | "usuarios";;
 export type CommMode = "normal" | "contingencia";
 
 export interface Alerta {
@@ -60,3 +61,4 @@ export interface ConfiguracionSistema {
     temaVisual: "oscuro" | "claro";
   };
 }
+
