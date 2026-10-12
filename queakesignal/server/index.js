@@ -11,6 +11,7 @@ const PORT = 3001;
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
 const LOGS_DIR = path.join(__dirname, 'logs');
 const ALERTAS_LOG_PATH = path.join(LOGS_DIR, 'alertas.log');
+const { initMQTT, publicarAlertaCAP } = require('./services/mqttService');
 
 // Asegurar que la carpeta logs exista
 if (!fs.existsSync(LOGS_DIR)) {
@@ -303,7 +304,11 @@ app.post('/api/alertas/panico', async (req, res) => {
 
   // Enviar mensaje al canal de Telegram inmediatamente
   await enviarAlertaTelegram(nuevaAlerta);
-
+//  DESPACHAR ALERTA CAP VÍA MQTT A LOS NODOS ESP32
+  const configMqtt = db.configuracion?.comunicaciones?.mqtt || {};
+  if (configMqtt.activo !== false) {
+    publicarAlertaCAP(capMensaje, configMqtt.topico || "chile/alertas");
+  }
   // Retornar la alerta nativa y el objeto CAP listo
   res.status(201).json({ status: "OK", alerta: nuevaAlerta, cap: capMensaje });
 });
@@ -462,6 +467,17 @@ setInterval(() => {
 const startServer = async () => {
   await connectDB();
   
+  //  INICIALIZAR CONEXIÓN AL BROKER MQTT DESDE CONFIGURACIÓN
+  try {
+    const db = getDB();
+    const configMqtt = db.configuracion?.comunicaciones?.mqtt || CONFIGURACION_DEFAULT.comunicaciones.mqtt;
+    if (configMqtt.activo !== false) {
+      initMQTT(configMqtt);
+    }
+  } catch (err) {
+    console.error(" [MQTT] No se pudo cargar configuración inicial:", err.message);
+  }
+
   const server = app.listen(PORT, () => {
     console.log(` Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
     iniciarCron();
