@@ -1,0 +1,17 @@
+{
+  "comunicaciones": {
+    "mqtt": {
+      "broker": "136.112.57.163",
+      "puerto": 1883,
+      "usuario": "quakesignal_core",
+      "password": "qs_secure_pwd_2026",
+      "topico": "chile/alertas",
+      "activo": true
+    },
+    "telegram": {
+      "botToken": "",
+      "chatId": "",
+      "activo": true
+    }
+  }
+}

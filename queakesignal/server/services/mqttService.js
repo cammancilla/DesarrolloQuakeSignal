@@ -1,53 +1,53 @@
 
+// services/mqttService.js
 const mqtt = require('mqtt');
-
-// Broker público de pruebas para desarrollo local
-const BROKER_URL = 'mqtt://broker.hivemq.com:1883';
-const TOPIC_ALERTAS = 'quakesignal/alertas/cap';
 
 let client = null;
 
-/**
- * Inicializa la conexión del cliente Node.js con el Broker MQTT.
- */
-const initMQTT = () => {
-  client = mqtt.connect(BROKER_URL);
+const initMQTT = (config = {}) => {
+  // Si ya existe un cliente conectado, lo cerramos antes de crear una nueva conexión
+  if (client) {
+    client.end();
+  }
+
+  // Extraer parámetros recibidos o usar los predeterminados de GCP por defecto
+  const host = config.broker || "136.112.57.163";
+  const port = config.puerto || 1883;
+  const brokerUrl = `mqtt://${host}:${port}`;
+
+  const options = {
+    username: config.usuario || "quakesignal_core",
+    password: config.password || "qs_secure_pwd_2026"
+  };
+
+  client = mqtt.connect(brokerUrl, options);
 
   client.on('connect', () => {
-    console.log(' [MQTT] Conectado exitosamente al broker:', BROKER_URL);
+    console.log(`[MQTT] Conectado exitosamente al broker: ${brokerUrl}`);
   });
 
   client.on('error', (err) => {
-    console.error(' [MQTT] Error de conexión con el broker:', err);
-  });
-
-  client.on('reconnect', () => {
-    console.log('[MQTT] Intentando reconexión con el broker...');
+    console.error(' [MQTT] Error de conexión:', err.message);
   });
 };
 
-/**
- * Publica un paquete estandarizado CAP v1.2 hacia el broker.
- * @param {Object} capPayload - JSON generado por formatToCAP()
- */
-const publicarAlertaCAP = (capPayload) => {
+const publicarAlertaCAP = (capPayload, topico = "chile/alertas") => {
   if (!client || !client.connected) {
-    console.warn(' [MQTT] No se pudo publicar: Sin conexión activa con el broker.');
+    console.warn(' [MQTT] No hay conexión activa con el broker.');
     return false;
   }
 
   const mensajeString = JSON.stringify(capPayload);
   
-  // Publicación con QoS 1 para asegurar la recepción por parte de las ESP32
-  client.publish(TOPIC_ALERTAS, mensajeString, { qos: 1, retain: true }, (err) => {
+  client.publish(topico, mensajeString, { qos: 1, retain: true }, (err) => {
     if (err) {
       console.error(' [MQTT] Error al publicar alerta:', err);
     } else {
-      console.log(` [MQTT] Alerta '${capPayload.alert.identifier}' publicada con éxito en '${TOPIC_ALERTAS}'`);
+      console.log(` [MQTT] Alerta publicada en '${topico}':`, capPayload.alert?.identifier || capPayload.id);
     }
   });
 
   return true;
 };
 
-module.exports = { initMQTT, publicarAlertaCAP, TOPIC_ALERTAS };
+module.exports = { initMQTT, publicarAlertaCAP };
