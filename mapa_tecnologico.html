@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapa Tecnológico - QuakeSignal</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .tech-card {
+      transition: all 0.25s ease;
+    }
+    .tech-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans p-6 antialiased">
+  <div class="max-w-6xl mx-auto space-y-8">
+
+    <!-- Header Principal -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-2xl flex items-center justify-between flex-wrap gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-xs font-bold text-emerald-400 uppercase tracking-wider mb-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Stack Tecnológico Integral
+        </div>
+        <h1 class="text-2xl font-black text-white tracking-wide">Mapa Tecnológico de QuakeSignal</h1>
+        <p class="text-sm text-slate-400 mt-1">
+          Arquitectura tecnológica de extremo a extremo: desde el clic en la pantalla hasta la sirena en la calle
+        </p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="px-3 py-1.5 rounded-xl bg-slate-800 border border-slate-700 text-xs font-mono text-slate-300">
+          Versión: 2.0 Híbrida
+        </span>
+        <span class="px-3 py-1.5 rounded-xl bg-emerald-950/70 border border-emerald-700 text-xs font-bold text-emerald-300">
+          IoT + Cloud + Web
+        </span>
+      </div>
+    </div>
+
+    <!-- EL MAPA TECNOLÓGICO DIVIDIDO EN 5 ESTACIONES DEL FLUJO -->
+    <div class="space-y-6">
+
+      <!-- ESTACIÓN 1: FRONTEND / CENTRO DE MANDO -->
+      <div class="bg-slate-900/80 border border-emerald-800/50 rounded-2xl p-6 shadow-lg space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center font-bold text-lg">
+              1
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>🖥️</span> Capa de Presentación y Centro de Control (Frontend)
+              </h2>
+              <p class="text-xs text-slate-400">Panel táctil del operador para monitorear sismos y activar el botón de pánico</p>
+            </div>
+          </div>
+          <span class="text-xs bg-emerald-950 text-emerald-300 px-2.5 py-1 rounded-full font-mono border border-emerald-800">
+            Cliente Web 24/7
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
+          <!-- React 19 -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">⚛️</div>
+            <div class="font-bold text-sm text-cyan-300">React 19</div>
+            <div class="text-[11px] text-slate-400">Librería de UI reactiva con renderizado ultra rápido y componentes modulares.</div>
+          </div>
+          <!-- TypeScript -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🔷</div>
+            <div class="font-bold text-sm text-blue-400">TypeScript 5</div>
+            <div class="text-[11px] text-slate-400">Tipado estático riguroso para evitar errores de ejecución en emergencias críticas.</div>
+          </div>
+          <!-- Vite 8 -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">⚡</div>
+            <div class="font-bold text-sm text-purple-400">Vite 8</div>
+            <div class="text-[11px] text-slate-400">Empaquetador de última generación con inicio en milisegundos y hot-reload optimizado.</div>
+          </div>
+          <!-- Tailwind v4 -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🎨</div>
+            <div class="font-bold text-sm text-teal-300">Tailwind CSS v4</div>
+            <div class="text-[11px] text-slate-400">Diseño responsive con soporte nativo de Modo Nocturno para centros de mando.</div>
+          </div>
+          <!-- Leaflet + Carto -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🗺️</div>
+            <div class="font-bold text-sm text-emerald-400">Leaflet + CARTO</div>
+            <div class="text-[11px] text-slate-400">Mapas interactivos vectoriales con zoom automático al epicentro y cálculo de distancias.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTACIÓN 2: BACKEND CORE / EL CEREBRO -->
+      <div class="bg-slate-900/80 border border-blue-800/50 rounded-2xl p-6 shadow-lg space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center font-bold text-lg">
+              2
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>⚙️</span> Capa de Negocio, Automatización y APIs (Backend Core)
+              </h2>
+              <p class="text-xs text-slate-400">Procesa eventos, audita accesos y planifica despachos sin bloquear el sistema</p>
+            </div>
+          </div>
+          <span class="text-xs bg-blue-950 text-blue-300 px-2.5 py-1 rounded-full font-mono border border-blue-800">
+            Node.js Engine
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+          <!-- Node.js -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🟢</div>
+            <div class="font-bold text-sm text-green-400">Node.js v24</div>
+            <div class="text-[11px] text-slate-400">Entorno de ejecución asíncrono no bloqueante con soporte de fetch nativo de alto rendimiento.</div>
+          </div>
+          <!-- Express.js -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🚀</div>
+            <div class="font-bold text-sm text-slate-200">Express REST API</div>
+            <div class="text-[11px] text-slate-400">Rutas semánticas para botón de pánico, pings de nodos IoT y ajustes de configuración.</div>
+          </div>
+          <!-- Node-Cron -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">⏱️</div>
+            <div class="font-bold text-sm text-yellow-400">Node-Cron</div>
+            <div class="text-[11px] text-slate-400">Reloj en segundo plano que vigila desconexiones de nodos cada 60s y despacha alertas cada 10s.</div>
+          </div>
+          <!-- Base Documental JSON -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">💾</div>
+            <div class="font-bold text-sm text-amber-300">Base Documental JSON</div>
+            <div class="text-[11px] text-slate-400">Almacenamiento liviano desacoplado en db.json para alertas, nodos y logs de auditoría sin latencia.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTACIÓN 3: PROTOCOLOS Y ESTÁNDARES INTERNACIONALES -->
+      <div class="bg-slate-900/80 border border-indigo-800/50 rounded-2xl p-6 shadow-lg space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center font-bold text-lg">
+              3
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>📜</span> Protocolos de Emergencia y Mensajería Estandarizada
+              </h2>
+              <p class="text-xs text-slate-400">Formatos que garantizan que el mensaje sea compatible mundialmente</p>
+            </div>
+          </div>
+          <span class="text-xs bg-indigo-950 text-indigo-300 px-2.5 py-1 rounded-full font-mono border border-indigo-800">
+            Estándares Abiertos
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <!-- Protocolo CAP -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🛡️</div>
+            <div class="font-bold text-sm text-indigo-300">Estándar CAP v1.2 (ITU-T X.1303)</div>
+            <div class="text-[11px] text-slate-400">Estructura internacional de alerta de emergencias con campos de severidad, urgencia, área y polígono.</div>
+          </div>
+          <!-- Protocolo MQTT -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">📡</div>
+            <div class="font-bold text-sm text-purple-300">Protocolo MQTT (TCP 1883)</div>
+            <div class="text-[11px] text-slate-400">Mensajería ultraligera Publish/Subscribe diseñada para enviar datos a microcontroladores con mínimo ancho de banda.</div>
+          </div>
+          <!-- HTTP/HTTPS + JSON -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🔒</div>
+            <div class="font-bold text-sm text-blue-300">HTTP REST + JSON Payload</div>
+            <div class="text-[11px] text-slate-400">Canal de comunicación web seguro con serialización liviana y encabezados estandarizados.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTACIÓN 4: INFRAESTRUCTURA CLOUD Y MENSAJERÍA MASIVA -->
+      <div class="bg-slate-900/80 border border-amber-800/50 rounded-2xl p-6 shadow-lg space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-amber-600/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-lg">
+              4
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>☁️</span> Infraestructura Cloud y Difusión Push (Vía Internet)
+              </h2>
+              <p class="text-xs text-slate-400">Canal masivo para teléfonos móviles y coordinación de dispositivos en la nube</p>
+            </div>
+          </div>
+          <span class="text-xs bg-amber-950 text-amber-300 px-2.5 py-1 rounded-full font-mono border border-amber-800">
+            Nube & Telco
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+          <!-- Telegram Bot API -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">💬</div>
+            <div class="font-bold text-sm text-sky-400">Telegram Bot API</div>
+            <div class="text-[11px] text-slate-400">Bot oficial (@queakesignal_bot) que despacha alertas con formato Markdown directamente a los canales de la comunidad.</div>
+          </div>
+          <!-- Google Cloud / Broker MQTT -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">☁️</div>
+            <div class="font-bold text-sm text-amber-400">Broker MQTT (GCP / EMQX)</div>
+            <div class="text-[11px] text-slate-400">Servidor en la nube de alta disponibilidad que recibe el evento y lo retransmite al instante a todos los nodos suscritos.</div>
+          </div>
+          <!-- GitLab DevOps -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">🦊</div>
+            <div class="font-bold text-sm text-orange-400">GitLab Issue Boards</div>
+            <div class="text-[11px] text-slate-400">Plataforma de gestión ágil Kanban, control de versiones Git y trazabilidad completa de Historias de Usuario.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTACIÓN 5: RESILIENCIA EN TERRENO / HARDWARE IoT -->
+      <div class="bg-slate-900/80 border border-red-800/50 rounded-2xl p-6 shadow-lg space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-lg bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center font-bold text-lg">
+              5
+            </div>
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>🚨</span> Resiliencia en Terreno y Hardware IoT (Modo Contingencia)
+              </h2>
+              <p class="text-xs text-slate-400">Equipamiento físico en plazas, colegios y postes para salvar vidas cuando se cae la red</p>
+            </div>
+          </div>
+          <span class="text-xs bg-red-950 text-red-300 px-2.5 py-1 rounded-full font-mono border border-red-800">
+            Hardware Físico
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+          <!-- ESP32 -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">📟</div>
+            <div class="font-bold text-sm text-red-400">Microcontrolador ESP32</div>
+            <div class="text-[11px] text-slate-400">Procesador dual-core con Wi-Fi, Bluetooth y bajo consumo eléctrico que orquesta la estación comunitaria.</div>
+          </div>
+          <!-- Sirenas y Actuadores -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">📢</div>
+            <div class="font-bold text-sm text-amber-300">Sirenas y Luces LED</div>
+            <div class="text-[11px] text-slate-400">Actuadores conectados a pines GPIO que emiten sonido penetrante y balizas estroboscópicas de advertencia.</div>
+          </div>
+          <!-- Portal Cautivo Wi-Fi -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">📶</div>
+            <div class="font-bold text-sm text-emerald-300">Portal Cautivo Wi-Fi (AP)</div>
+            <div class="text-[11px] text-slate-400">Red local autónoma que abre el plano de evacuación en celulares vecinos sin gastar saldo ni plan de datos.</div>
+          </div>
+          <!-- Radiofrecuencia LoRa -->
+          <div class="tech-card bg-slate-800/90 border border-slate-700 p-4 rounded-xl space-y-1">
+            <div class="text-2xl mb-1">📻</div>
+            <div class="font-bold text-sm text-orange-400">Canal RF 915 MHz (LoRa)</div>
+            <div class="text-[11px] text-slate-400">Banda libre de largo alcance que conecta los nodos entre sí cuando las antenas de telefonía se queman o caen.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RESUMEN EN FLUJO LINEAL DE EXTREMO A EXTREMO -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <h3 class="text-sm font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+        <span>🔄</span> El Camino Tecnológico de un Mensaje Sísmico
+      </h3>
+      <div class="flex items-center justify-between text-xs text-slate-300 flex-wrap gap-2">
+        <div class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-center flex-1 min-w-[120px]">
+          <div class="text-base">🖱️</div>
+          <div class="font-bold text-white mt-1">1. Click de Pánico</div>
+          <div class="text-[10px] text-slate-400">React + Leaflet</div>
+        </div>
+        <div class="text-slate-600 font-bold text-lg">→</div>
+        <div class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-center flex-1 min-w-[120px]">
+          <div class="text-base">⚙️</div>
+          <div class="font-bold text-white mt-1">2. Ingesta y CAP</div>
+          <div class="text-[10px] text-slate-400">Node.js + Express</div>
+        </div>
+        <div class="text-slate-600 font-bold text-lg">→</div>
+        <div class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-center flex-1 min-w-[120px]">
+          <div class="text-base">⏱️</div>
+          <div class="font-bold text-white mt-1">3. Despacho CRON</div>
+          <div class="text-[10px] text-slate-400">Node-Cron (10s)</div>
+        </div>
+        <div class="text-slate-600 font-bold text-lg">→</div>
+        <div class="px-3 py-2 rounded-lg bg-slate-800 border border-slate-700 text-center flex-1 min-w-[120px]">
+          <div class="text-base">☁️</div>
+          <div class="font-bold text-white mt-1">4. Difusión Doble</div>
+          <div class="text-[10px] text-slate-400">Telegram + MQTT</div>
+        </div>
+        <div class="text-slate-600 font-bold text-lg">→</div>
+        <div class="px-3 py-2 rounded-lg bg-emerald-950/80 border border-emerald-700 text-center flex-1 min-w-[120px]">
+          <div class="text-base">🚨</div>
+          <div class="font-bold text-emerald-300 mt-1">5. Alerta en Barrio</div>
+          <div class="text-[10px] text-emerald-400">ESP32 + Sirena + AP</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

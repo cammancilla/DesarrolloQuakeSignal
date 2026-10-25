@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Arquitectura Explicativa - QuakeSignal</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 0.4; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .pulse-alert {
+      animation: pulse-ring 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans p-6 antialiased">
+  <div class="max-w-5xl mx-auto space-y-6">
+
+    <!-- Header Introductorio -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-xl backdrop-blur-sm">
+      <div class="flex items-center justify-between flex-wrap gap-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-red-600 flex items-center justify-center text-2xl shadow-lg shadow-red-900/50">
+            🔔
+          </div>
+          <div>
+            <h1 class="text-2xl font-bold text-white tracking-wide">¿Cómo Funciona QuakeSignal?</h1>
+            <p class="text-sm text-slate-400">Arquitectura explicada para perfiles de negocio, marketing y toma de decisiones</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-900/80 px-3 py-1.5 rounded-xl border border-slate-700 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span class="text-emerald-400 font-semibold">Resiliencia 24/7</span>
+          <span class="text-slate-500">|</span>
+          <span class="text-slate-300">Doble Canal (Internet + Físico)</span>
+        </div>
+      </div>
+
+      <!-- Resumen en 1 Frase -->
+      <div class="mt-4 p-4 rounded-xl bg-red-950/40 border border-red-800/50 text-red-200 text-sm leading-relaxed">
+        <strong>💡 La promesa del producto:</strong> Si tiembla y la red celular colapsa, QuakeSignal no se apaga. Notifica por <strong>Telegram</strong> a quienes tienen internet, y enciende <strong>sirenas, luces y Wi-Fi comunitario gratuito</strong> en las calles para quienes se quedaron sin señal.
+      </div>
+    </div>
+
+    <!-- Las 4 Estaciones de la Arquitectura (Columnas Visuales) -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      
+      <!-- Capa 1 -->
+      <div class="bg-slate-800/80 border border-emerald-800/60 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Capa 1: Centro de Mando
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Operador & Dashboard</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Una interfaz web moderna donde el encargado ve el mapa de Chile y puede activar una alerta con un solo botón rojo de pánico.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+          <span>👤 Operador Humano</span>
+          <span class="text-emerald-400 font-mono font-bold">Paso 1</span>
+        </div>
+      </div>
+
+      <!-- Capa 2 -->
+      <div class="bg-slate-800/80 border border-blue-800/60 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] font-bold text-blue-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-blue-500"></span> Capa 2: Motor Inteligente
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Backend & Cron Automático</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            El cerebro digital. Guarda la emergencia, la estandariza a normas internacionales (CAP) y un reloj interno revisa cada 10 segundos para no depender de nadie.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+          <span>⚙️ Automatización Total</span>
+          <span class="text-blue-400 font-mono font-bold">Paso 2</span>
+        </div>
+      </div>
+
+      <!-- Capa 3 -->
+      <div class="bg-slate-800/80 border border-amber-800/60 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] font-bold text-amber-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-amber-500"></span> Capa 3: Nube y Redes
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Telegram + Google Cloud</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            La autopista rápida en internet. Dispara miles de mensajes push al canal de Telegram y órdenes ultraligeras hacia los equipos en terreno.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+          <span>🌐 Cobertura Cloud</span>
+          <span class="text-amber-400 font-mono font-bold">Paso 3A</span>
+        </div>
+      </div>
+
+      <!-- Capa 4 -->
+      <div class="bg-slate-800/80 border border-red-800/60 rounded-xl p-4 shadow-sm flex flex-col justify-between">
+        <div>
+          <div class="text-[11px] font-bold text-red-400 uppercase tracking-wider mb-1 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-red-500"></span> Capa 4: En el Barrio (IoT)
+          </div>
+          <h3 class="text-base font-bold text-white mb-2">Nodos ESP32 y Sirenas</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Equipos físicos en plazas y colegios. Hacen sonar sirenas, encienden luces y levantan su propio Wi-Fi para avisar a los vecinos sin internet.
+          </p>
+        </div>
+        <div class="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-slate-400">
+          <span>🚨 Rescate Comunitario</span>
+          <span class="text-red-400 font-mono font-bold">Paso 3B</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- El Flujo en 3 Actos (Narrativa de Historia) -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 space-y-6 shadow-xl">
+      <h2 class="text-lg font-bold text-white flex items-center gap-2">
+        <span>🎬</span> El Recorrido de una Alerta en Caso de Sismo Real
+      </h2>
+
+      <!-- Acto 1 -->
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700">
+        <div class="w-10 h-10 rounded-full bg-red-600/20 text-red-400 border border-red-500/30 flex items-center justify-center font-bold text-sm flex-shrink-0">
+          1
+        </div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <h4 class="font-bold text-sm text-white">Acto 1: Se presiona el Botón de Pánico</h4>
+            <span class="text-[10px] bg-red-950 text-red-300 px-2 py-0.5 rounded font-mono">Tiempo: 0.1 seg</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            El operador en la central detecta un sismo de 7.8 Mw y pulsa el botón rojo en su Dashboard web. El sistema registra la emergencia en la base de datos y de inmediato el mapa de Santiago cambia a rojo mostrando el epicentro y el radio de impacto.
+          </p>
+        </div>
+      </div>
+
+      <!-- Acto 2 -->
+      <div class="flex items-start gap-4 p-4 rounded-xl bg-slate-900/80 border border-slate-700">
+        <div class="w-10 h-10 rounded-full bg-blue-600/20 text-blue-400 border border-blue-500/30 flex items-center justify-center font-bold text-sm flex-shrink-0">
+          2
+        </div>
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <h4 class="font-bold text-sm text-white">Acto 2: El Cerebro Automático toma el control</h4>
+            <span class="text-[10px] bg-blue-950 text-blue-300 px-2 py-0.5 rounded font-mono">Tiempo: 0.3 seg</span>
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            El servicio de fondo (CRON) detecta la alerta en cola. No necesita que una persona escriba un mensaje a mano: automáticamente traduce la información al formato oficial de emergencias (estándar internacional CAP) y la prepara para un despacho masivo.
+          </p>
+        </div>
+      </div>
+
+      <!-- Acto 3 (Doble Canal) -->
+      <div class="p-4 rounded-xl bg-slate-900/80 border border-slate-700 space-y-3">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-full bg-amber-600/20 text-amber-400 border border-amber-500/30 flex items-center justify-center font-bold text-sm flex-shrink-0">
+            3
+          </div>
+          <div>
+            <h4 class="font-bold text-sm text-white">Acto 3: Salida Simultánea por Dos Caminos (Híbrido)</h4>
+            <p class="text-[11px] text-slate-400">Aquí ocurre la magia que salva vidas cuando todo lo demás falla</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 pl-14">
+          <!-- Canal A -->
+          <div class="p-3.5 rounded-lg bg-emerald-950/30 border border-emerald-800/40">
+            <div class="flex items-center gap-2 text-emerald-400 font-bold text-xs mb-1">
+              <span>📱</span> CANAL A: Vía Internet (Telegram Bot)
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Viaja por la nube hacia el canal de Telegram oficial. Miles de personas con teléfonos conectados reciben una notificación push con sonido: <em>"🔴 ALERTA ACTIVA: Terremoto 7.8 Mw en Santiago"</em>.
+            </p>
+          </div>
+
+          <!-- Canal B -->
+          <div class="p-3.5 rounded-lg bg-orange-950/30 border border-orange-800/40">
+            <div class="flex items-center gap-2 text-orange-400 font-bold text-xs mb-1">
+              <span>🚨</span> CANAL B: En Terreno (Nodos IoT ESP32)
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Viaja a los nodos físicos instalados en postes y plazas. <strong>Acción física:</strong> Suenan sirenas acústicas y parpadean luces LED. <strong>Acción digital:</strong> Si no hay internet, el nodo emite Wi-Fi propio que abre una pantalla de evacuación en los celulares cercanos sin requerir saldo ni datos móviles.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Comparativa Simple para Marketing / Pitch de Ventas -->
+    <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-xl">
+      <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+        <span>🏆</span> ¿Por qué esta solución es superior para la comunidad?
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700">
+          <div class="font-bold text-red-400 text-sm mb-1">Sistema Tradicional (SAE/TV)</div>
+          <p class="text-slate-400 leading-relaxed">
+            Si se quema una antena celular o se corta la luz del televisor, el mensaje nunca llega. Excluye a zonas rurales y a gente que no ve TV.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700">
+          <div class="font-bold text-emerald-400 text-sm mb-1">QuakeSignal (Multicanal)</div>
+          <p class="text-slate-400 leading-relaxed">
+            Llega al smartphone por Telegram en 1 segundo y, al mismo tiempo, suena sirenas en los postes de luz comunitarios.
+          </p>
+        </div>
+        <div class="p-4 rounded-xl bg-slate-900/60 border border-slate-700">
+          <div class="font-bold text-amber-400 text-sm mb-1">Cero Costo al Vecino</div>
+          <p class="text-slate-400 leading-relaxed">
+            El portal cautivo Wi-Fi de los nodos ESP32 permite leer instrucciones de rescate aunque la persona no tenga saldo ni plan de datos.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
