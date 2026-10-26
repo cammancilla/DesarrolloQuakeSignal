@@ -12,15 +12,12 @@ const initMQTT = (config = {}) => {
   // IP/Dominio de origen
   let host = config.broker || "136.112.57.163";
 
-  // Si el host es la IP pública o el dominio de GCP, verificamos el entorno:
-  if (host === "136.112.57.163" || host === "quakesignal.duckdns.org") {
-    // Si el nombre del host del sistema contiene 'broker-mqtt' (o si no se puede resolver externamente),
-    // o si el proceso corre en Linux dentro de GCP, usamos la interfaz de bucle local.
-    const isGCPVM = os.hostname().includes('broker-mqtt') || os.platform() === 'linux';
-    
-    if (isGCPVM) {
-      host = "127.0.0.1";
-    }
+  // Si corre en Linux (la máquina virtual de GCP donde corre Mosquitto localmente):
+  // SIEMPRE debe conectarse a 127.0.0.1 para evitar Hairpin NAT / Timeout.
+  if (os.platform() === 'linux') {
+    host = "127.0.0.1";
+  } else if (host === "broker.emqx.io" || host === "136.112.57.163") {
+    host = "quakesignal.duckdns.org";
   }
 
   const port = parseInt(config.puerto) || 1883;

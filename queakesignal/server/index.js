@@ -13,6 +13,7 @@ const LOGS_DIR = path.join(__dirname, 'logs');
 const ALERTAS_LOG_PATH = path.join(LOGS_DIR, 'alertas.log');
 const { initMQTT, publicarAlertaCAP } = require('./services/mqttService');
 const mqtt = require('mqtt');
+const os = require('os');
 
 // Asegurar que la carpeta logs exista
 if (!fs.existsSync(LOGS_DIR)) {
@@ -438,7 +439,12 @@ app.post('/api/configuracion/test-mqtt', (req, res) => {
     return res.status(400).json({ error: "Falta la dirección del Broker MQTT" });
   }
 
-  const host = broker.replace(/^mqtt:\/\//, '').replace(/^tcp:\/\//, '').trim();
+  let host = broker.replace(/^mqtt:\/\//, '').replace(/^tcp:\/\//, '').trim();
+  if (os.platform() === 'linux') {
+    host = "127.0.0.1";
+  } else if (host === "broker.emqx.io" || host === "136.112.57.163") {
+    host = "quakesignal.duckdns.org";
+  }
   const port = parseInt(puerto) || 1883;
 
   console.log(`[MQTT TEST] Probando conexión a mqtt://${host}:${port}...`);
