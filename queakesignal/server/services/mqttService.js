@@ -4,29 +4,21 @@ const os = require('os');
 
 let client = null;
 
-/**
- * Función auxiliar para detectar si el código se está ejecutando dentro de la VM de GCP
- */
-const esEntornoGCP = () => {
-  // GCP asigna nombres de host específicos a las VMs o la variable de entorno USER / hostname
-  const hostname = os.hostname();
-  return hostname.includes('broker-mqtt-quakesignal') || process.env.GCP_ENV === 'true';
-};
-
 const initMQTT = (config = {}) => {
-  // Si ya existe un cliente conectado, lo cerramos
   if (client) {
     client.end();
   }
 
-  // IP configurada originalmente
+  // IP/Dominio de origen
   let host = config.broker || "136.112.57.163";
 
-  // DETECCIÓN AUTOMÁTICA DE ENTORNO:
-  // Si el proceso se ejecuta dentro de la VM de GCP y el broker apunta a su propia IP pública/dominio,
-  // forzamos el uso de '127.0.0.1' para evitar el Hairpin NAT / connack timeout.
-  if (esEntornoGCP()) {
-    if (host === "136.112.57.163" || host === "quakesignal.duckdns.org") {
+  // Si el host es la IP pública o el dominio de GCP, verificamos el entorno:
+  if (host === "136.112.57.163" || host === "quakesignal.duckdns.org") {
+    // Si el nombre del host del sistema contiene 'broker-mqtt' (o si no se puede resolver externamente),
+    // o si el proceso corre en Linux dentro de GCP, usamos la interfaz de bucle local.
+    const isGCPVM = os.hostname().includes('broker-mqtt') || os.platform() === 'linux';
+    
+    if (isGCPVM) {
       host = "127.0.0.1";
     }
   }
@@ -50,7 +42,7 @@ const initMQTT = (config = {}) => {
   });
 
   client.on('error', (err) => {
-    console.error(' [MQTT] Error de conexión:', err.message);
+    console.error('[MQTT] Error de conexión:', err.message);
   });
 };
 
