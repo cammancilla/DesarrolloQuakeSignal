@@ -12,6 +12,7 @@ const DB_PATH = path.join(__dirname, 'data', 'db.json');
 const LOGS_DIR = path.join(__dirname, 'logs');
 const ALERTAS_LOG_PATH = path.join(LOGS_DIR, 'alertas.log');
 const { initMQTT, publicarAlertaCAP } = require('./services/mqttService');
+const mqtt = require('mqtt');
 
 // Asegurar que la carpeta logs exista
 if (!fs.existsSync(LOGS_DIR)) {
@@ -60,7 +61,7 @@ const CONFIGURACION_DEFAULT = {
       activo: true
     },
     mqtt: {
-      broker: "broker.emqx.io",
+      broker: "quakesignal.duckdns.org",
       puerto: 1883,
       usuario: "quakesignal_core",
       password: "qs_secure_pwd_2026",
@@ -401,6 +402,12 @@ app.put('/api/configuracion', (req, res) => {
   };
   saveDB(db);
   console.log(`[CONFIG] Parámetros del sistema actualizados por el operador.`);
+
+  // Re-inicializar conexión MQTT con los nuevos parámetros si está activo
+  if (db.configuracion?.comunicaciones?.mqtt?.activo !== false) {
+    initMQTT(db.configuracion.comunicaciones.mqtt);
+  }
+
   res.json({ status: "OK", message: "Configuración guardada correctamente", configuracion: db.configuracion });
 });
 
@@ -426,12 +433,50 @@ app.post('/api/configuracion/test-telegram', async (req, res) => {
 
 // POST: Probar conexión MQTT
 app.post('/api/configuracion/test-mqtt', (req, res) => {
-  const { broker, puerto, topico } = req.body;
+  const { broker, puerto, usuario, password } = req.body;
   if (!broker) {
     return res.status(400).json({ error: "Falta la dirección del Broker MQTT" });
   }
-  console.log(`[MQTT TEST] Probando conexión a ${broker}:${puerto || 1883} en tópico ${topico || 'chile/alertas'}...`);
-  res.json({ status: "OK", message: `Conexión con Broker MQTT ${broker}:${puerto || 1883} verificada exitosamente` });
+
+  const host = broker.replace(/^mqtt:\/\//, '').replace(/^tcp:\/\//, '').trim();
+  const port = parseInt(puerto) || 1883;
+
+  console.log(`[MQTT TEST] Probando conexión a mqtt://${host}:${port}...`);
+
+  const testClient = mqtt.connect(`mqtt://${host}:${port}`, {
+    username: usuario || "quakesignal_core",
+    password: password || "qs_secure_pwd_2026",
+    connectTimeout: 4000,
+  });
+
+  let responded = false;
+
+  testClient.on('connect', () => {
+    if (!responded) {
+      responded = true;
+      testClient.end(true);
+      console.log(`[MQTT TEST] Conexión exitosa a ${host}:${port}`);
+      return res.json({ status: "OK", message: `Conexión con Broker MQTT ${host}:${port} verificada exitosamente` });
+    }
+  });
+
+  testClient.on('error', (err) => {
+    if (!responded) {
+      responded = true;
+      testClient.end(true);
+      console.error(`[MQTT TEST] Error conectando a ${host}:${port}:`, err.message);
+      return res.status(500).json({ error: `Error de conexión con el Broker: ${err.message}` });
+    }
+  });
+
+  setTimeout(() => {
+    if (!responded) {
+      responded = true;
+      testClient.end(true);
+      console.warn(`[MQTT TEST] Timeout conectando a ${host}:${port}`);
+      return res.status(504).json({ error: `Tiempo de espera agotado al conectar con el Broker ${host}:${port}` });
+    }
+  }, 4500);
 });
 
 // --- SIMULADOR DE EMERGENCIAS ---

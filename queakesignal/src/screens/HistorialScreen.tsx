@@ -92,7 +92,7 @@ export default function HistorialScreen() {
 
   const fetchHistorial = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/alertas");
+      const response = await fetch("https://quakesignal.duckdns.org/api/alertas");
       if (!response.ok) {
         throw new Error(`Error ${response.status}: No se pudo cargar el historial`);
       }

@@ -16,9 +16,7 @@ export default function UsersScreen() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        setLoading(true);
-
-        const response = await fetch("http://localhost:3001/api/auth/users");
+        const response = await fetch("https://quakesignal.duckdns.org/api/auth/users");
 
         if (!response.ok) {
           throw new Error("No se pudo obtener la lista de usuarios");

@@ -16,7 +16,7 @@ export default function Dispositivos() {
   const fetchNodos = async () => {
     try {
       // Consumimos el endpoint real de nuestro backend
-      const response = await fetch('http://localhost:3001/api/nodos/status');
+      const response = await fetch('https://quakesignal.duckdns.org/api/nodos/status');
       if (!response.ok) throw new Error('Error al conectar con la API');
       
       const data = await response.json();

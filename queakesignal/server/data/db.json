@@ -1,6 +1,908 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-7249",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T01:19:57.249Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7249",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:19:57.249Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:49:57.249Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7241",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T01:17:57.241Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7241",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:17:57.241Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:47:57.241Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-5968",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-10-26T01:10:45.968Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-5968",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:10:45.968Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:40:45.968Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-5967",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-10-26T01:08:45.967Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-5967",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:08:45.967Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-10-26T01:38:45.967Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-5959",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-10-26T01:06:45.959Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-5959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:06:45.959Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Aluvión",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:36:45.959Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-5949",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T01:04:45.949Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-5949",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:04:45.949Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:34:45.949Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-5936",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-10-26T01:02:45.936Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-5936",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T01:02:45.936Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-10-26T01:32:45.936Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4731",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-10-26T00:40:54.731Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4731",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:40:54.731Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Aluvión",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:10:54.731Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4716",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-10-26T00:38:54.716Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4716",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:38:54.716Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:08:54.716Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4710",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-10-26T00:36:54.710Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4710",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:36:54.710Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-10-26T01:06:54.710Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4694",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T00:34:54.694Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4694",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:34:54.694Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:04:54.694Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4686",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T00:32:54.686Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4686",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:32:54.686Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:02:54.686Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4678",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-10-26T00:30:54.678Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4678",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:30:54.678Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T01:00:54.678Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4668",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T00:28:54.668Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4668",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:28:54.668Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:58:54.668Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4660",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-10-26T00:26:54.660Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4660",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:26:54.660Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Aluvión",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:56:54.660Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4647",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T00:24:54.647Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4647",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:24:54.647Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:54:54.647Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4643",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-10-26T00:22:54.643Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4643",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:22:54.643Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Aluvión",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:52:54.643Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-0322",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T00:18:20.322Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-0322",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:18:20.322Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:48:20.322Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-0312",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-10-26T00:16:20.312Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-0312",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:16:20.312Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:46:20.312Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-0298",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-10-26T00:14:20.298Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-0298",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:14:20.298Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:44:20.298Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-0292",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-10-26T00:12:20.292Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-0292",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:12:20.292Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Aluvión",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:42:20.292Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-0289",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-10-26T00:10:20.289Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-0289",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-26T00:10:20.289Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "info": {
+            "category": "Geo",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Severe",
+            "certainty": "Observed",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-10-26T00:40:20.289Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile.",
+            "instruction": "Mantenga la calma y busque una zona de seguridad.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "ALERT-SIM-5069",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
@@ -5562,7 +6464,7 @@
         "activo": true
       },
       "mqtt": {
-        "broker": "broker.emqx.io",
+        "broker": "quakesignal.duckdns.org",
         "puerto": 1883,
         "usuario": "quakesignal_core",
         "password": "qs_secure_pwd_2026",

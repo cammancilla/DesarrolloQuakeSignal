@@ -11,9 +11,10 @@ const initMQTT = (config = {}) => {
   }
 
   // Extraer parámetros recibidos o usar los predeterminados de GCP por defecto
-  const host = config.broker || "136.112.57.163";
-  const port = config.puerto || 1883;
-  const brokerUrl = `mqtt://${host}:${port}`;
+  const rawBroker = config.broker || "quakesignal.duckdns.org";
+  const host = (config.broker === "136.112.57.163") ? "127.0.0.1" : (config.broker || "127.0.0.1");
+  const port = parseInt(config.puerto) || 1883;
+  const brokerUrl = `mqtt://${host}:${config.puerto || 1883}`;
 
   const options = {
     username: config.usuario || "quakesignal_core",

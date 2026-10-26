@@ -20,7 +20,7 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
 
     try {
       // Petición al backend Express
-      const res = await fetch("http://localhost:3001/api/users", {
+      const res = await fetch("https://quakesignal.duckdns.org/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password, role: "operador" }),

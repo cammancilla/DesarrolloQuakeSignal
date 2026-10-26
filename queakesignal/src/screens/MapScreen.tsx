@@ -59,7 +59,7 @@ export default function MapScreen({ mode: modeProp }: MapScreenProps) {
   useEffect(() => {
     const fetchBackendAlertas = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/alertas");
+        const res = await fetch("https://quakesignal.duckdns.org/api/alertas");
         if (res.ok) {
           const data = await res.json();
           const lista = Array.isArray(data) ? data : data.alertas;

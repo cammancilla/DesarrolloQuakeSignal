@@ -38,7 +38,7 @@ export default function DashboardScreen({
 
   const fetchAlerts = async () => {
     try {
-      const response = await fetch("http://localhost:3001/api/alertas");
+      const response = await fetch("https://quakesignal.duckdns.org/api/alertas");
       console.log("Respuesta servidor HTTP Status:", response.status);
 
       if (!response.ok) {
@@ -62,7 +62,7 @@ export default function DashboardScreen({
   const handlePanicButton = async () => {
     setSendingPanic(true);
     try {
-      const response = await fetch("http://localhost:3001/api/alertas/panico", {
+      const response = await fetch("https://quakesignal.duckdns.org/api/alertas/panico", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

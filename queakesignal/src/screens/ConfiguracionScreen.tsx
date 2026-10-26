@@ -50,7 +50,7 @@ export default function ConfiguracionScreen({ onConfigChange }: ConfiguracionScr
     setTestingTelegram(true);
     setTestTelegramStatus(null);
     try {
-      const res = await fetch("http://localhost:3001/api/configuracion/test-telegram", {
+      const res = await fetch("https://quakesignal.duckdns.org/api/configuracion/test-telegram", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -75,19 +75,23 @@ export default function ConfiguracionScreen({ onConfigChange }: ConfiguracionScr
     setTestingMqtt(true);
     setTestMqttStatus(null);
     try {
-      const res = await fetch("http://localhost:3001/api/configuracion/test-mqtt", {
+      const res = await fetch("https://quakesignal.duckdns.org/api/configuracion/test-mqtt", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           broker: config.comunicaciones.mqtt.broker,
           puerto: config.comunicaciones.mqtt.puerto,
           topico: config.comunicaciones.mqtt.topico,
+          usuario: config.comunicaciones.mqtt.usuario,
+          password: config.comunicaciones.mqtt.password,
         }),
       });
       if (res.ok) {
-        setTestMqttStatus(`✓ Conectado a ${config.comunicaciones.mqtt.broker}:${config.comunicaciones.mqtt.puerto}`);
+        const data = await res.json();
+        setTestMqttStatus(data.message || `✓ Conectado a ${config.comunicaciones.mqtt.broker}:${config.comunicaciones.mqtt.puerto}`);
       } else {
-        setTestMqttStatus("⚠️ No se pudo conectar al Broker");
+        const errorData = await res.json().catch(() => ({}));
+        setTestMqttStatus(`⚠️ ${errorData.error || "No se pudo conectar al Broker"}`);
       }
     } catch {
       setTestMqttStatus(`✓ Broker ${config.comunicaciones.mqtt.broker} verificado`);

@@ -15,7 +15,7 @@ export default function DevicesScreen({ mode }: { mode: CommMode }) {
   useEffect(() => {
     const fetchNodos = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/nodos/status");
+        const res = await fetch("https://quakesignal.duckdns.org/api/nodos/status");
         if (res.ok) {
           const data = await res.json();
           if (data && Array.isArray(data.detalle) && data.detalle.length > 0) {

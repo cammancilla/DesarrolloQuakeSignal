@@ -9,7 +9,7 @@ export const CONFIG_DEFAULT: ConfiguracionSistema = {
       activo: true,
     },
     mqtt: {
-      broker: "broker.emqx.io",
+      broker: "quakesignal.duckdns.org",
       puerto: 1883,
       usuario: "quakesignal_core",
       password: "qs_secure_pwd_2026",
@@ -77,7 +77,7 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const res = await fetch("http://localhost:3001/api/configuracion");
+        const res = await fetch("https://quakesignal.duckdns.org/api/configuracion");
         if (res.ok) {
           const data = await res.json();
           if (data && data.comunicaciones && data.interfaz) {
@@ -114,7 +114,7 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
 
     // Sincronizar con backend si está disponible
     try {
-      const res = await fetch("http://localhost:3001/api/configuracion", {
+      const res = await fetch("https://quakesignal.duckdns.org/api/configuracion", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newConfig),
