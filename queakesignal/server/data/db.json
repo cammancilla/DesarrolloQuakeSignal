@@ -1,6 +1,92 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-4995",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-10-27T03:05:24.995Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4995",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-27T03:05:24.995Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-10-27T03:35:24.995Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4994",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-10-27T03:03:24.994Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4994",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-27T03:03:24.994Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-10-27T03:33:24.994Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "ALERT-SIM-4979",
       "tipo": "Incendio Forestal",
       "intensidad": "Alerta Roja",
