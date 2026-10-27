@@ -36,9 +36,15 @@ export default function DashboardScreen({
   const isContingencia = mode === "contingencia";
   const HistoryTableWithAlerts = HistoryTable as any;
 
+  const getApiUrl = (endpoint: string) => {
+    const isLocal = typeof window !== "undefined" && (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1");
+    const base = isLocal ? "http://localhost:3001" : "https://quakesignal.duckdns.org";
+    return `${base}${endpoint}`;
+  };
+
   const fetchAlerts = async () => {
     try {
-      const response = await fetch("https://quakesignal.duckdns.org/api/alertas");
+      const response = await fetch(getApiUrl("/api/alertas"));
       console.log("Respuesta servidor HTTP Status:", response.status);
 
       if (!response.ok) {
@@ -62,7 +68,7 @@ export default function DashboardScreen({
   const handlePanicButton = async () => {
     setSendingPanic(true);
     try {
-      const response = await fetch("https://quakesignal.duckdns.org/api/alertas/panico", {
+      const response = await fetch(getApiUrl("/api/alertas/panico"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

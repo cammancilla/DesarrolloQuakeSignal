@@ -22,7 +22,7 @@ if (!fs.existsSync(LOGS_DIR)) {
 
 /**
  * Registra en alertas.log cada consulta a la API de alertas,
- * ÚNICAMENTE cuando SI hay al menos una alerta activa (no cuando no hay nada).
+ * ÚNICAMENTE cuando SÍ hay al menos una alerta activa (no cuando no hay nada).
  */
 const registrarConsultaAlertaLog = (alertas, origen = '127.0.0.1') => {
   const activas = (alertas || []).filter(a => a.activa === true);
@@ -47,7 +47,6 @@ const registrarConsultaAlertaLog = (alertas, origen = '127.0.0.1') => {
 
 app.use(cors());
 app.use(express.json());
-
 
 // --- HELPERS DE BASE DE DATOS ---
 const getDB = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
@@ -171,19 +170,96 @@ const inicializarDB = () => {
 };
 inicializarDB();
 
-// --- RUTAS DE ALERTAS ---
-
-
-// Endpoints
+// --- RUTAS DE AUTENTICACIÓN Y USUARIOS ---
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
 
+// --- RUTAS DE ALERTAS ---
 
+/**
+ * Determina con certeza si una alerta fue emitida manualmente por un operador (Botón de Pánico).
+ */
+const esAlertaManual = (alerta) => {
+  if (!alerta) return false;
+  if (alerta.manual === true || alerta.origen === "manual") return true;
+  const idStr = String(alerta.id || "");
+  const tipoStr = String(alerta.tipo || "").toLowerCase();
+  return tipoStr.includes("manual") || (!idStr.includes("SIM") && !idStr.startsWith("ALERT-00"));
+};
 
-// Leer alertas de la base dummy
-const getAlertas = () => JSON.parse(fs.readFileSync(DB_PATH, 'utf-8'));
-const saveAlertas = (data) => fs.writeFileSync(DB_PATH, JSON.stringify(data, null, 2));
+/**
+ * Obtiene la última alerta generada ordenando por fecha de forma descendente.
+ * REGLA DE PRIORIDAD OPERACIONAL:
+ * 1. Si existe una alerta MANUAL ACTIVA (emitida por operador / botón de pánico),
+ *    tiene PRIORIDAD MÁXIMA y se muestra en el CAP por sobre cualquier simulación automática repetitiva.
+ * 2. Si no hay alerta manual activa, retorna la alerta activa más reciente.
+ * 3. Si no hay alertas activas, retorna la alerta más reciente histórica.
+ */
+const obtenerUltimaAlerta = (alertas = [], soloManuales = false) => {
+  if (!alertas || alertas.length === 0) return null;
+  const ordenadas = [...alertas].sort((a, b) => {
+    const tA = new Date(a.fecha || 0).getTime();
+    const tB = new Date(b.fecha || 0).getTime();
+    return tB - tA;
+  });
 
+  if (soloManuales) {
+    const manuales = ordenadas.filter(esAlertaManual);
+    return manuales.find(a => a.activa) || manuales[0] || null;
+  }
+
+  // Prioridad 1: Alerta manual activa
+  const manualActiva = ordenadas.find(a => esAlertaManual(a) && a.activa);
+  if (manualActiva) {
+    return manualActiva;
+  }
+
+  // Prioridad 2: Alerta activa más reciente
+  const alertaActiva = ordenadas.find(a => a.activa);
+  if (alertaActiva) {
+    return alertaActiva;
+  }
+
+  // Fallback: La más reciente
+  return ordenadas[0];
+};
+
+/**
+ * Busca una alerta por su ID de forma flexible e insensible a mayúsculas/minúsculas.
+ * Soporta: "ALERT-6044", "alert-6044", "6044", "#ALERT-6044", "ALERT-SIM-3098", "3098", "SIM-3098", etc.
+ */
+const buscarAlertaPorId = (alertas = [], searchId = "") => {
+  if (!searchId || !alertas || alertas.length === 0) return null;
+  const raw = String(searchId).trim();
+  const sinHash = raw.replace(/^#/, '').trim();
+  const lower = sinHash.toLowerCase();
+
+  // 1. Coincidencia exacta
+  let encontrada = alertas.find(a => a.id === raw || a.id === sinHash);
+  if (encontrada) return encontrada;
+
+  // 2. Coincidencia insensible a mayúsculas/minúsculas
+  encontrada = alertas.find(a => String(a.id || "").toLowerCase() === lower);
+  if (encontrada) return encontrada;
+
+  // 3. Coincidencia agregando o quitando prefijos ("6044" -> "ALERT-6044", "SIM-3098" -> "ALERT-SIM-3098")
+  encontrada = alertas.find(a => {
+    const idLower = String(a.id || "").toLowerCase();
+    return idLower === `alert-${lower}` ||
+           idLower === `alert-sim-${lower}` ||
+           idLower.endsWith(`-${lower}`);
+  });
+  if (encontrada) return encontrada;
+
+  // 4. Coincidencia por dígitos finales numéricos
+  const digitos = sinHash.replace(/^[^\d]*/, '');
+  if (digitos && digitos.length >= 3) {
+    encontrada = alertas.find(a => String(a.id || "").endsWith(digitos));
+    if (encontrada) return encontrada;
+  }
+
+  return null;
+};
 
 app.get('/api/alertas', (req, res) => {
   const db = getDB();
@@ -196,6 +272,8 @@ app.get('/api/alertas', (req, res) => {
 });
 
 // Formateador CAP v1.2 (JSON) para la última alerta o por query ?id=...
+// Admite también ?manual=true para ver la última alerta manual,
+// y ?todas=true / ?activas=true combinables con ?manual=true
 app.get('/api/alertas/cap', (req, res) => {
   const db = getDB();
   const alertas = db.alertas || [];
@@ -203,53 +281,147 @@ app.get('/api/alertas/cap', (req, res) => {
     return res.status(404).json({ error: "No hay alertas disponibles" });
   }
 
+  const filtroManual = req.query.manual === 'true' || req.query.manuales === 'true' || req.query.origen === 'manual';
+
   // Si envían ?todas=true o ?activas=true
   if (req.query.todas === 'true' || req.query.all === 'true') {
-    return res.json(alertas.map(a => a.cap || formatToCAP(a)));
+    const lista = filtroManual ? alertas.filter(esAlertaManual) : alertas;
+    return res.json(lista.map(a => formatToCAP(a)));
   }
   if (req.query.activas === 'true') {
-    return res.json(alertas.filter(a => a.activa).map(a => a.cap || formatToCAP(a)));
+    const lista = alertas.filter(a => a.activa && (!filtroManual || esAlertaManual(a)));
+    return res.json(lista.map(a => formatToCAP(a)));
   }
 
-  // Si envían ?id=ALERT-XXXX
+  // Si envían ?id=ALERT-XXXX o ?id=6044
   if (req.query.id) {
-    const alerta = alertas.find(a => a.id === req.query.id);
+    const alerta = buscarAlertaPorId(alertas, req.query.id);
     if (!alerta) {
-      return res.status(404).json({ error: "Alerta no encontrada" });
+      return res.status(404).json({
+        error: "Alerta no encontrada",
+        idConsultado: req.query.id,
+        ultimosIdsDisponibles: alertas.slice(0, 5).map(a => a.id)
+      });
     }
-    return res.json(alerta.cap || formatToCAP(alerta));
+    return res.json(formatToCAP(alerta));
   }
 
-  // Por defecto, retorna la última alerta emitida (ej. botón de pánico más reciente)
-  const ultimaAlerta = alertas[0];
-  const capMensaje = ultimaAlerta.cap || formatToCAP(ultimaAlerta);
-
-  res.json(capMensaje);
+  // Por defecto, retorna la última alerta emitida en el sistema recalculando siempre su CAP de forma dinámica.
+  // Si hay una alerta manual activa, tiene prioridad sobre las simulaciones.
+  const ultimaAlerta = obtenerUltimaAlerta(alertas, filtroManual);
+  if (!ultimaAlerta) {
+    return res.status(404).json({ error: "No se encontraron alertas para el filtro especificado" });
+  }
+  res.json(formatToCAP(ultimaAlerta));
 });
 
-// Endpoint para obtener una alerta específica en formato CAP: /api/alertas/:id/cap
-app.get('/api/alertas/:id/cap', (req, res) => {
+// Endpoints específicos y dedicados para alertas manuales en formato CAP:
+// /api/alertas/manual/cap, /api/alertas/manuales/cap, /api/alertas/cap/manual
+const handlerAlertaManualCap = (req, res) => {
   const db = getDB();
   const alertas = db.alertas || [];
-  const alerta = alertas.find(a => a.id === req.params.id);
-  if (!alerta) {
-    return res.status(404).json({ error: "Alerta no encontrada" });
+  const manuales = alertas.filter(esAlertaManual);
+
+  if (manuales.length === 0) {
+    return res.status(404).json({ error: "No hay alertas manuales registradas en el sistema" });
   }
 
-  res.json(alerta.cap || formatToCAP(alerta));
+  if (req.query.todas === 'true' || req.query.all === 'true') {
+    return res.json(manuales.map(a => formatToCAP(a)));
+  }
+  if (req.query.activas === 'true') {
+    return res.json(manuales.filter(a => a.activa).map(a => formatToCAP(a)));
+  }
+
+  const ultimaManual = obtenerUltimaAlerta(alertas, true);
+  res.json(formatToCAP(ultimaManual));
+};
+
+app.get('/api/alertas/manual/cap', handlerAlertaManualCap);
+app.get('/api/alertas/manuales/cap', handlerAlertaManualCap);
+app.get('/api/alertas/cap/manual', handlerAlertaManualCap);
+app.get('/api/alertas/cap/manuales', handlerAlertaManualCap);
+
+// Endpoint nativo para consultar lista de alertas manuales (JSON estándar)
+app.get('/api/alertas/manuales', (req, res) => {
+  const db = getDB();
+  const alertas = db.alertas || [];
+  const manuales = alertas.filter(esAlertaManual);
+  res.json(manuales);
 });
+
+// Handler flexible para obtener una alerta específica en formato CAP
+const handlerAlertaCapPorId = (req, res) => {
+  const db = getDB();
+  const alertas = db.alertas || [];
+  if (alertas.length === 0) {
+    return res.status(404).json({ error: "No hay alertas disponibles" });
+  }
+
+  const rawId = req.params.id;
+
+  // Si acceden literalmente con ":id" o palabras clave como "latest", "ultima", "actual"
+  if (rawId === ":id" || rawId === "latest" || rawId === "ultima" || rawId === "actual") {
+    const ultima = obtenerUltimaAlerta(alertas);
+    return res.json(formatToCAP(ultima));
+  }
+
+  // Si piden explícitamente "manual" en el parámetro de ID
+  if (rawId === "manual" || rawId === "manuales") {
+    const ultimaManual = obtenerUltimaAlerta(alertas, true);
+    if (!ultimaManual) return res.status(404).json({ error: "No hay alertas manuales registradas" });
+    return res.json(formatToCAP(ultimaManual));
+  }
+
+  const alerta = buscarAlertaPorId(alertas, rawId);
+  if (!alerta) {
+    return res.status(404).json({
+      error: "Alerta no encontrada",
+      idConsultado: rawId,
+      sugerencia: "Verifique el ID. Puede ingresar el identificador completo (ej: ALERT-6044, ALERT-SIM-3098) o solo su número (ej: 6044).",
+      ultimosIdsDisponibles: alertas.slice(0, 5).map(a => a.id)
+    });
+  }
+
+  res.json(formatToCAP(alerta));
+};
+
+// Endpoints compatibles: /api/alertas/:id/cap y alias /api/alertas/cap/:id
+app.get('/api/alertas/:id/cap', handlerAlertaCapPorId);
+app.get('/api/alertas/cap/:id', handlerAlertaCapPorId);
 
 app.get('/api/alertas/:id', (req, res) => {
   const db = getDB();
   const alertas = db.alertas || [];
-  const alerta = alertas.find(a => a.id === req.params.id);
+  
+  if (req.params.id === ":id" || req.params.id === "latest" || req.params.id === "ultima") {
+    const ultima = obtenerUltimaAlerta(alertas);
+    if (req.query.format === 'cap') return res.json(formatToCAP(ultima));
+    return res.json(ultima);
+  }
+
+  if (req.params.id === "manual" || req.params.id === "manuales") {
+    const manuales = alertas.filter(esAlertaManual);
+    if (req.query.format === 'cap') return res.json(manuales.map(formatToCAP));
+    return res.json(manuales);
+  }
+
+  const alerta = buscarAlertaPorId(alertas, req.params.id);
   if (!alerta) {
-    return res.status(404).json({ error: "Alerta no encontrada" });
+    return res.status(404).json({
+      error: "Alerta no encontrada",
+      idConsultado: req.params.id,
+      ultimosIdsDisponibles: alertas.slice(0, 5).map(a => a.id)
+    });
   }
 
   // Registrar si la alerta consultada está activa
   if (alerta.activa) {
     registrarConsultaAlertaLog([alerta], req.ip || req.socket?.remoteAddress || '127.0.0.1');
+  }
+
+  if (req.query.format === 'cap') {
+    return res.json(formatToCAP(alerta));
   }
 
   res.json(alerta);
@@ -292,7 +464,9 @@ app.post('/api/alertas/panico', async (req, res) => {
     radioKm: req.body.radioKm || coords.radioKm,
     fecha: new Date().toISOString(),
     activa: true,
-    despachada: false
+    despachada: false,
+    manual: true,
+    origen: 'manual'
   };
 
   const capMensaje = formatToCAP(nuevaAlerta);
@@ -306,11 +480,13 @@ app.post('/api/alertas/panico', async (req, res) => {
 
   // Enviar mensaje al canal de Telegram inmediatamente
   await enviarAlertaTelegram(nuevaAlerta);
-//  DESPACHAR ALERTA CAP VÍA MQTT A LOS NODOS ESP32
+
+  // DESPACHAR ALERTA CAP VÍA MQTT A LOS NODOS ESP32
   const configMqtt = db.configuracion?.comunicaciones?.mqtt || {};
   if (configMqtt.activo !== false) {
     publicarAlertaCAP(capMensaje, configMqtt.topico || "chile/alertas");
   }
+
   // Retornar la alerta nativa y el objeto CAP listo
   res.status(201).json({ status: "OK", alerta: nuevaAlerta, cap: capMensaje });
 });
@@ -440,11 +616,12 @@ app.post('/api/configuracion/test-mqtt', (req, res) => {
   }
 
   let host = broker.replace(/^mqtt:\/\//, '').replace(/^tcp:\/\//, '').trim();
-  if (os.platform() === 'linux') {
+
+  // Si estamos ejecutando dentro de GCP y probamos la IP pública/dominio, usamos 127.0.0.1
+  if ((host === "136.112.57.163" || host === "quakesignal.duckdns.org") && os.hostname().includes('broker-mqtt')) {
     host = "127.0.0.1";
-  } else if (host === "broker.emqx.io" || host === "136.112.57.163") {
-    host = "quakesignal.duckdns.org";
   }
+
   const port = parseInt(puerto) || 1883;
 
   console.log(`[MQTT TEST] Probando conexión a mqtt://${host}:${port}...`);
@@ -494,7 +671,7 @@ const emergenciasRandom = [
   { tipo: "Aluvión", intensidad: "Alto Riesgo", ubicacion: "San José de Maipo, Chile", lat: -33.6389, lng: -70.3503, radioKm: 12 }
 ];
 
-// Cambiado a 2 minutos (120000 ms) para evitar saturar la base de datos
+// Generador automático de alertas simuladas cada 2 minutos
 setInterval(() => {
   const db = getDB();
   const randomActiva = emergenciasRandom[Math.floor(Math.random() * emergenciasRandom.length)];
@@ -510,15 +687,21 @@ setInterval(() => {
   alertaSorpresa.cap = formatToCAP(alertaSorpresa);
   db.alertas.unshift(alertaSorpresa);
   saveDB(db);
+
+  // Despachar la alerta simulada también a los nodos IoT vía MQTT
+  const configMqtt = db.configuracion?.comunicaciones?.mqtt || {};
+  if (configMqtt.activo !== false) {
+    publicarAlertaCAP(alertaSorpresa.cap, configMqtt.topico || "chile/alertas");
+  }
+
   console.log(`[SIMULADOR] Nueva alerta generada automáticamente: ${alertaSorpresa.tipo}`);
 }, 120000); 
 
 // Iniciar servidor y CRON
-
 const startServer = async () => {
   await connectDB();
   
-  //  INICIALIZAR CONEXIÓN AL BROKER MQTT DESDE CONFIGURACIÓN
+  // INICIALIZAR CONEXIÓN AL BROKER MQTT DESDE CONFIGURACIÓN
   try {
     const db = getDB();
     const configMqtt = db.configuracion?.comunicaciones?.mqtt || CONFIGURACION_DEFAULT.comunicaciones.mqtt;
@@ -526,11 +709,11 @@ const startServer = async () => {
       initMQTT(configMqtt);
     }
   } catch (err) {
-    console.error(" [MQTT] No se pudo cargar configuración inicial:", err.message);
+    console.error("[MQTT] No se pudo cargar configuración inicial:", err.message);
   }
 
   const server = app.listen(PORT, () => {
-    console.log(` Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
+    console.log(`Backend Core QuakeSignal corriendo en http://localhost:${PORT}`);
     iniciarCron();
   });
 
@@ -544,4 +727,3 @@ const startServer = async () => {
 };
 
 startServer();
-

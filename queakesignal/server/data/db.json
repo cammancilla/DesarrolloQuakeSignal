@@ -1,6 +1,49 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-4979",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-10-27T03:01:24.979Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4979",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-10-27T03:01:24.979Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-10-27T03:31:24.979Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "ALERT-SIM-7249",
       "tipo": "Sismo Mayor",
       "intensidad": "7.1 Mw",

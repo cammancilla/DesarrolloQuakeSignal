@@ -83,7 +83,9 @@ const iniciarCron = () => {
       let dbModificada = false;
 
       alertas.forEach(alerta => {
-        if (alerta.activa && (ahora - new Date(alerta.timestamp || ahora).getTime()) > EXPIRACION_MS) {
+        const fechaAlerta = alerta.fecha || alerta.timestamp;
+        const expiracionMs = alerta.id?.includes('SIM') ? (1000 * 60 * 30) : EXPIRACION_MS; // Simuladas expiran en 30 min, manuales en 2 horas
+        if (alerta.activa && fechaAlerta && (ahora - new Date(fechaAlerta).getTime()) > expiracionMs) {
           console.log(`[CRON: LIMPIEZA] Desactivando alerta expirada ${alerta.id}`);
           alerta.activa = false;
           dbModificada = true;
