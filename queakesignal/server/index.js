@@ -14,6 +14,21 @@ const ALERTAS_LOG_PATH = path.join(LOGS_DIR, 'alertas.log');
 const { initMQTT, publicarAlertaCAP } = require('./services/mqttService');
 const mqtt = require('mqtt');
 const os = require('os');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
+const User = require('./models/user');
+const JWT_SECRET = 'quakesignal_secret_key_2026';
+
+const getUserFromReq = (req) => {
+  const authHeader = req.headers['authorization'] || req.headers['x-access-token'];
+  if (!authHeader) return null;
+  const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
+  try {
+    return jwt.verify(token, JWT_SECRET);
+  } catch (err) {
+    return null;
+  }
+};
 
 // Asegurar que la carpeta logs exista
 if (!fs.existsSync(LOGS_DIR)) {
@@ -442,6 +457,13 @@ app.get('/api/logs/alertas', (req, res) => {
 });
 
 app.post('/api/alertas/panico', async (req, res) => {
+  // Principio de mínimo privilegio: Los operadores no tienen permisos para el Botón de Pánico
+  const requester = getUserFromReq(req);
+  if (requester && requester.role === 'operador') {
+    return res.status(403).json({ 
+      error: 'Acceso denegado: Los operadores no tienen permisos para activar el botón de pánico.' 
+    });
+  }
   const db = getDB();
   
   const ubicacion = req.body.ubicacion || "Santiago Centro, Chile";
@@ -556,6 +578,13 @@ app.get('/api/configuracion', (req, res) => {
 
 // PUT: Actualizar parámetros del sistema sin reiniciar el servidor
 app.put('/api/configuracion', (req, res) => {
+  // Principio de mínimo privilegio: Los operadores no tienen permisos para modificar configuración
+  const requester = getUserFromReq(req);
+  if (requester && requester.role === 'operador') {
+    return res.status(403).json({ 
+      error: 'Acceso denegado: Los operadores no tienen permisos para modificar los parámetros del sistema.' 
+    });
+  }
   const db = getDB();
   db.configuracion = {
     ...CONFIGURACION_DEFAULT,
@@ -699,7 +728,29 @@ setInterval(() => {
 
 // Iniciar servidor y CRON
 const startServer = async () => {
-  await connectDB();
+    await connectDB();
+  
+  // Mínimo privilegio: Asegurar cuenta del Administrador por defecto
+  try {
+    const adminUser = await User.findOne({ email: 'admin@quakesignal.com' });
+    if (!adminUser) {
+      const hash = await bcrypt.hash('admin123', 10);
+      await User.create({
+        name: 'Administrador',
+        email: 'admin@quakesignal.com',
+        password_hash: hash,
+        role: 'admin',
+        status: 'active'
+      });
+      console.log('[AUTH] Usuario administrador asegurado: admin@quakesignal.com (rol: admin)');
+    } else if (adminUser.role !== 'admin') {
+      adminUser.role = 'admin';
+      await adminUser.save();
+      console.log('[AUTH] Rol de admin@quakesignal.com actualizado a admin.');
+    }
+  } catch (err) {
+    console.error('[AUTH] Error verificando administrador por defecto:', err.message);
+  }
   
   // INICIALIZAR CONEXIÓN AL BROKER MQTT DESDE CONFIGURACIÓN
   try {

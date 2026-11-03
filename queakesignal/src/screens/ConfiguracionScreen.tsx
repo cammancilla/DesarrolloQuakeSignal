@@ -3,12 +3,34 @@ import { ConfiguracionSistema } from "../types";
 import Badge from "../components/Badge";
 import { GearIcon, RadioIcon, BellIcon, CpuIcon } from "../components/icons";
 import { useConfig, CONFIG_DEFAULT } from "../context/ConfigContext";
+import { getCurrentUser, isAdmin, getApiUrl } from "../utils/auth";
 
 interface ConfiguracionScreenProps {
   onConfigChange?: (config: ConfiguracionSistema) => void;
 }
 
 export default function ConfiguracionScreen({ onConfigChange }: ConfiguracionScreenProps) {
+  const currentUser = getCurrentUser();
+  const admin = isAdmin(currentUser);
+
+  if (!admin) {
+    return (
+      <div className="p-8 max-w-2xl mx-auto w-full my-auto text-center">
+        <div className="bg-white dark:bg-slate-900 border border-red-200 dark:border-red-900/60 rounded-2xl p-8 shadow-xl">
+          <div className="w-16 h-16 bg-red-100 dark:bg-red-950/60 rounded-2xl flex items-center justify-center text-red-600 dark:text-red-400 mx-auto mb-4 text-2xl font-bold">
+            🛡️
+          </div>
+          <h2 className="text-xl font-bold text-slate-800 dark:text-white">Acceso Restringido</h2>
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-2">
+            El módulo de <strong>Configuración del Sistema</strong> es exclusivo para el Administrador conforme al principio de mínimo privilegio.
+          </p>
+          <div className="mt-4 p-3 bg-slate-50 dark:bg-slate-800/60 rounded-lg text-xs text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            Tu rol actual: <strong className="text-blue-600 dark:text-blue-400 capitalize">{currentUser?.role || "Operador"}</strong>
+          </div>
+        </div>
+      </div>
+    );
+  }
   const { config: globalConfig, updateConfig, setTheme, isDark } = useConfig();
   const [config, setConfig] = useState<ConfiguracionSistema>(globalConfig);
 
@@ -50,7 +72,7 @@ export default function ConfiguracionScreen({ onConfigChange }: ConfiguracionScr
     setTestingTelegram(true);
     setTestTelegramStatus(null);
     try {
-      const res = await fetch("https://quakesignal.duckdns.org/api/configuracion/test-telegram", {
+      const res = await fetch(getApiUrl("/api/configuracion/test-telegram"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -75,7 +97,7 @@ export default function ConfiguracionScreen({ onConfigChange }: ConfiguracionScr
     setTestingMqtt(true);
     setTestMqttStatus(null);
     try {
-      const res = await fetch("https://quakesignal.duckdns.org/api/configuracion/test-mqtt", {
+      const res = await fetch(getApiUrl("/api/configuracion/test-mqtt"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

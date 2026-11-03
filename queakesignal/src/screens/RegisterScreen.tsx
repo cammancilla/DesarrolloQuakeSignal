@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { BellIcon } from "../components/icons";
+import { getApiUrl } from "../utils/auth";
 
 interface RegisterScreenProps {
   onRegisterSuccess: () => void;
@@ -19,8 +20,8 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
     setLoading(true);
 
     try {
-      // Petición al backend Express
-      const res = await fetch("https://quakesignal.duckdns.org/api/users", {
+      // Petición al backend Express (Registrando como Operador por mínimo privilegio)
+      const res = await fetch(getApiUrl("/api/users"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password, role: "operador" }),
@@ -50,7 +51,10 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
             <BellIcon size={24} />
           </div>
           <h1 className="text-2xl font-bold text-slate-800">QuakeSignal</h1>
-          <p className="text-sm text-slate-500 mt-1">Crear una nueva cuenta</p>
+          <p className="text-sm text-slate-500 mt-1">Crear cuenta de Operador</p>
+          <span className="text-[11px] text-blue-600 bg-blue-50 border border-blue-100 rounded-full px-3 py-0.5 mt-2 font-medium">
+            Rol: Operador de Monitoreo
+          </span>
         </div>
 
         {error && (
@@ -83,7 +87,7 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="usuario@quakesignal.com"
+              placeholder="operador@quakesignal.com"
               className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
             />
           </div>
@@ -107,7 +111,7 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
             disabled={loading}
             className="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-2.5 rounded-lg text-sm transition-colors shadow-sm mt-2 cursor-pointer disabled:opacity-50"
           >
-            {loading ? "Creando cuenta..." : "Registrarse"}
+            {loading ? "Creando cuenta..." : "Registrarse como Operador"}
           </button>
         </form>
 

@@ -1,5 +1,6 @@
 import { useState, FormEvent } from "react";
 import { BellIcon } from "../components/icons";
+import { getApiUrl } from "../utils/auth";
 
 interface LoginScreenProps {
   onLogin: () => void;
@@ -19,7 +20,7 @@ export default function LoginScreen({ onLogin, onGoToRegister }: LoginScreenProp
 
     try {
       // Petición al Backend Node.js
-      const res = await fetch("https://quakesignal.duckdns.org/api/auth/login", {
+      const res = await fetch(getApiUrl("/api/auth/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -112,13 +113,11 @@ export default function LoginScreen({ onLogin, onGoToRegister }: LoginScreenProp
             onClick={onGoToRegister} 
             className="text-red-600 hover:underline font-semibold cursor-pointer"
           >
-            Regístrate aquí
+            Regístrate como Operador
           </button>
         </p>
 
-        <p className="text-[11px] text-slate-400 text-center mt-4">
-          Admin por defecto: <span className="font-mono text-slate-600">admin@quakesignal.com</span> / <span className="font-mono text-slate-600">admin123</span>
-        </p>
+    
       </div>
     </div>
   );
