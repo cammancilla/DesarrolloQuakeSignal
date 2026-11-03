@@ -26,3 +26,17 @@ Repositorio de desarrollo del proyecto QuakeSignal
 
 - **Buscar CAP por parámetro query:**
   http://localhost:3001/api/alertas/cap?id=ALERT-6044
+
+
+Iniciar backend en GCP en pestaña SSH:
+
+# 1. Ir a la carpeta compartida del proyecto
+cd /opt/DesarrolloQuakeSignal
+
+# 2. Traer los cambios de GitHub
+git pull
+
+# 3. Ir a la carpeta del servidor e iniciar/reiniciar
+cd queakesignal/server
+node index.j
+
