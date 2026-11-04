@@ -1,6 +1,1855 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-9253",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:53:29.253Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9253",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:53:29.253Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T01:23:29.253Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-2707",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:52:02.707Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-2707",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:52:02.707Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:22:02.707Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9253",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:51:29.253Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9253",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:51:29.253Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T01:21:29.253Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-2697",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:50:02.697Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-2697",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:50:02.697Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:20:02.697Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9238",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:49:29.238Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9238",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:49:29.238Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:19:29.238Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-2695",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:48:02.695Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-2695",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:48:02.695Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:18:02.695Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9224",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-11-04T00:47:29.224Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9224",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:47:29.224Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-11-04T01:17:29.224Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-2683",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:46:02.683Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-2683",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:46:02.683Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T01:16:02.683Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9210",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:45:29.210Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9210",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:45:29.210Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:15:29.210Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9208",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:43:29.208Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9208",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:43:29.208Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:13:29.208Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1606",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:42:11.606Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1606",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:42:11.606Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T01:12:11.606Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9206",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-11-04T00:41:29.206Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9206",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:41:29.206Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-11-04T01:11:29.206Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1596",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:40:11.596Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1596",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:40:11.596Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T01:10:11.596Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9195",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-04T00:39:29.195Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9195",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:39:29.195Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T01:09:29.195Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1589",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:38:11.590Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1589",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:38:11.590Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:08:11.590Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9180",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-04T00:37:29.180Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9180",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:37:29.180Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T01:07:29.180Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1576",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-11-04T00:36:11.576Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1576",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:36:11.576Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-11-04T01:06:11.576Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9175",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:35:29.175Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9175",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:35:29.175Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T01:05:29.175Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1570",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:34:11.570Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1570",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:34:11.570Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T01:04:11.570Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9168",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-04T00:33:29.168Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9168",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:33:29.168Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T01:03:29.168Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9157",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:31:29.157Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9157",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:31:29.157Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T01:01:29.157Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9142",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-04T00:29:29.142Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9142",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:29:29.142Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:59:29.142Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9126",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:27:29.126Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9126",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:27:29.126Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T00:57:29.126Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9120",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:25:29.120Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9120",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:25:29.120Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:55:29.120Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9112",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:23:29.112Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9112",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:23:29.112Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T00:53:29.112Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9108",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:21:29.108Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9108",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:21:29.108Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:51:29.108Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9097",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:19:29.097Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9097",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:19:29.097Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T00:49:29.097Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9097",
+      "tipo": "Incendio Forestal",
+      "intensidad": "Alerta Roja",
+      "ubicacion": "Viña del Mar, Chile",
+      "lat": -33.0245,
+      "lng": -71.5518,
+      "radioKm": 15,
+      "fecha": "2026-11-04T00:17:29.097Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9097",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:17:29.097Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Fire",
+            "event": "Incendio Forestal",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FRW"
+            },
+            "expires": "2026-11-04T00:47:29.097Z",
+            "headline": "Incendio Forestal: Alerta Roja",
+            "description": "Se ha emitido una 'Incendio Forestal' con nivel 'Alerta Roja' para la zona de Viña del Mar, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe las zonas cercanas al fuego siguiendo las instrucciones de CONAF y Bomberos. Cubra sus vías respiratorias.",
+            "area": {
+              "areaDesc": "Viña del Mar, Chile",
+              "circle": "-33.0245,-71.5518,15"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9087",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-04T00:15:29.087Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9087",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:15:29.087Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:45:29.087Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9087",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:13:29.087Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9087",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:13:29.087Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T00:43:29.087Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9080",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:11:29.080Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9080",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:11:29.080Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T00:41:29.080Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9080",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:09:29.080Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9080",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:09:29.080Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:39:29.080Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-9069",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-04T00:07:29.069Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-9069",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:07:29.069Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:37:29.069Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-3582",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-11-04T00:04:53.582Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-3582",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:04:53.582Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-11-04T00:34:53.582Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8521",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-04T00:02:08.521Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8521",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:02:08.521Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T00:32:08.521Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8510",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-04T00:00:08.510Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8510",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-04T00:00:08.510Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:30:08.510Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8504",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-11-03T23:58:08.504Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8504",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:58:08.504Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-11-04T00:28:08.504Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8501",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-03T23:56:08.501Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8501",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:56:08.501Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:26:08.501Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8490",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-03T23:54:08.490Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8490",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:54:08.490Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T00:24:08.490Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8487",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-03T23:52:08.487Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8487",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:52:08.487Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T00:22:08.487Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8477",
+      "tipo": "Sismo Mayor",
+      "intensidad": "7.1 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-03T23:50:08.477Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8477",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:50:08.477Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Sismo Mayor",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-04T00:20:08.477Z",
+            "headline": "Sismo Mayor: 7.1 Mw",
+            "description": "Se ha emitido una 'Sismo Mayor' con nivel '7.1 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8469",
+      "tipo": "Aluvión",
+      "intensidad": "Alto Riesgo",
+      "ubicacion": "San José de Maipo, Chile",
+      "lat": -33.6389,
+      "lng": -70.3503,
+      "radioKm": 12,
+      "fecha": "2026-11-03T23:48:08.469Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8469",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:48:08.469Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Aluvión / Inundación",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "FFW"
+            },
+            "expires": "2026-11-04T00:18:08.469Z",
+            "headline": "Aluvión: Alto Riesgo",
+            "description": "Se ha emitido una 'Aluvión' con nivel 'Alto Riesgo' para la zona de San José de Maipo, Chile. Origen: Detección Automática.",
+            "instruction": "Evacúe de inmediato hacia zonas altas alejándose de cauces y quebradas. Nunca cruce áreas anegadas.",
+            "area": {
+              "areaDesc": "San José de Maipo, Chile",
+              "circle": "-33.6389,-70.3503,12"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-8454",
+      "tipo": "Alerta de Tsunami",
+      "intensidad": "Evacuación Inmediata",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 25,
+      "fecha": "2026-11-03T23:46:08.454Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-8454",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-03T23:46:08.454Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Met",
+            "event": "Alerta de Tsunami",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "TSW"
+            },
+            "expires": "2026-11-04T00:16:08.454Z",
+            "headline": "Alerta de Tsunami: Evacuación Inmediata",
+            "description": "Se ha emitido una 'Alerta de Tsunami' con nivel 'Evacuación Inmediata' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Diríjase de inmediato a zonas en altura sobre la cota 30. No utilice vehículos salvo extrema necesidad.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,25"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "ALERT-SIM-5380",
       "tipo": "Alerta de Tsunami",
       "intensidad": "Evacuación Inmediata",
@@ -9,7 +1858,7 @@
       "lng": -70.1503,
       "radioKm": 25,
       "fecha": "2026-11-03T02:07:45.380Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -52,7 +1901,7 @@
       "lng": -70.3503,
       "radioKm": 12,
       "fecha": "2026-11-03T02:05:45.372Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -95,7 +1944,7 @@
       "lng": -70.3503,
       "radioKm": 12,
       "fecha": "2026-11-03T02:03:45.363Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -138,7 +1987,7 @@
       "lng": -70.3503,
       "radioKm": 12,
       "fecha": "2026-11-03T02:01:45.356Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -181,7 +2030,7 @@
       "lng": -73.0503,
       "radioKm": 35,
       "fecha": "2026-11-03T01:59:45.355Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -224,7 +2073,7 @@
       "lng": -70.1503,
       "radioKm": 25,
       "fecha": "2026-11-03T01:57:45.348Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -267,7 +2116,7 @@
       "lng": -70.3503,
       "radioKm": 12,
       "fecha": "2026-11-03T01:55:45.340Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -310,7 +2159,7 @@
       "lng": -70.1503,
       "radioKm": 25,
       "fecha": "2026-11-03T01:53:45.334Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -353,7 +2202,7 @@
       "lng": -70.3503,
       "radioKm": 12,
       "fecha": "2026-11-03T01:51:45.325Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -396,7 +2245,7 @@
       "lng": -71.5518,
       "radioKm": 15,
       "fecha": "2026-11-03T01:49:45.319Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -439,7 +2288,7 @@
       "lng": -70.6539,
       "radioKm": 20,
       "fecha": "2026-11-03T01:43:43.947Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -482,7 +2331,7 @@
       "lng": -70.6539,
       "radioKm": 20,
       "fecha": "2026-11-03T01:41:43.942Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -525,7 +2374,7 @@
       "lng": -73.0503,
       "radioKm": 35,
       "fecha": "2026-11-03T01:39:43.932Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -568,7 +2417,7 @@
       "lng": -70.3503,
       "radioKm": 12,
       "fecha": "2026-11-03T01:37:43.918Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -611,7 +2460,7 @@
       "lng": -70.6539,
       "radioKm": 20,
       "fecha": "2026-11-03T01:35:43.906Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -654,7 +2503,7 @@
       "lng": -71.5518,
       "radioKm": 15,
       "fecha": "2026-11-03T01:33:43.907Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -697,7 +2546,7 @@
       "lng": -70.6539,
       "radioKm": 20,
       "fecha": "2026-11-03T01:31:43.900Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {

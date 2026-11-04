@@ -1,5 +1,5 @@
 
-export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion" | "profile" | "usuarios";
+export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion" | "profile" | "usuarios" | "login" | "register" | "notFound";
 
 export type UserRole = "admin" | "operador" | "destinatario";
 

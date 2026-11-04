@@ -15,6 +15,7 @@ import ConfiguracionScreen from "./screens/ConfiguracionScreen.tsx";
 import { ConfigProvider, useConfig } from "./context/ConfigContext.tsx";
 import SaveToast from "./components/SaveToast.tsx";
 import { getCurrentUser, isAdmin, canAccessScreen } from "./utils/auth";
+import NotFoundScreen from "./screens/NotFoundScreen.tsx";
 
 const TITLES: Record<string, string> = {
   dashboard: "Dashboard",
@@ -37,6 +38,9 @@ const SCREEN_TO_NAV: Record<Screen, string> = {
   configuracion: "configuracion",
   profile: "profile",
   usuarios: "usuarios",
+  login: "login",
+  register: "register",
+  notFound: "dashboard", 
 };
 
 function AppContent() {
@@ -52,6 +56,7 @@ function AppContent() {
   });
   
   const [authView, setAuthView] = useState<"login" | "register">("login");
+  const [registeredEmail, setRegisteredEmail] = useState<string>("");
 
   const [screen, setScreen] = useState<Screen>(() => {
     const user = getCurrentUser();
@@ -75,6 +80,7 @@ function AppContent() {
           return parsed.interfaz.vistaInicial as Screen;
         }
       }
+
     } catch {}
     return "dashboard";
   });
@@ -176,41 +182,81 @@ function AppContent() {
     setIsAuthenticated(false);
   };
 
-  // 2. Función navigate protegida por principio de mínimo privilegio
+  // 2. Función navigate protegida por principio de mínimo privilegio y soporte 404/History
   const navigate = (id: string) => {
-    const screenMap: Record<string, Screen> = {
-      dashboard: "dashboard",
-      devices: "devices",
-      historial: "historial",
-      mapa: "mapa",
-      alertas: "detail",
-      configuracion: "configuracion",
-      profile: "profile",
-      usuarios: "usuarios",
-    };
-
-    const targetScreen = screenMap[id] || (id as Screen);
-    const currentUser = getCurrentUser();
-
-    // Mínimo privilegio: Bloquear acceso si un operador intenta navegar a módulos restringidos
-    if (!canAccessScreen(targetScreen, currentUser)) {
-      console.warn(`Acceso restringido: El rol actual no tiene autorización para acceder a "${targetScreen}".`);
-      setNavActive("dashboard");
-      setScreen("dashboard");
-      sessionStorage.setItem("quakesignal_active_nav", "dashboard");
-      sessionStorage.setItem("quakesignal_active_screen", "dashboard");
-      return;
-    }
-
-    setNavActive(id);
-    setScreen(targetScreen);
-
-    sessionStorage.setItem("quakesignal_active_nav", id);
-    sessionStorage.setItem("quakesignal_active_screen", targetScreen);
-
-    // Push al historial del navegador
-    window.history.pushState({ screen: targetScreen, navActive: id }, "", `#${targetScreen}`);
+  // Mapa de aliases a pantallas válidas
+  const screenMap: Record<string, Screen> = {
+    dashboard: "dashboard",
+    devices: "devices",
+    historial: "historial",
+    mapa: "mapa",
+    alertas: "detail",
+    configuracion: "configuracion",
+    profile: "profile",
+    usuarios: "usuarios",
   };
+
+  // 1. Verificar si la pantalla solicitada existe en el mapa
+  const targetScreen = screenMap[id];
+
+  //  CASO 404: Si la pantalla no existe en el mapa
+  if (!targetScreen) {
+    setScreen("notFound");
+    setNavActive("");
+    sessionStorage.setItem("quakesignal_active_screen", "notFound");
+    sessionStorage.setItem("quakesignal_active_nav", "");
+    
+    // Sincronizar el historial para que la URL refleje el 404 y funcionen las flechas del ratón
+    window.history.pushState({ screen: "notFound", navActive: "" }, "", "#notFound");
+    return;
+  }
+
+  //  OBTENER USUARIO ACTUAL (Para evitar error de variable no definida)
+  const currentUser = getCurrentUser(); // O la fuente que utilices para leer el usuario activo
+
+  // 2. Mínimo privilegio: Bloquear acceso si el rol no tiene autorización
+  if (!canAccessScreen(targetScreen, currentUser)) {
+    console.warn(`Acceso restringido: El rol actual no tiene autorización para acceder a "${targetScreen}".`);
+    
+    setScreen("dashboard");
+    setNavActive("dashboard");
+    sessionStorage.setItem("quakesignal_active_nav", "dashboard");
+    sessionStorage.setItem("quakesignal_active_screen", "dashboard");
+    
+    window.history.pushState({ screen: "dashboard", navActive: "dashboard" }, "", "#dashboard");
+    return;
+  }
+
+  // 3. Caso Exitoso: Navegar a la pantalla permitida
+  setNavActive(id);
+  setScreen(targetScreen);
+
+  sessionStorage.setItem("quakesignal_active_nav", id);
+  sessionStorage.setItem("quakesignal_active_screen", targetScreen);
+
+  // Push al historial del navegador (Navegación con ratón y flechas)
+  window.history.pushState({ screen: targetScreen, navActive: id }, "", `#${targetScreen}`);
+};
+
+useEffect(() => {
+  // Función para leer la URL al cargar o cambiar el hash manualmente
+  const syncRouteWithHash = () => {
+    // Obtener lo que está después de # (por ejemplo "ola")
+    const hashRoute = window.location.hash.replace("#", "");
+
+    if (hashRoute) {
+      // Usar tu función navigate configurada para validar la ruta
+      navigate(hashRoute);
+    }
+  };
+
+  // 1. Ejecutar al cargar la página por primera vez
+  syncRouteWithHash();
+
+  // 2. Escuchar si el usuario cambia la URL manualmente en la barra de direcciones
+  window.addEventListener("hashchange", syncRouteWithHash);
+  return () => window.removeEventListener("hashchange", syncRouteWithHash);
+}, []);
 
   // 3. Función openDetail actualizada
   const openDetail = () => {
@@ -227,8 +273,8 @@ function AppContent() {
     if (authView === "register") {
       return (
         <RegisterScreen 
-          onRegisterSuccess={() => {
-            alert("Cuenta de Operador creada con éxito. Ya puedes iniciar sesión con tus credenciales.");
+          onRegisterSuccess={(newEmail: string) => {
+            setRegisteredEmail(newEmail);
             setAuthView("login");
           }} 
           onGoToLogin={() => setAuthView("login")} 
@@ -238,6 +284,7 @@ function AppContent() {
 
     return (
       <LoginScreen 
+        defaultEmail={registeredEmail}
         onLogin={handleLogin} 
         onGoToRegister={() => setAuthView("register")} 
       />
@@ -326,6 +373,8 @@ function AppContent() {
               />
             )
           )}
+          {screen === "notFound" && (
+          <NotFoundScreen onGoHome={() => setScreen("dashboard")} />)}
         </main>
       </div>
     </div>

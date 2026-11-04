@@ -41,13 +41,36 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const { name, email, password, role } = req.body;
 
+  if (!email || !password) {
+    return res.status(400).json({ message: "El correo electrónico y la contraseña son requeridos." });
+  }
+
+  const emailClean = (email || "").trim().toLowerCase();
+  const passwordClean = typeof password === "string" ? password.trim() : String(password);
+
+  if (passwordClean.length < 4) {
+    return res.status(400).json({ message: "La contraseña debe tener al menos 4 caracteres." });
+  }
+
   try {
-    const userExists = await User.findOne({ email });
-    if (userExists) {
-      return res.status(400).json({ message: "El correo ya está registrado." });
+    // Verificar si el correo ya existe, considerando variantes de dominio
+    let altEmail = null;
+    if (emailClean.includes("@quakesignal.com")) {
+      altEmail = emailClean.replace("@quakesignal.com", "@queakesignal.com");
+    } else if (emailClean.includes("@queakesignal.com")) {
+      altEmail = emailClean.replace("@queakesignal.com", "@quakesignal.com");
     }
 
-    const hashedPassword = await bcrypt.hash(password || "123456", 10);
+    const query = altEmail
+      ? { $or: [{ email: emailClean }, { email: altEmail }] }
+      : { email: emailClean };
+
+    const userExists = await User.findOne(query);
+    if (userExists) {
+      return res.status(400).json({ message: "El correo ya está registrado en el sistema." });
+    }
+
+    const hashedPassword = await bcrypt.hash(passwordClean, 10);
 
     // Si quien crea el usuario es un administrador autenticado, se respeta el rol solicitado.
     // De lo contrario (registro público de nuevos usuarios), se fuerza estrictamente el rol 'operador'.
@@ -55,8 +78,8 @@ router.post("/", async (req, res) => {
     const assignedRole = (requester && requester.role === "admin" && role) ? role : "operador";
 
     const newUser = await User.create({
-      name,
-      email,
+      name: (name || "").trim() || "Operador",
+      email: emailClean,
       password_hash: hashedPassword,
       role: assignedRole,
     });
@@ -69,7 +92,8 @@ router.post("/", async (req, res) => {
       status: newUser.status,
     });
   } catch (error) {
-    res.status(500).json({ message: "Error al crear el usuario." });
+    console.error("Error al crear usuario:", error);
+    res.status(500).json({ message: "Error al crear el usuario.", error: error.message });
   }
 });
 

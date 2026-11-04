@@ -3,7 +3,7 @@ import { BellIcon } from "../components/icons";
 import { getApiUrl } from "../utils/auth";
 
 interface RegisterScreenProps {
-  onRegisterSuccess: () => void;
+  onRegisterSuccess: (email: string) => void;
   onGoToLogin: () => void;
 }
 
@@ -11,12 +11,28 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
+
+    const cleanEmail = (email || "").trim().toLowerCase();
+    const cleanPassword = (password || "").trim();
+
+    if (cleanPassword.length < 4) {
+      setError("La contraseña debe tener al menos 4 caracteres.");
+      return;
+    }
+
+    if (cleanPassword !== confirmPassword.trim()) {
+      setError("Las contraseñas no coinciden. Por favor escríbelas de forma idéntica.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -24,7 +40,12 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
       const res = await fetch(getApiUrl("/api/users"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password, role: "operador" }),
+        body: JSON.stringify({
+          name: name.trim(),
+          email: cleanEmail,
+          password: cleanPassword,
+          role: "operador",
+        }),
       });
 
       const data = await res.json();
@@ -33,8 +54,8 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
         throw new Error(data.message || "Error al registrar cuenta.");
       }
 
-      // Registro exitoso, redirige al Login
-      onRegisterSuccess();
+      // Registro exitoso, redirige al Login pasando el correo recién creado
+      onRegisterSuccess(cleanEmail);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -59,7 +80,7 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
 
         {error && (
           <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs font-medium text-center">
-            {error}
+            ⚠️ {error}
           </div>
         )}
 
@@ -73,7 +94,7 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Juan Pérez"
+              placeholder="Ej: Camila Mancilla"
               className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
             />
           </div>
@@ -87,21 +108,46 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="operador@quakesignal.com"
+              placeholder="tu_correo@quakesignal.com"
               className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
             />
           </div>
 
           <div>
+            <div className="flex items-center justify-between mb-1">
+              <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider">
+                Contraseña
+              </label>
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-[11px] text-slate-500 hover:text-slate-700 cursor-pointer"
+              >
+                {showPassword ? "Ocultar clave" : "Ver clave"}
+              </button>
+            </div>
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Mínimo 4 caracteres"
+                className="w-full px-4 py-2.5 pr-12 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
+              />
+            </div>
+          </div>
+
+          <div>
             <label className="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-1">
-              Contraseña
+              Confirmar Contraseña
             </label>
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               required
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="••••••••"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Repite la contraseña exactamente"
               className="w-full px-4 py-2.5 rounded-lg border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-red-500/20 focus:border-red-500"
             />
           </div>

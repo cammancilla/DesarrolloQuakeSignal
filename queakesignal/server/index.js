@@ -751,6 +751,15 @@ const startServer = async () => {
   } catch (err) {
     console.error('[AUTH] Error verificando administrador por defecto:', err.message);
   }
+
+  //funcion 404
+  app.use((req, res, next) => {
+  res.status(404).json({
+    status: 404,
+    error: "Not Found",
+    message: `El endpoint '${req.originalUrl}' con el método '${req.method}' no existe en el servidor QuakeSignal.`
+  });
+});
   
   // INICIALIZAR CONEXIÓN AL BROKER MQTT DESDE CONFIGURACIÓN
   try {

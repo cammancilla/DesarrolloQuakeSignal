@@ -38,5 +38,5 @@ git pull
 
 # 3. Ir a la carpeta del servidor e iniciar/reiniciar
 cd queakesignal/server
-node index.j
+node index.js
 
