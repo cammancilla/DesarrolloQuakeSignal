@@ -80,7 +80,7 @@ export default function RegisterScreen({ onRegisterSuccess, onGoToLogin }: Regis
 
         {error && (
           <div className="mb-4 p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-xs font-medium text-center">
-            ⚠️ {error}
+            Error: {error}
           </div>
         )}
 
