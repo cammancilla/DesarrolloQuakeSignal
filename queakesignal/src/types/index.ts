@@ -1,4 +1,3 @@
-
 export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion" | "profile" | "usuarios" | "login" | "register" | "notFound";
 
 export type UserRole = "admin" | "operador" | "destinatario";
@@ -22,6 +21,9 @@ export interface Alerta {
   lat?: number;
   lng?: number;
   radioKm?: number;
+  manual?: boolean;
+  origen?: string;
+  cap?: any;
 }
 
 export interface NodoIoT {
@@ -70,4 +72,3 @@ export interface ConfiguracionSistema {
     temaVisual: "oscuro" | "claro";
   };
 }
-
