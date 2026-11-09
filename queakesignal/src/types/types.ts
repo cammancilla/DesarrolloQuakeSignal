@@ -6,6 +6,12 @@ export interface SeismicAlert {
   fecha: string;
   activa: boolean;
   despachada: boolean;
+  lat?: number;
+  lng?: number;
+  radioKm?: number;
+  manual?: boolean;
+  origen?: string;
+  cap?: any;
 }
 
 export type CommMode = "normal" | "contingencia";

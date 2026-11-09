@@ -15,6 +15,7 @@ import {
   ExternalLinkIcon,
   MapIcon
 } from "../components/icons";
+import { getCurrentUser, isAdmin, getAuthHeaders } from "../utils/auth";
 
 interface DashboardScreenProps {
   onViewDetail?: () => void;
@@ -33,6 +34,10 @@ export default function DashboardScreen({
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
+  // Mínimo privilegio: Validar si el usuario actual es Administrador
+  const currentUser = getCurrentUser();
+  const admin = isAdmin(currentUser);
+
   const isContingencia = mode === "contingencia";
   const HistoryTableWithAlerts = HistoryTable as any;
 
@@ -45,15 +50,11 @@ export default function DashboardScreen({
   const fetchAlerts = async () => {
     try {
       const response = await fetch(getApiUrl("/api/alertas"));
-      console.log("Respuesta servidor HTTP Status:", response.status);
-
       if (!response.ok) {
         throw new Error(`Error ${response.status}: No se pudo obtener las alertas`);
       }
 
       const data: SeismicAlert[] = await response.json();
-      console.log("Alertas recibidas:", data);
-
       setAlerts(data);
       setError(null);
     } catch (err: any) {
@@ -64,14 +65,20 @@ export default function DashboardScreen({
     }
   };
  
-  //  FUNCIÓN DEL BOTÓN DE PÁNICO
+  // FUNCIÓN DEL BOTÓN DE PÁNICO (Solo Administrador)
   const handlePanicButton = async () => {
+    if (!admin) {
+      alert("Acceso denegado: El Botón de Pánico es exclusivo para usuarios con rol de Administrador.");
+      return;
+    }
+
     setSendingPanic(true);
     try {
       const response = await fetch(getApiUrl("/api/alertas/panico"), {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          ...getAuthHeaders(),
         },
         body: JSON.stringify({
           tipo: "Terremoto (Manual)",
@@ -80,7 +87,8 @@ export default function DashboardScreen({
       });
 
       if (!response.ok) {
-        throw new Error("Error al activar la alerta de pánico");
+        const errData = await response.json().catch(() => ({}));
+        throw new Error(errData.error || errData.message || "Error al activar la alerta de pánico");
       }
 
       const data = await response.json();
@@ -90,7 +98,7 @@ export default function DashboardScreen({
       fetchAlerts(); // Refresca las alertas inmediatamente
     } catch (err: any) {
       console.error(" Error al activar botón de pánico:", err);
-      alert("No se pudo enviar la alerta de pánico.");
+      alert(`No se pudo enviar la alerta de pánico: ${err.message}`);
     } finally {
       setSendingPanic(false);
     }
@@ -119,9 +127,9 @@ export default function DashboardScreen({
     : "--:--:--";
 
   return (
-    <div className="flex-1 overflow-y-auto bg-slate-50 p-6 space-y-5">
+    <div className="flex-1 overflow-y-auto bg-slate-50 dark:bg-slate-950 p-6 space-y-5 transition-colors">
       {/* Stat cards dinámicas */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard
           icon={<ActivityIcon />}
           label="Estado General"
@@ -154,39 +162,48 @@ export default function DashboardScreen({
 
       <CommStatusCard mode={mode} />
 
-      <div className="grid grid-cols-3 gap-4">
-       {/* Activación Rápida */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h3 className="font-semibold text-gray-900 text-sm mb-4">Activación Rápida</h3>
-          <div className="flex flex-col items-center gap-3">
-            <button
-              disabled={sendingPanic}
-              onClick={handlePanicButton}
-              className={`w-full py-5 rounded-xl flex flex-col items-center gap-2 transition-all font-bold text-white text-sm tracking-wide shadow-lg cursor-pointer ${
-                sendingPanic
-                  ? "bg-red-800 opacity-70 cursor-wait"
-                  : panicPressed
-                  ? "bg-red-700 shadow-red-300"
-                  : "bg-red-600 hover:bg-red-700 shadow-red-200"
-              }`}
-            >
-              <BellIcon size={24} />
-              {sendingPanic ? "ENVIANDO ALERTA..." : "BOTÓN DE PÁNICO"}
-              <span className="text-xs font-normal opacity-80">
-                {sendingPanic ? "Conectando con Backend Core..." : "Enviar alerta inmediata"}
+      {/* Cuadrícula adaptable: 3 columnas si es Administrador (con botón de pánico), 2 columnas si es Operador */}
+      <div className={`grid gap-4 ${admin ? "grid-cols-1 lg:grid-cols-3" : "grid-cols-1 lg:grid-cols-2"}`}>
+        {/* Activación Rápida - EXCLUSIVO PARA ADMINISTRADOR (Mínimo privilegio) */}
+        {admin && (
+          <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm p-5 transition-colors">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Activación Rápida</h3>
+              <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                Admin
               </span>
-            </button>
-            <p className="text-[11px] text-gray-400 text-center leading-relaxed">
-              Al activar esta opción se distribuirá una alerta a los canales configurados.
-            </p>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <button
+                disabled={sendingPanic}
+                onClick={handlePanicButton}
+                className={`w-full py-5 rounded-xl flex flex-col items-center gap-2 transition-all font-bold text-white text-sm tracking-wide shadow-lg cursor-pointer ${
+                  sendingPanic
+                    ? "bg-red-800 opacity-70 cursor-wait"
+                    : panicPressed
+                    ? "bg-red-700 shadow-red-300"
+                    : "bg-red-600 hover:bg-red-700 shadow-red-200"
+                }`}
+              >
+                <BellIcon size={24} />
+                {sendingPanic ? "ENVIANDO ALERTA..." : "BOTÓN DE PÁNICO"}
+                <span className="text-xs font-normal opacity-80">
+                  {sendingPanic ? "Conectando con Backend Core..." : "Enviar alerta inmediata"}
+                </span>
+              </button>
+              <p className="text-[11px] text-gray-400 dark:text-slate-500 text-center leading-relaxed">
+                Al activar esta opción se distribuirá una alerta a los canales configurados.
+              </p>
+            </div>
           </div>
-        </div>
+        )}
        
-
-  
-        <div className={`bg-white rounded-xl border shadow-sm p-5 ${isContingencia ? "border-orange-200" : "border-gray-200"}`}>
+        {/* Última Alerta */}
+        <div className={`bg-white dark:bg-slate-900 rounded-xl border shadow-sm p-5 transition-colors ${
+          isContingencia ? "border-orange-200 dark:border-orange-900/60" : "border-gray-200 dark:border-slate-800"
+        }`}>
           <div className="flex items-center justify-between mb-3">
-            <h3 className="font-semibold text-gray-900 text-sm">Última Alerta</h3>
+            <h3 className="font-semibold text-gray-900 dark:text-white text-sm">Última Alerta</h3>
             {latestAlert?.activa ? (
               <Badge color="red">● ACTIVA</Badge>
             ) : (
@@ -197,21 +214,21 @@ export default function DashboardScreen({
           {loading ? (
             <div className="p-4 text-xs text-gray-400 text-center">Cargando datos de la API...</div>
           ) : error ? (
-            <div className="p-3 text-xs text-red-600 bg-red-50 rounded border border-red-100">⚠️ {error}</div>
+            <div className="p-3 text-xs text-red-600 bg-red-50 dark:bg-red-950/40 rounded border border-red-100 dark:border-red-900">⚠️ {error}</div>
           ) : !latestAlert ? (
             <div className="p-4 text-xs text-gray-400 text-center">No hay registros en la API.</div>
           ) : (
-            <div className="bg-red-50 border border-red-100 rounded-lg p-3 mb-3">
-              <div className="text-red-700 font-bold text-base mb-1">{latestAlert.tipo}</div>
-              <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-gray-500">
+            <div className="bg-red-50 dark:bg-red-950/30 border border-red-100 dark:border-red-900/40 rounded-lg p-3 mb-3">
+              <div className="text-red-700 dark:text-red-400 font-bold text-base mb-1">{latestAlert.tipo}</div>
+              <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 text-xs text-gray-500 dark:text-slate-400">
                 <span>Intensidad:</span>
-                <span className="font-medium text-gray-700">{latestAlert.intensidad}</span>
+                <span className="font-medium text-gray-700 dark:text-slate-200">{latestAlert.intensidad}</span>
                 <span>Ubicación:</span>
-                <span className="font-medium text-gray-700 truncate">{latestAlert.ubicacion}</span>
+                <span className="font-medium text-gray-700 dark:text-slate-200 truncate">{latestAlert.ubicacion}</span>
                 <span>Fecha:</span>
-                <span className="font-mono text-gray-700">{formattedDate}</span>
+                <span className="font-mono text-gray-700 dark:text-slate-200">{formattedDate}</span>
                 <span>Hora:</span>
-                <span className="font-mono text-gray-700">{formattedTime}</span>
+                <span className="font-mono text-gray-700 dark:text-slate-200">{formattedTime}</span>
               </div>
             </div>
           )}
@@ -220,43 +237,43 @@ export default function DashboardScreen({
             {isContingencia ? (
               <>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Telegram</span>
+                  <span className="text-gray-500 dark:text-slate-400">Telegram</span>
                   <span className="font-medium text-red-500 font-mono">No disponible</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">MQTT / Internet</span>
+                  <span className="text-gray-500 dark:text-slate-400">MQTT / Internet</span>
                   <span className="font-medium text-red-500 font-mono">No disponible</span>
                 </div>
-                <div className="flex items-center justify-between text-xs border-t border-orange-100 pt-1.5">
-                  <span className="flex items-center gap-1 text-gray-600 font-medium">
+                <div className="flex items-center justify-between text-xs border-t border-orange-100 dark:border-orange-900/40 pt-1.5">
+                  <span className="flex items-center gap-1 text-gray-600 dark:text-slate-300 font-medium">
                     <RadioIcon size={11} /> RF
                   </span>
-                  <span className="font-semibold text-orange-600 font-mono">Distribución activa ✓</span>
+                  <span className="font-semibold text-orange-600 dark:text-orange-400 font-mono">Distribución activa ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Nodos</span>
-                  <span className="font-medium text-green-600">11/12 recibieron</span>
+                  <span className="text-gray-500 dark:text-slate-400">Nodos</span>
+                  <span className="font-medium text-green-600 dark:text-emerald-400">11/12 recibieron</span>
                 </div>
               </>
             ) : (
               <>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Telegram</span>
-                  <span className="font-medium text-green-600">Enviado ✓</span>
+                  <span className="text-gray-500 dark:text-slate-400">Telegram</span>
+                  <span className="font-medium text-green-600 dark:text-emerald-400">Enviado ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">MQTT / IoT</span>
-                  <span className="font-medium text-green-600">Enviado ✓</span>
+                  <span className="text-gray-500 dark:text-slate-400">MQTT / IoT</span>
+                  <span className="font-medium text-green-600 dark:text-emerald-400">Enviado ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="flex items-center gap-1 text-gray-500">
+                  <span className="flex items-center gap-1 text-gray-500 dark:text-slate-400">
                     <RadioIcon size={11} /> RF
                   </span>
-                  <span className="font-medium text-green-600">Disponible ✓</span>
+                  <span className="font-medium text-green-600 dark:text-emerald-400">Disponible ✓</span>
                 </div>
                 <div className="flex items-center justify-between text-xs">
-                  <span className="text-gray-500">Nodos</span>
-                  <span className="font-medium text-green-600">12/12 recibieron</span>
+                  <span className="text-gray-500 dark:text-slate-400">Nodos</span>
+                  <span className="font-medium text-green-600 dark:text-emerald-400">12/12 recibieron</span>
                 </div>
               </>
             )}
@@ -264,7 +281,7 @@ export default function DashboardScreen({
 
           <button
             onClick={onViewDetail}
-            className="w-full text-xs py-2 rounded-lg border border-blue-200 text-blue-600 hover:bg-blue-50 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full text-xs py-2 rounded-lg border border-blue-200 dark:border-blue-900/60 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/40 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <ExternalLinkIcon size={12} />
             Ver detalles
@@ -272,10 +289,10 @@ export default function DashboardScreen({
         </div>
 
         {/* Mapa */}
-        <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-5">
-          <h3 className="font-semibold text-gray-900 text-sm mb-3">Mapa de Cobertura</h3>
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm p-5 transition-colors">
+          <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-3">Mapa de Cobertura</h3>
           <SantiagoMap compact mode={mode} />
-          <div className="flex items-center gap-3 mt-3 text-[10px] text-gray-500 flex-wrap justify-center">
+          <div className="flex items-center gap-3 mt-3 text-[10px] text-gray-500 dark:text-slate-400 flex-wrap justify-center">
             <span>🔴 Alerta activa</span>
             <span>🟢 Nodo online</span>
             <span>⚪ Nodo offline</span>
@@ -286,7 +303,7 @@ export default function DashboardScreen({
           </div>
           <button 
             onClick={onNavigateMap}
-            className="w-full mt-2 text-xs py-1.5 rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-50 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full mt-2 text-xs py-1.5 rounded-lg border border-gray-200 dark:border-slate-700 text-gray-500 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors font-medium flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <MapIcon size={12} />
             Ver mapa completo
@@ -297,17 +314,17 @@ export default function DashboardScreen({
       <HistoryTableWithAlerts alerts={alerts.slice(0, 5)} />
 
       {/* Vistas móviles */}
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6">
-        <h3 className="font-semibold text-gray-900 text-sm mb-1">Vistas Móviles</h3>
-        <p className="text-xs text-gray-400 mb-5">Representación de la notificación recibida por el usuario final</p>
-        <div className="flex gap-8 justify-center">
+      <div className="bg-white dark:bg-slate-900 rounded-xl border border-gray-200 dark:border-slate-800 shadow-sm p-6 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-sm mb-1">Vistas Móviles</h3>
+        <p className="text-xs text-gray-400 dark:text-slate-500 mb-5">Representación de la notificación recibida por el usuario final</p>
+        <div className="flex gap-8 justify-center flex-wrap">
           <div className="text-center">
             <PhoneNotification />
-            <p className="text-xs text-gray-400 mt-3">Notificación de alerta</p>
+            <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">Notificación de alerta</p>
           </div>
           <div className="text-center">
             <PhoneStatus />
-            <p className="text-xs text-gray-400 mt-3">Estado del sistema</p>
+            <p className="text-xs text-gray-400 dark:text-slate-500 mt-3">Estado del sistema</p>
           </div>
         </div>
       </div>

@@ -1,5 +1,13 @@
+export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion" | "profile" | "usuarios" | "login" | "register" | "notFound";
 
-export type Screen = "dashboard" | "detail" | "devices" | "historial" | "mapa" | "configuracion" | "profile" | "usuarios";;
+export type UserRole = "admin" | "operador" | "destinatario";
+
+export interface UserSession {
+  id?: string;
+  name?: string;
+  email?: string;
+  role?: UserRole | string;
+}
 export type CommMode = "normal" | "contingencia";
 
 export interface Alerta {
@@ -13,6 +21,9 @@ export interface Alerta {
   lat?: number;
   lng?: number;
   radioKm?: number;
+  manual?: boolean;
+  origen?: string;
+  cap?: any;
 }
 
 export interface NodoIoT {
@@ -61,4 +72,3 @@ export interface ConfiguracionSistema {
     temaVisual: "oscuro" | "claro";
   };
 }
-

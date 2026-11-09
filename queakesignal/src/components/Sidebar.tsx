@@ -1,20 +1,24 @@
 import StatusDot from "./StatusDot.tsx";
 import { BellIcon, GridIcon, MapIcon, CpuIcon, ClockIcon, GearIcon, UsersIcon } from "./icons";
+import { getCurrentUser, isAdmin } from "../utils/auth";
 
-const NAV_ITEMS = [
+interface NavItem {
+  id: string;
+  label: string;
+  icon: any;
+  adminOnly?: boolean;
+}
+
+const NAV_ITEMS: NavItem[] = [
   { id: "dashboard", label: "Dashboard", icon: GridIcon },
   { id: "alertas", label: "Alertas", icon: BellIcon },
   { id: "mapa", label: "Mapa", icon: MapIcon },
   { id: "devices", label: "Dispositivos", icon: CpuIcon },
   { id: "historial", label: "Historial", icon: ClockIcon },
-  { id: "configuracion", label: "Configuración", icon: GearIcon },
-  { id: "usuarios", label: "Usuarios", icon: UsersIcon },
+  { id: "configuracion", label: "Configuración", icon: GearIcon, adminOnly: true },
+  { id: "usuarios", label: "Usuarios", icon: UsersIcon, adminOnly: true },
   { id: "profile", label: "Perfil", icon: UsersIcon },
 ];
-
-
-
-const CLICKABLE = ["dashboard", "devices", "historial", "mapa", "alertas", "profile", "usuarios", "configuracion"]; 
 
 export default function Sidebar({
   active,
@@ -25,14 +29,15 @@ export default function Sidebar({
   onNavigate: (id: string) => void;
   onLogout?: () => void;
 }) {
-  // Lógica del usuario dentro de la función
-  const userStorage = typeof window !== "undefined"
-    ? (sessionStorage.getItem("user") || localStorage.getItem("user"))
-    : null;
-  const user = userStorage ? JSON.parse(userStorage) : null;
+  const user = getCurrentUser();
+  const admin = isAdmin(user);
 
-  const userName = user?.name || user?.nombre || user?.email || "Usuario";
+  const userName = user?.name || (user as any)?.nombre || user?.email || "Usuario";
   const initialLetter = userName.charAt(0).toUpperCase();
+
+  // Filtrado por principio de mínimo privilegio: Operadores no ven Configuración ni Usuarios
+  const visibleNavItems = NAV_ITEMS.filter((item) => !item.adminOnly || admin);
+  const allowedClickable = visibleNavItems.map((item) => item.id);
 
   return (
     <aside className="w-56 flex-shrink-0 flex flex-col" style={{ background: "#0f1b35" }}>
@@ -49,13 +54,13 @@ export default function Sidebar({
       </div>
 
       <nav className="flex-1 py-4 px-3 flex flex-col gap-0.5">
-        {NAV_ITEMS.map(({ id, label, icon: Icon }) => {
+        {visibleNavItems.map(({ id, label, icon: Icon }) => {
           const isActive = active === id;
           return (
             <button
               key={id}
-              onClick={() => CLICKABLE.includes(id) && onNavigate(id)}
-              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all text-left ${
+              onClick={() => allowedClickable.includes(id) && onNavigate(id)}
+              className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all text-left cursor-pointer ${
                 isActive
                   ? "bg-white/15 text-white font-medium"
                   : "text-white/50 hover:text-white/80 hover:bg-white/8"
@@ -78,7 +83,9 @@ export default function Sidebar({
           title="Ver perfil de usuario"
         >
           {/* Avatar dinámico */}
-          <div className="w-7 h-7 shrink-0 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-semibold group-hover:bg-blue-500 transition-colors">
+          <div className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-white text-xs font-semibold transition-colors ${
+            admin ? "bg-purple-600 group-hover:bg-purple-500" : "bg-blue-600 group-hover:bg-blue-500"
+          }`}>
             {initialLetter}
           </div>
 
@@ -90,7 +97,9 @@ export default function Sidebar({
 
             <div className="flex items-center gap-1 mt-0.5">
               <StatusDot color="green" />
-              <span className="text-white/40 text-[10px]">Sesión activa</span>
+              <span className="text-white/60 text-[10px] font-medium capitalize">
+                {admin ? "Administrador" : "Operador"}
+              </span>
             </div>
           </div>
         </button>
