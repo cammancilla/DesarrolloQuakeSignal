@@ -1,1 +1,10 @@
-{}
+{
+  "name": "desarrollo-quakesignal-root",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix queakesignal run dev",
+    "dev:frontend": "npm --prefix queakesignal run dev:frontend",
+    "dev:backend": "npm --prefix queakesignal run dev:backend",
+    "build": "npm --prefix queakesignal run build"
+  }
+}
