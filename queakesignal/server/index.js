@@ -276,10 +276,32 @@ const buscarAlertaPorId = (alertas = [], searchId = "") => {
   return null;
 };
 
+const UMBRAL_EXPIRACION_MS = 60 * 60 * 1000; // 1 hora de emitida
+
+const verificarExpiracionAlertas = (alertas) => {
+  const ahora = Date.now();
+  let modificado = false;
+  for (const alerta of alertas) {
+    if (alerta.activa) {
+      const fechaMs = new Date(alerta.fecha || alerta.timestamp).getTime();
+      if (!isNaN(fechaMs) && (ahora - fechaMs) >= UMBRAL_EXPIRACION_MS) {
+        alerta.activa = false;
+        modificado = true;
+      }
+    }
+  }
+  return modificado;
+};
+
 app.get('/api/alertas', (req, res) => {
   const db = getDB();
   const alertas = db.alertas || [];
   
+  // Si alguna alerta cumplió 1 hora de emitida, se marca como inactiva inmediatamente
+  if (verificarExpiracionAlertas(alertas)) {
+    saveDB(db);
+  }
+
   // Registrar en alertas.log ÚNICAMENTE si hay alertas activas
   registrarConsultaAlertaLog(alertas, req.ip || req.socket?.remoteAddress || '127.0.0.1');
 

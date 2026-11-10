@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
+import { getApiUrl } from "../utils/auth";
 
 type SeismicAlert = {
   id: number | string;
@@ -7,6 +8,15 @@ type SeismicAlert = {
   ubicacion: string;
   intensidad: string | number;
   activa: boolean;
+};
+
+// Función auxiliar para determinar si una alerta sigue activa (menos de 1 hora de emitida)
+export const isAlertaActiva = (alerta: SeismicAlert): boolean => {
+  if (!alerta.activa) return false;
+  const fechaMs = new Date(alerta.fecha).getTime();
+  if (isNaN(fechaMs)) return false;
+  const UMBRAL_UNA_HORA = 60 * 60 * 1000; // 1 hora exacta (3600 segundos)
+  return Date.now() - fechaMs < UMBRAL_UNA_HORA;
 };
 
 // Componente secundario para renderizar la tabla
@@ -35,41 +45,44 @@ function HistoryTable({ alerts = [] }: HistoryTableProps) {
               </td>
             </tr>
           ) : (
-            alerts.map((alerta) => (
-              <tr key={alerta.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-colors">
-                <td className="px-5 py-4">
-                  <span className="font-mono font-bold text-slate-800 dark:text-slate-200 block">
-                    #{alerta.id}
-                  </span>
-                  <span className="text-[11px] text-slate-400">
-                    {new Date(alerta.fecha).toLocaleString("es-CL")}
-                  </span>
-                </td>
-                <td className="px-5 py-4 font-semibold text-slate-700 dark:text-slate-300">
-                  {alerta.tipo}
-                </td>
-                <td className="px-5 py-4 text-slate-600 dark:text-slate-400">
-                  {alerta.ubicacion || "N/A"}
-                </td>
-                <td className="px-5 py-4">
-                  <span className="px-2 py-1 rounded bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 font-semibold text-[11px]">
-                    {alerta.intensidad}
-                  </span>
-                </td>
-                <td className="px-5 py-4">
-                  {alerta.activa ? (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-400">
-                      <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
-                      ACTIVA
+            alerts.map((alerta) => {
+              const activaEfectiva = isAlertaActiva(alerta);
+              return (
+                <tr key={alerta.id} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/40 transition-colors">
+                  <td className="px-5 py-4">
+                    <span className="font-mono font-bold text-slate-800 dark:text-slate-200 block">
+                      #{alerta.id}
                     </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400">
-                      ✓ FINALIZADA
+                    <span className="text-[11px] text-slate-400">
+                      {new Date(alerta.fecha).toLocaleString("es-CL")}
                     </span>
-                  )}
-                </td>
-              </tr>
-            ))
+                  </td>
+                  <td className="px-5 py-4 font-semibold text-slate-700 dark:text-slate-300">
+                    {alerta.tipo}
+                  </td>
+                  <td className="px-5 py-4 text-slate-600 dark:text-slate-400">
+                    {alerta.ubicacion || "N/A"}
+                  </td>
+                  <td className="px-5 py-4">
+                    <span className="px-2 py-1 rounded bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 font-semibold text-[11px]">
+                      {alerta.intensidad}
+                    </span>
+                  </td>
+                  <td className="px-5 py-4">
+                    {activaEfectiva ? (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-400">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>
+                        ACTIVA
+                      </span>
+                    ) : (
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400">
+                        ✓ FINALIZADA
+                      </span>
+                    )}
+                  </td>
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>
@@ -92,7 +105,7 @@ export default function HistorialScreen() {
 
   const fetchHistorial = async () => {
     try {
-      const response = await fetch("https://quakesignal.duckdns.org/api/alertas");
+      const response = await fetch(getApiUrl("/api/alertas"));
       if (!response.ok) {
         throw new Error(`Error ${response.status}: No se pudo cargar el historial`);
       }
@@ -132,10 +145,11 @@ export default function HistorialScreen() {
         selectedIntensidad === "todas" ||
         intensidadText.includes(selectedIntensidad.toLowerCase());
 
+      const activaEfectiva = isAlertaActiva(alerta);
       const matchEstado =
         selectedEstado === "todos" ||
-        (selectedEstado === "activa" && alerta.activa) ||
-        (selectedEstado === "inactiva" && !alerta.activa);
+        (selectedEstado === "activa" && activaEfectiva) ||
+        (selectedEstado === "inactiva" && !activaEfectiva);
 
       const alertDate = new Date(alerta.fecha).getTime();
       const start = startDate ? new Date(startDate).getTime() : null;
@@ -148,110 +162,113 @@ export default function HistorialScreen() {
     });
   }, [alerts, searchTerm, selectedIntensidad, selectedEstado, startDate, endDate]);
 
-  const handleResetFilters = () => {
-    setSearchTerm("");
-    setSelectedIntensidad("todas");
-    setSelectedEstado("todos");
-    setStartDate("");
-    setEndDate("");
-  };
-
-  if (loading) {
-    return (
-      <div className="p-8 flex items-center justify-center text-slate-500">
-        Cargando historial de alertas...
-      </div>
-    );
-  }
-
-  if (error) {
-    return <div className="p-8 text-red-500 font-medium">Error: {error}</div>;
-  }
-
   return (
-    <div className="p-8 flex-1 overflow-auto">
-      {/* Encabezado */}
-      <div className="flex items-center justify-between mb-6">
+    <div className="p-8 max-w-7xl mx-auto w-full overflow-y-auto">
+      <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-xl font-bold text-slate-900 dark:text-slate-100">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-white">
             Historial de Alertas
-          </h2>
+          </h1>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Registro cronológico y filtrado de todas las alertas emitidas
+            Registro cronológico de eventos sísmicos (las alertas pasan a estado inactivo tras 1 hora de emitidas)
           </p>
         </div>
-        <button
-          onClick={fetchHistorial}
-          className="px-3 py-1.5 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-xs font-semibold rounded-lg transition-colors cursor-pointer"
-        >
-          Actualizar
-        </button>
+        <span className="text-xs text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-200 dark:border-slate-700 font-medium">
+          Total: <strong className="text-slate-900 dark:text-white">{filteredAlerts.length}</strong>
+        </span>
       </div>
 
       {/* Barra de Filtros */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded-xl mb-6 shadow-sm space-y-3">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] font-semibold text-slate-500">Búsqueda</label>
-            <input
-              type="text"
-              placeholder="Ubicación, tipo o ID..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] font-semibold text-slate-500">Estado</label>
-            <select
-              value={selectedEstado}
-              onChange={(e) => setSelectedEstado(e.target.value)}
-              className="px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs outline-none focus:ring-2 focus:ring-red-500"
-            >
-              <option value="todos">Todos los estados</option>
-              <option value="activa">Solo Activas</option>
-              <option value="inactiva">Solo Inactivas</option>
-            </select>
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] font-semibold text-slate-500">Desde</label>
-            <input
-              type="date"
-              value={startDate}
-              onChange={(e) => setStartDate(e.target.value)}
-              className="px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label className="text-[11px] font-semibold text-slate-500">Hasta</label>
-            <input
-              type="date"
-              value={endDate}
-              onChange={(e) => setEndDate(e.target.value)}
-              className="px-3 py-1.5 bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg text-xs outline-none focus:ring-2 focus:ring-red-500"
-            />
-          </div>
-
-          <div className="flex items-end">
-            <button
-              onClick={handleResetFilters}
-              className="w-full py-1.5 px-3 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 font-medium text-xs rounded-lg transition-colors cursor-pointer"
-            >
-              Limpiar filtros
-            </button>
-          </div>
+      <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl p-4 mb-6 shadow-sm flex flex-wrap gap-4 items-center">
+        {/* Búsqueda por texto */}
+        <div className="flex-1 min-w-[200px]">
+          <input
+            type="text"
+            placeholder="Buscar por ID, tipo o ubicación..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
-        <div className="text-[11px] text-slate-400">
-          Mostrando <b>{filteredAlerts.length}</b> de <b>{alerts.length}</b> alertas registradas.
+        {/* Filtro por Estado */}
+        <div>
+          <select
+            value={selectedEstado}
+            onChange={(e) => setSelectedEstado(e.target.value)}
+            className="text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="todos">Todos los Estados</option>
+            <option value="activa">Activas (&lt; 1 hora)</option>
+            <option value="inactiva">Finalizadas (&gt; 1 hora)</option>
+          </select>
         </div>
+
+        {/* Filtro por Intensidad */}
+        <div>
+          <select
+            value={selectedIntensidad}
+            onChange={(e) => setSelectedIntensidad(e.target.value)}
+            className="text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="todas">Todas las Intensidades</option>
+            <option value="8.">Mayor a 8.0 Mw</option>
+            <option value="7.">Entre 7.0 y 7.9 Mw</option>
+            <option value="6.">Entre 6.0 y 6.9 Mw</option>
+            <option value="crítica">Crítica / Evacuación</option>
+            <option value="moderado">Moderado</option>
+          </select>
+        </div>
+
+        {/* Filtro por Rango de Fecha */}
+        <div className="flex items-center gap-2">
+          <input
+            type="date"
+            value={startDate}
+            onChange={(e) => setStartDate(e.target.value)}
+            className="text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <span className="text-slate-400 text-xs">a</span>
+          <input
+            type="date"
+            value={endDate}
+            onChange={(e) => setEndDate(e.target.value)}
+            className="text-xs bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-lg px-2.5 py-1.5 text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Botón para Limpiar Filtros */}
+        {(searchTerm || selectedIntensidad !== "todas" || selectedEstado !== "todos" || startDate || endDate) && (
+          <button
+            onClick={() => {
+              setSearchTerm("");
+              setSelectedIntensidad("todas");
+              setSelectedEstado("todos");
+              setStartDate("");
+              setEndDate("");
+            }}
+            className="text-xs text-blue-600 dark:text-blue-400 hover:underline cursor-pointer"
+          >
+            Limpiar Filtros
+          </button>
+        )}
       </div>
 
-      {/* Tabla reutilizada con la prop 'alerts' */}
-      <HistoryTable alerts={filteredAlerts} />
+      {/* Mensajes de Estado */}
+      {loading && (
+        <div className="text-center py-12 text-slate-400 text-sm">
+          Cargando historial de alertas...
+        </div>
+      )}
+
+      {error && (
+        <div className="bg-red-500/10 border border-red-500/30 text-red-400 p-4 rounded-xl text-sm mb-6">
+          {error}
+        </div>
+      )}
+
+      {/* Tabla con Alertas Filtradas */}
+      {!loading && !error && <HistoryTable alerts={filteredAlerts} />}
     </div>
   );
 }

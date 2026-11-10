@@ -81,44 +81,50 @@ export default function HistoryTable({ alerts = [] }: HistoryTableProps) {
                 </td>
               </tr>
             ) : (
-              alerts.map((row) => (
-                <tr
-                  key={row.id}
-                  className="border-t border-gray-100 dark:border-slate-800/60 hover:bg-gray-50/60 dark:hover:bg-slate-800/40 transition-colors"
-                >
-                  <td className="px-5 py-3">
-                    <span className="font-mono font-bold text-gray-800 dark:text-slate-200 text-xs block">
-                      #{row.id}
-                    </span>
-                    <span className="font-mono text-[11px] text-gray-400 dark:text-slate-500">
-                      {formatFecha(row.fecha)}
-                    </span>
-                  </td>
-                  <td className="px-5 py-3 font-medium text-gray-800 dark:text-slate-200">
-                    {row.tipo}
-                  </td>
-                  <td className="px-5 py-3 text-xs text-gray-600 dark:text-slate-400 truncate max-w-[180px]">
-                    {row.ubicacion || "Chile"}
-                  </td>
-                  <td className="px-5 py-3">
-                    <Badge color={getIntensidadColor(row.intensidad)}>
-                      {row.intensidad}
-                    </Badge>
-                  </td>
-                  <td className="px-5 py-3">
-                    <Badge color={row.activa ? "red" : "gray"}>
-                      {row.activa ? "● Activa" : "✓ Finalizada"}
-                    </Badge>
-                  </td>
-                  <td className="px-5 py-3 text-xs text-gray-500 dark:text-slate-400">
-                    {row.despachada ? (
-                      <span className="text-green-600 dark:text-green-400 font-medium">Telegram + MQTT ✓</span>
-                    ) : (
-                      <span className="text-amber-600 dark:text-amber-400">En cola de despacho</span>
-                    )}
-                  </td>
-                </tr>
-              ))
+              alerts.map((row) => {
+                const fechaMs = new Date(row.fecha).getTime();
+                const menorA1Hora = !isNaN(fechaMs) && (Date.now() - fechaMs) < 3600000;
+                const activaEfectiva = row.activa && menorA1Hora;
+
+                return (
+                  <tr
+                    key={row.id}
+                    className="border-t border-gray-100 dark:border-slate-800/60 hover:bg-gray-50/60 dark:hover:bg-slate-800/40 transition-colors"
+                  >
+                    <td className="px-5 py-3">
+                      <span className="font-mono font-bold text-gray-800 dark:text-slate-200 text-xs block">
+                        #{row.id}
+                      </span>
+                      <span className="font-mono text-[11px] text-gray-400 dark:text-slate-500">
+                        {formatFecha(row.fecha)}
+                      </span>
+                    </td>
+                    <td className="px-5 py-3 font-medium text-gray-800 dark:text-slate-200">
+                      {row.tipo}
+                    </td>
+                    <td className="px-5 py-3 text-xs text-gray-600 dark:text-slate-400 truncate max-w-[180px]">
+                      {row.ubicacion || "Chile"}
+                    </td>
+                    <td className="px-5 py-3">
+                      <Badge color={getIntensidadColor(row.intensidad)}>
+                        {row.intensidad}
+                      </Badge>
+                    </td>
+                    <td className="px-5 py-3">
+                      <Badge color={activaEfectiva ? "red" : "gray"}>
+                        {activaEfectiva ? "● Activa" : "✓ Finalizada"}
+                      </Badge>
+                    </td>
+                    <td className="px-5 py-3 text-xs text-gray-500 dark:text-slate-400">
+                      {row.despachada ? (
+                        <span className="text-green-600 dark:text-green-400 font-medium">Telegram + MQTT ✓</span>
+                      ) : (
+                        <span className="text-amber-600 dark:text-amber-400">En cola de despacho</span>
+                      )}
+                    </td>
+                  </tr>
+                );
+              })
             )}
           </tbody>
         </table>

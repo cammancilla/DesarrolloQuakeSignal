@@ -72,21 +72,20 @@ const iniciarCron = () => {
     }
   });
 
-  // 3. LIMPIEZA AUTOMÁTICA: Revisa cada hora
-  // Evita que el frontend se llene de alertas antiguas desactivándolas.
-  cron.schedule('0 * * * *', () => {
+  // 3. LIMPIEZA AUTOMÁTICA: Revisa cada minuto
+  // Cambia el estado a inactiva tras 1 hora exacta de emitida
+  cron.schedule('* * * * *', () => {
     try {
       const db = readDB();
       const alertas = db.alertas || db;
-      const EXPIRACION_MS = 1000 * 60 * 60 * 2; // Alertas expiran a las 2 horas
+      const EXPIRACION_MS = 1000 * 60 * 60; // Exactamente 1 hora de emitida
       const ahora = Date.now();
       let dbModificada = false;
 
       alertas.forEach(alerta => {
         const fechaAlerta = alerta.fecha || alerta.timestamp;
-        const expiracionMs = alerta.id?.includes('SIM') ? (1000 * 60 * 30) : EXPIRACION_MS; // Simuladas expiran en 30 min, manuales en 2 horas
-        if (alerta.activa && fechaAlerta && (ahora - new Date(fechaAlerta).getTime()) > expiracionMs) {
-          console.log(`[CRON: LIMPIEZA] Desactivando alerta expirada ${alerta.id}`);
+        if (alerta.activa && fechaAlerta && (ahora - new Date(fechaAlerta).getTime()) >= EXPIRACION_MS) {
+          console.log(`[CRON: LIMPIEZA] Alerta ${alerta.id} cumplió 1 hora de emitida. Estado actualizado a INACTIVA.`);
           alerta.activa = false;
           dbModificada = true;
         }
