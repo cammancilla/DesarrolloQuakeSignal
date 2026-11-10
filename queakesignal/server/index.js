@@ -692,12 +692,14 @@ app.post('/api/configuracion/test-mqtt', (req, res) => {
 });
 
 // --- SIMULADOR DE EMERGENCIAS ---
+// Simulación enfocada exclusivamente en sismos y terremotos para la defensa del proyecto
 const emergenciasRandom = [
+  { tipo: "Terremoto", intensidad: "8.4 Mw", ubicacion: "Valparaíso, Chile", lat: -33.0472, lng: -71.6127, radioKm: 40 },
   { tipo: "Terremoto", intensidad: "8.2 Mw", ubicacion: "Concepción, Chile", lat: -36.8270, lng: -73.0503, radioKm: 35 },
-  { tipo: "Alerta de Tsunami", intensidad: "Evacuación Inmediata", ubicacion: "Iquique, Chile", lat: -20.2133, lng: -70.1503, radioKm: 25 },
-  { tipo: "Incendio Forestal", intensidad: "Alerta Roja", ubicacion: "Viña del Mar, Chile", lat: -33.0245, lng: -71.5518, radioKm: 15 },
-  { tipo: "Sismo Mayor", intensidad: "7.1 Mw", ubicacion: "Santiago Centro, Chile", lat: -33.4429, lng: -70.6539, radioKm: 20 },
-  { tipo: "Aluvión", intensidad: "Alto Riesgo", ubicacion: "San José de Maipo, Chile", lat: -33.6389, lng: -70.3503, radioKm: 12 }
+  { tipo: "Terremoto", intensidad: "7.8 Mw", ubicacion: "Coquimbo, Chile", lat: -29.9533, lng: -71.3436, radioKm: 30 },
+  { tipo: "Terremoto", intensidad: "7.5 Mw", ubicacion: "Santiago Centro, Chile", lat: -33.4429, lng: -70.6539, radioKm: 25 },
+  { tipo: "Terremoto", intensidad: "7.9 Mw", ubicacion: "Iquique, Chile", lat: -20.2133, lng: -70.1503, radioKm: 32 },
+  { tipo: "Terremoto", intensidad: "8.0 Mw", ubicacion: "Antofagasta, Chile", lat: -23.6500, lng: -70.4000, radioKm: 38 }
 ];
 
 // Generador automático de alertas simuladas cada 2 minutos
