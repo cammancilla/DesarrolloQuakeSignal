@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuakeSignal Dashboard - Mockup Interactivo</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  
+  <!-- Leaflet CSS y JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <style>
+    @keyframes radar-pulse {
+      0% { transform: scale(0.6); opacity: 0.85; }
+      60% { transform: scale(2.2); opacity: 0.2; }
+      100% { transform: scale(3.0); opacity: 0; }
+    }
+    .radar-wave-1 {
+      animation: radar-pulse 2.2s cubic-bezier(0.2, 0.4, 0.4, 1) infinite;
+    }
+    .radar-wave-2 {
+      animation: radar-pulse 2.2s cubic-bezier(0.2, 0.4, 0.4, 1) infinite 1.1s;
+    }
+    .custom-div-icon {
+      background: transparent !important;
+      border: none !important;
+    }
+    /* Estilos para el mapa */
+    #map {
+      height: 270px;
+      border-radius: 0.75rem;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans h-screen flex overflow-hidden antialiased transition-colors duration-300" id="appBody">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="w-56 flex-shrink-0 flex flex-col border-r border-white/10" style="background: #0f1b35;">
+    <!-- Logo -->
+    <div class="px-5 py-5 border-b border-white/10 flex items-center gap-3">
+      <div class="w-8 h-8 rounded-lg bg-red-600 flex items-center justify-center text-white text-base shadow-md">
+        🔔
+      </div>
+      <div>
+        <div class="text-white font-bold text-sm leading-tight">QuakeSignal</div>
+        <div class="text-white/60 text-[11px] leading-tight">Sistema de Alertas</div>
+      </div>
+    </div>
+
+    <!-- Menú de Navegación -->
+    <nav class="flex-1 py-4 px-3 space-y-1">
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-semibold bg-white/15 text-white transition-all text-left">
+        <span>📊</span> Dashboard
+      </button>
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition-all text-left">
+        <span>🔔</span> Alertas
+      </button>
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition-all text-left">
+        <span>🗺️</span> Mapa
+      </button>
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition-all text-left">
+        <span>📟</span> Dispositivos
+      </button>
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition-all text-left">
+        <span>🕒</span> Historial
+      </button>
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition-all text-left">
+        <span>⚙️</span> Configuración
+      </button>
+      <button class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-xs font-medium text-white/50 hover:text-white hover:bg-white/5 transition-all text-left">
+        <span>👥</span> Usuarios
+      </button>
+    </nav>
+
+    <!-- Footer Usuario -->
+    <div class="px-4 py-4 border-t border-white/10 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <div class="w-7 h-7 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+          A
+        </div>
+        <div>
+          <div class="text-white text-xs font-semibold">Administrador</div>
+          <div class="flex items-center gap-1">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span class="text-white/50 text-[10px]">Sesión activa</span>
+          </div>
+        </div>
+      </div>
+      <span class="text-white/40 text-xs cursor-pointer hover:text-red-400">✕</span>
+    </div>
+  </aside>
+
+  <!-- ==================== CONTENIDO PRINCIPAL ==================== -->
+  <div class="flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-900 transition-colors" id="mainContainer">
+
+    <!-- Topbar / Header -->
+    <header class="flex items-center justify-between px-6 py-3.5 bg-slate-900 border-b border-slate-800 transition-colors" id="topHeader">
+      <div class="flex items-center gap-3">
+        <h1 class="text-lg font-bold text-white tracking-wide" id="pageTitle">Dashboard Analítico</h1>
+        <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700" id="badgeTheme">
+          🌙 Centro de Mando
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="text-slate-300 font-medium">Sistema Operativo</span>
+        </div>
+        
+        <!-- Badge Modo -->
+        <div id="modeBadge" class="flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-950/60 border border-emerald-800 text-emerald-300">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          <span id="modeBadgeText">Modo Normal</span>
+        </div>
+
+        <!-- Reloj en vivo -->
+        <div class="font-mono text-slate-400 hidden sm:flex items-center gap-1.5">
+          <span id="liveTime">12:40:15</span>
+          <span class="text-slate-600">|</span>
+          <span id="liveDate">18 oct. 2026</span>
+        </div>
+
+        <!-- Botón Modo Oscuro / Claro -->
+        <button id="toggleThemeBtn" onclick="toggleTheme()" class="px-2.5 py-1.5 rounded-lg border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 transition-colors flex items-center gap-1.5 cursor-pointer">
+          <span id="themeIcon">☀️</span>
+          <span class="font-semibold text-[11px]" id="themeText">Claro</span>
+        </button>
+
+        <!-- Campana -->
+        <div class="relative p-1.5 rounded-lg bg-slate-800 border border-slate-700 text-slate-300 cursor-pointer">
+          🔔
+          <span class="absolute top-0.5 right-0.5 w-2 h-2 bg-red-500 rounded-full"></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Barra de Simulación de Modo (Normal / Contingencia) -->
+    <div id="modeBar" class="px-6 py-2 flex items-center gap-3 text-xs border-b border-slate-800 bg-slate-900/90 transition-colors">
+      <span class="text-slate-400 font-medium">Simular modo de red:</span>
+      <button onclick="setMode('normal')" id="btnModeNormal" class="px-3 py-1 rounded-md font-bold transition-all bg-emerald-600 text-white shadow-sm cursor-pointer">
+        🟢 Normal
+      </button>
+      <button onclick="setMode('contingencia')" id="btnModeContingencia" class="px-3 py-1 rounded-md font-bold transition-all bg-slate-800 border border-slate-700 text-slate-300 hover:border-orange-500 cursor-pointer">
+        🟠 Contingencia (Sin Internet)
+      </button>
+      <span id="contingenciaText" class="text-orange-400 font-medium ml-2 hidden">
+        ⚠️ Internet no disponible — distribución de alerta activa vía canal RF
+      </span>
+    </div>
+
+    <!-- Contenido Scrollable -->
+    <main class="flex-1 overflow-y-auto p-6 space-y-5">
+
+      <!-- TARJETAS DE KPIS SUPERIORES -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- KPI 1 -->
+        <div class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm flex items-center gap-3.5 transition-colors">
+          <div id="kpi1Icon" class="w-11 h-11 rounded-xl bg-emerald-950/60 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0">
+            📊
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Estado General</div>
+            <div id="kpi1Val" class="text-xl font-black font-mono text-emerald-400">Normal</div>
+            <div id="kpi1Sub" class="text-[11px] text-slate-500">Sistema funcionando correctamente</div>
+          </div>
+        </div>
+
+        <!-- KPI 2 -->
+        <div class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm flex items-center gap-3.5 transition-colors">
+          <div id="kpi2Icon" class="w-11 h-11 rounded-xl bg-emerald-950/60 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0">
+            🔔
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Alertas Activas</div>
+            <div id="kpi2Val" class="text-xl font-black font-mono text-emerald-400">0</div>
+            <div id="kpi2Sub" class="text-[11px] text-slate-500">Sin emergencias en curso</div>
+          </div>
+        </div>
+
+        <!-- KPI 3 -->
+        <div class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm flex items-center gap-3.5 transition-colors">
+          <div class="w-11 h-11 rounded-xl bg-blue-950/60 text-blue-400 flex items-center justify-center text-xl flex-shrink-0">
+            📟
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Nodos IoT</div>
+            <div id="kpi3Val" class="text-xl font-black font-mono text-blue-400">12</div>
+            <div id="kpi3Sub" class="text-[11px] text-slate-500">12/12 Online en Gran Santiago</div>
+          </div>
+        </div>
+
+        <!-- KPI 4 -->
+        <div class="kpi-card bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm flex items-center gap-3.5 transition-colors">
+          <div class="w-11 h-11 rounded-xl bg-slate-800 text-slate-300 flex items-center justify-center text-xl flex-shrink-0">
+            👥
+          </div>
+          <div>
+            <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Destinatarios Push</div>
+            <div class="text-xl font-black font-mono text-slate-200">248</div>
+            <div class="text-[11px] text-slate-500">Canal Telegram verificado</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTADO DE COMUNICACIONES -->
+      <div id="commCard" class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm transition-colors">
+        <div class="flex items-center justify-between mb-2.5">
+          <h3 class="text-xs font-bold text-white flex items-center gap-1.5 uppercase tracking-wide">
+            <span>📡</span> Estado de Comunicaciones Multicanal
+          </h3>
+          <span id="commModeTag" class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+            MODO: NORMAL
+          </span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+          <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800/80">
+            <span class="text-slate-300 font-medium">🌐 Internet</span>
+            <span id="commInternet" class="font-bold text-emerald-400">Disponible</span>
+          </div>
+          <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800/80">
+            <span class="text-slate-300 font-medium">💬 Telegram Bot</span>
+            <span id="commTelegram" class="font-bold text-emerald-400">Enviado ✓</span>
+          </div>
+          <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800/80">
+            <span class="text-slate-300 font-medium">📻 Canal RF</span>
+            <span class="font-bold text-emerald-400">Operativo</span>
+          </div>
+          <div class="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-800/80">
+            <span class="text-slate-300 font-medium">📟 Nodos IoT</span>
+            <span id="commNodes" class="font-bold text-emerald-400">12/12</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECCIÓN PRINCIPAL: BOTÓN DE PÁNICO + ÚLTIMA ALERTA + MAPA -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        
+        <!-- CARD 1: ACTIVACIÓN RÁPIDA (BOTÓN DE PÁNICO) -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm flex flex-col justify-between transition-colors">
+          <div>
+            <h3 class="font-bold text-white text-sm mb-1 flex items-center justify-between">
+              <span>Activación Rápida</span>
+              <span class="text-[10px] text-slate-400 font-mono">Simulador En Vivo</span>
+            </h3>
+            <p class="text-xs text-slate-400 mb-4">
+              Al presionar este botón, se dispara de inmediato la alerta a Telegram y a la red de nodos.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center gap-3">
+            <button
+              id="panicButton"
+              onclick="triggerPanic()"
+              class="w-full py-5 rounded-2xl flex flex-col items-center gap-1.5 font-black text-white text-sm tracking-wider shadow-xl transition-all cursor-pointer bg-red-600 hover:bg-red-500 hover:scale-[1.02] active:scale-[0.98] shadow-red-950/60"
+            >
+              <span class="text-2xl animate-bounce">🚨</span>
+              <span id="panicBtnText">BOTÓN DE PÁNICO</span>
+              <span class="text-[11px] font-normal opacity-80" id="panicBtnSub">Click para emitir alerta inmediata</span>
+            </button>
+            <p class="text-[11px] text-slate-500 text-center leading-relaxed">
+              Dispara el evento CAP v1.2, mensaje push masivo y activación de sirenas comunitarias.
+            </p>
+          </div>
+        </div>
+
+        <!-- CARD 2: ÚLTIMA ALERTA REGISTRADA -->
+        <div id="alertCard" class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm space-y-3 transition-colors">
+          <div class="flex items-center justify-between">
+            <h3 class="font-bold text-white text-sm">Última Alerta Registrada</h3>
+            <span id="alertStatusBadge" class="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700">
+              EN ESPERA
+            </span>
+          </div>
+
+          <div id="alertDetailBox" class="bg-slate-800/80 border border-slate-700 rounded-xl p-3.5 space-y-1.5">
+            <div id="alertTitle" class="text-slate-300 font-bold text-base">Terremoto (Manual)</div>
+            <div class="grid grid-cols-2 gap-x-2 gap-y-1 text-xs text-slate-400 pt-1">
+              <span>Intensidad:</span><span id="alertInt" class="font-bold text-slate-200">Sismo Mayor 7.8 Mw</span>
+              <span>Ubicación:</span><span id="alertUbi" class="font-bold text-slate-200 truncate">Santiago Centro, Chile</span>
+              <span>Fecha:</span><span id="alertDate" class="font-mono text-slate-300">18/10/2026</span>
+              <span>Hora:</span><span id="alertTime" class="font-mono text-slate-300">12:40:15</span>
+            </div>
+          </div>
+
+          <div class="space-y-1 text-xs text-slate-400 pt-1">
+            <div class="flex justify-between">
+              <span>Canal Telegram:</span>
+              <span id="statusTg" class="text-emerald-400 font-bold">@queakesignal_bot ✓</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Protocolo:</span>
+              <span class="text-purple-400 font-mono font-bold">CAP v1.2 Standard</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Nodos receptores:</span>
+              <span id="statusNodos" class="text-emerald-400 font-bold">12/12 Notificados</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 3: MAPA LEAFLET DE SANTIAGO -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-sm flex flex-col justify-between transition-colors">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="font-bold text-white text-xs uppercase tracking-wide flex items-center gap-1.5">
+              <span>🗺️</span> Cobertura Georreferenciada
+            </h3>
+            <span class="text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800 px-2 py-0.5 rounded-full font-mono flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+              GPS Activo
+            </span>
+          </div>
+
+          <!-- Contenedor del Mapa Leaflet -->
+          <div id="map"></div>
+
+          <div class="flex items-center justify-between text-[10px] text-slate-400 mt-2 px-1">
+            <span class="flex items-center gap-1">🔴 Epicentro</span>
+            <span class="flex items-center gap-1">🟢 Nodos Online</span>
+            <span class="flex items-center gap-1">📻 Rango RF (~2.5km)</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TABLA DE HISTORIAL DE ALERTAS -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl shadow-sm overflow-hidden transition-colors">
+        <div class="px-5 py-3.5 border-b border-slate-800 flex items-center justify-between">
+          <h3 class="font-bold text-white text-sm">Historial Reciente de Alertas</h3>
+          <span class="text-xs text-slate-400 font-mono">5 registros de prueba</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-xs">
+            <thead>
+              <tr class="bg-slate-800/80 text-left text-slate-400 uppercase tracking-wider">
+                <th class="px-4 py-2.5 font-bold">Fecha y Hora</th>
+                <th class="px-4 py-2.5 font-bold">Tipo</th>
+                <th class="px-4 py-2.5 font-bold">Intensidad</th>
+                <th class="px-4 py-2.5 font-bold">Estado</th>
+                <th class="px-4 py-2.5 font-bold">Canales Despachados</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60" id="historyTableBody">
+              <tr class="hover:bg-slate-800/40">
+                <td class="px-4 py-2.5 font-mono text-slate-300">18/10/2026 12:40:15</td>
+                <td class="px-4 py-2.5 font-semibold text-white">Terremoto (Manual)</td>
+                <td class="px-4 py-2.5"><span class="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800 font-bold">7.8 Mw</span></td>
+                <td class="px-4 py-2.5"><span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold">✓ Finalizada</span></td>
+                <td class="px-4 py-2.5 text-slate-400">Telegram + MQTT IoT + RF</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="px-4 py-2.5 font-mono text-slate-400">17/10/2026 08:15:22</td>
+                <td class="px-4 py-2.5 font-semibold text-slate-300">Lluvia Intensa</td>
+                <td class="px-4 py-2.5"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400">Moderado</span></td>
+                <td class="px-4 py-2.5"><span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">✓ Finalizada</span></td>
+                <td class="px-4 py-2.5 text-slate-400">Telegram</td>
+              </tr>
+              <tr class="hover:bg-slate-800/40">
+                <td class="px-4 py-2.5 font-mono text-slate-400">16/10/2026 16:30:10</td>
+                <td class="px-4 py-2.5 font-semibold text-slate-300">Viento Fuerte</td>
+                <td class="px-4 py-2.5"><span class="px-2 py-0.5 rounded bg-slate-800 text-slate-400">Leve</span></td>
+                <td class="px-4 py-2.5"><span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">✓ Finalizada</span></td>
+                <td class="px-4 py-2.5 text-slate-400">Telegram + IoT</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- VISTAS MÓVILES (PHONE MOCKUPS) -->
+      <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm">
+        <h3 class="font-bold text-white text-sm mb-1">Vistas en Dispositivos Móviles de los Vecinos</h3>
+        <p class="text-xs text-slate-400 mb-4">Así es como la comunidad recibe el mensaje en sus propios teléfonos</p>
+        
+        <div class="flex justify-center gap-6 flex-wrap">
+          <!-- Celular 1: Notificación Push -->
+          <div class="w-60 bg-black rounded-3xl p-3.5 border-4 border-slate-700 shadow-2xl space-y-3">
+            <div class="w-16 h-3 bg-slate-800 rounded-full mx-auto"></div>
+            <div class="text-[10px] text-center text-slate-400 font-mono">Pantalla de Bloqueo</div>
+            
+            <div class="bg-slate-800/90 rounded-2xl p-3 border border-slate-700 text-left space-y-1">
+              <div class="flex items-center justify-between text-[10px] text-sky-400 font-bold">
+                <span class="flex items-center gap-1"><span>💬</span> Telegram</span>
+                <span class="text-slate-400">Ahora</span>
+              </div>
+              <div class="text-[11px] font-bold text-white">🔴 ALERTA ACTIVA SÍSMICA</div>
+              <p class="text-[10px] text-slate-300 leading-tight">
+                Terremoto 7.8 Mw detectado en Santiago. Manténgase alejado de ventanas y siga vías de evacuación.
+              </p>
+            </div>
+            <div class="text-[10px] text-center text-slate-500 pt-2">Desliza para abrir</div>
+          </div>
+
+          <!-- Celular 2: Portal Cautivo Autónomo -->
+          <div class="w-60 bg-black rounded-3xl p-3.5 border-4 border-slate-700 shadow-2xl space-y-3">
+            <div class="w-16 h-3 bg-slate-800 rounded-full mx-auto"></div>
+            <div class="text-[10px] text-center text-orange-400 font-bold font-mono">📶 Portal Cautivo Wi-Fi</div>
+            
+            <div class="bg-orange-950/40 rounded-2xl p-3 border border-orange-700/60 text-left space-y-1">
+              <div class="text-[10px] font-bold text-orange-400">ESTACIÓN DE RESCATE ESP32</div>
+              <div class="text-[11px] font-black text-white">EVACUACIÓN COMUNITARIA</div>
+              <p class="text-[10px] text-orange-200 leading-tight">
+                Conexión Wi-Fi local de emergencia sin internet. Punto de encuentro seguro: Plaza Central a 150m.
+              </p>
+              <div class="pt-1">
+                <span class="text-[9px] bg-orange-500 text-white font-bold px-1.5 py-0.5 rounded">
+                  GRATIS / SIN DATOS
+                </span>
+              </div>
+            </div>
+            <div class="text-[10px] text-center text-slate-500 pt-2">Canal Autónomo Activo</div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- SCRIPT DE INTERACTIVIDAD -->
+  <script>
+    // 1. Reloj en Vivo
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('liveTime').textContent = now.toLocaleTimeString('es-CL');
+      document.getElementById('liveDate').textContent = now.toLocaleDateString('es-CL', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // 2. Mapa Leaflet Interactivo
+    const CARTO_KEY = "cb1_40kj_1_0f712efa28ebcb1947fa1a84";
+    const map = L.map('map', {
+      center: [-33.4489, -70.6539],
+      zoom: 12,
+      zoomControl: false,
+      attributionControl: false
+    });
+
+    let currentTileLayer = L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=${CARTO_KEY}`, {
+      maxZoom: 19
+    }).addTo(map);
+
+    // Nodos IoT en Gran Santiago
+    const nodos = [
+      { id: "Nodo 01", lat: -33.4429, lng: -70.6539, name: "Santiago Centro" },
+      { id: "Nodo 02", lat: -33.4255, lng: -70.6148, name: "Providencia" },
+      { id: "Nodo 03", lat: -33.4117, lng: -70.5802, name: "Las Condes" },
+      { id: "Nodo 05", lat: -33.5110, lng: -70.7578, name: "Maipú" },
+      { id: "Nodo 06", lat: -33.5227, lng: -70.5983, name: "La Florida" },
+      { id: "Nodo 07", lat: -33.4569, lng: -70.5976, name: "Ñuñoa" }
+    ];
+
+    nodos.forEach(n => {
+      // Círculo de cobertura
+      L.circle([n.lat, n.lng], {
+        radius: 2000,
+        color: "#10b981",
+        weight: 1,
+        fillColor: "#10b981",
+        fillOpacity: 0.1,
+        dashArray: "3, 3"
+      }).addTo(map);
+
+      // Marcador verde
+      const nodeHtml = `
+        <div style="width:18px; height:18px; transform:translate(-9px, -9px);" class="rounded-full bg-emerald-500 border-2 border-white shadow-md flex items-center justify-center">
+          <div style="width:6px; height:6px;" class="rounded-full bg-white"></div>
+        </div>
+      `;
+      const nodeIcon = L.divIcon({ html: nodeHtml, className: "custom-div-icon" });
+      L.marker([n.lat, n.lng], { icon: nodeIcon }).bindTooltip(`<b>${n.id}</b><br>${n.name}`, { direction: 'top' }).addTo(map);
+    });
+
+    // Epicentro / Alerta en Santiago Centro
+    let epicentroLayer = null;
+    function dibujarEpicentro() {
+      if (epicentroLayer) map.removeLayer(epicentroLayer);
+      
+      const alertHtml = `
+        <div style="width:50px; height:50px; transform:translate(-25px, -25px);" class="relative flex items-center justify-center">
+          <div class="absolute inset-0 rounded-full bg-red-500 opacity-40 radar-wave-1"></div>
+          <div class="absolute inset-0 rounded-full bg-red-600 opacity-30 radar-wave-2"></div>
+          <div style="width:20px; height:20px;" class="relative rounded-full bg-red-600 border-2 border-white shadow-xl flex items-center justify-center">
+            <div style="width:8px; height:8px;" class="rounded-full bg-white animate-pulse"></div>
+          </div>
+        </div>
+      `;
+      const alertIcon = L.divIcon({ html: alertHtml, className: "custom-div-icon" });
+      epicentroLayer = L.marker([-33.4429, -70.6539], { icon: alertIcon }).addTo(map);
+    }
+    dibujarEpicentro();
+
+    // 3. Función Interactiva del Botón de Pánico
+    let isPanic = false;
+    function triggerPanic() {
+      isPanic = !isPanic;
+      const btn = document.getElementById('panicButton');
+      const kpi1Val = document.getElementById('kpi1Val');
+      const kpi1Sub = document.getElementById('kpi1Sub');
+      const kpi1Icon = document.getElementById('kpi1Icon');
+      const kpi2Val = document.getElementById('kpi2Val');
+      const alertStatusBadge = document.getElementById('alertStatusBadge');
+      const alertDetailBox = document.getElementById('alertDetailBox');
+
+      if (isPanic) {
+        btn.classList.remove('bg-red-600', 'hover:bg-red-500');
+        btn.classList.add('bg-red-700', 'ring-4', 'ring-red-400');
+        document.getElementById('panicBtnText').textContent = "⚠️ ¡ALERTA ACTIVADA!";
+        document.getElementById('panicBtnSub').textContent = "Señal transmitida a Telegram y Nodos";
+
+        kpi1Val.textContent = "¡CRÍTICA!";
+        kpi1Val.className = "text-xl font-black font-mono text-red-500 animate-pulse";
+        kpi1Sub.textContent = "Alerta mayor en curso";
+        kpi1Icon.className = "w-11 h-11 rounded-xl bg-red-950/80 text-red-400 flex items-center justify-center text-xl flex-shrink-0";
+
+        kpi2Val.textContent = "1";
+        kpi2Val.className = "text-xl font-black font-mono text-red-500";
+
+        alertStatusBadge.textContent = "● ACTIVA (AHORA)";
+        alertStatusBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-red-600 text-white animate-pulse";
+        alertDetailBox.className = "bg-red-950/40 border border-red-800 rounded-xl p-3.5 space-y-1.5";
+
+        map.flyTo([-33.4429, -70.6539], 14, { duration: 1.2 });
+      } else {
+        btn.classList.remove('bg-red-700', 'ring-4', 'ring-red-400');
+        btn.classList.add('bg-red-600', 'hover:bg-red-500');
+        document.getElementById('panicBtnText').textContent = "BOTÓN DE PÁNICO";
+        document.getElementById('panicBtnSub').textContent = "Click para emitir alerta inmediata";
+
+        kpi1Val.textContent = "Normal";
+        kpi1Val.className = "text-xl font-black font-mono text-emerald-400";
+        kpi1Sub.textContent = "Sistema funcionando correctamente";
+        kpi1Icon.className = "w-11 h-11 rounded-xl bg-emerald-950/60 text-emerald-400 flex items-center justify-center text-xl flex-shrink-0";
+
+        kpi2Val.textContent = "0";
+        kpi2Val.className = "text-xl font-black font-mono text-emerald-400";
+
+        alertStatusBadge.textContent = "EN ESPERA";
+        alertStatusBadge.className = "text-[10px] font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-400 border border-slate-700";
+        alertDetailBox.className = "bg-slate-800/80 border border-slate-700 rounded-xl p-3.5 space-y-1.5";
+
+        map.flyTo([-33.4489, -70.6539], 12, { duration: 1.0 });
+      }
+    }
+
+    // 4. Función de Simulación de Modo (Normal / Contingencia)
+    function setMode(mode) {
+      const btnN = document.getElementById('btnModeNormal');
+      const btnC = document.getElementById('btnModeContingencia');
+      const textC = document.getElementById('contingenciaText');
+      const badge = document.getElementById('modeBadge');
+      const badgeText = document.getElementById('modeBadgeText');
+      const commInternet = document.getElementById('commInternet');
+      const commTelegram = document.getElementById('commTelegram');
+      const commNodes = document.getElementById('commNodes');
+      const commModeTag = document.getElementById('commModeTag');
+      const kpi3Val = document.getElementById('kpi3Val');
+      const kpi3Sub = document.getElementById('kpi3Sub');
+
+      if (mode === 'contingencia') {
+        btnN.className = "px-3 py-1 rounded-md font-bold transition-all bg-slate-800 border border-slate-700 text-slate-300 hover:border-emerald-500 cursor-pointer";
+        btnC.className = "px-3 py-1 rounded-md font-bold transition-all bg-orange-600 text-white shadow-sm cursor-pointer";
+        textC.classList.remove('hidden');
+
+        badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-orange-950/60 border border-orange-800 text-orange-300";
+        badgeText.textContent = "Modo Contingencia";
+
+        commInternet.textContent = "No disponible";
+        commInternet.className = "font-bold text-red-400";
+
+        commTelegram.textContent = "No disponible";
+        commTelegram.className = "font-bold text-red-400";
+
+        commNodes.textContent = "11/12 (Vía RF)";
+        commNodes.className = "font-bold text-orange-400";
+
+        commModeTag.textContent = "MODO: CONTINGENCIA (RF)";
+        commModeTag.className = "text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-orange-950 text-orange-300 border border-orange-800";
+
+        kpi3Val.textContent = "11";
+        kpi3Sub.textContent = "11/12 Vía RF activo";
+      } else {
+        btnN.className = "px-3 py-1 rounded-md font-bold transition-all bg-emerald-600 text-white shadow-sm cursor-pointer";
+        btnC.className = "px-3 py-1 rounded-md font-bold transition-all bg-slate-800 border border-slate-700 text-slate-300 hover:border-orange-500 cursor-pointer";
+        textC.classList.add('hidden');
+
+        badge.className = "flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11px] font-bold bg-emerald-950/60 border border-emerald-800 text-emerald-300";
+        badgeText.textContent = "Modo Normal";
+
+        commInternet.textContent = "Disponible";
+        commInternet.className = "font-bold text-emerald-400";
+
+        commTelegram.textContent = "Enviado ✓";
+        commTelegram.className = "font-bold text-emerald-400";
+
+        commNodes.textContent = "12/12";
+        commNodes.className = "font-bold text-emerald-400";
+
+        commModeTag.textContent = "MODO: NORMAL";
+        commModeTag.className = "text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800";
+
+        kpi3Val.textContent = "12";
+        kpi3Sub.textContent = "12/12 Online en Gran Santiago";
+      }
+    }
+
+    // 5. Función de Alternancia de Tema (Modo Oscuro / Modo Claro)
+    let isDark = true;
+    function toggleTheme() {
+      isDark = !isDark;
+      const html = document.documentElement;
+      const body = document.getElementById('appBody');
+      const main = document.getElementById('mainContainer');
+      const header = document.getElementById('topHeader');
+      const modeBar = document.getElementById('modeBar');
+      const badgeTheme = document.getElementById('badgeTheme');
+      const themeIcon = document.getElementById('themeIcon');
+      const themeText = document.getElementById('themeText');
+
+      if (!isDark) {
+        html.classList.remove('dark');
+        body.className = "bg-slate-100 text-slate-900 font-sans h-screen flex overflow-hidden antialiased transition-colors duration-300";
+        main.className = "flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-50 transition-colors";
+        header.className = "flex items-center justify-between px-6 py-3.5 bg-white border-b border-slate-200 transition-colors";
+        modeBar.className = "px-6 py-2 flex items-center gap-3 text-xs border-b border-slate-200 bg-slate-100/90 transition-colors";
+        
+        badgeTheme.textContent = "☀️ Modo Diurno";
+        badgeTheme.className = "text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-amber-100 text-amber-800 border border-amber-300";
+        
+        themeIcon.textContent = "🌙";
+        themeText.textContent = "Oscuro";
+
+        // Cambiar mapa a Voyager (calles claras)
+        map.removeLayer(currentTileLayer);
+        currentTileLayer = L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=${CARTO_KEY}`, { maxZoom: 19 }).addTo(map);
+      } else {
+        html.classList.add('dark');
+        body.className = "bg-slate-950 text-slate-100 font-sans h-screen flex overflow-hidden antialiased transition-colors duration-300";
+        main.className = "flex-1 flex flex-col min-w-0 overflow-hidden bg-slate-900 transition-colors";
+        header.className = "flex items-center justify-between px-6 py-3.5 bg-slate-900 border-b border-slate-800 transition-colors";
+        modeBar.className = "px-6 py-2 flex items-center gap-3 text-xs border-b border-slate-800 bg-slate-900/90 transition-colors";
+
+        badgeTheme.textContent = "🌙 Centro de Mando";
+        badgeTheme.className = "text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700";
+
+        themeIcon.textContent = "☀️";
+        themeText.textContent = "Claro";
+
+        // Cambiar mapa a Dark Matter
+        map.removeLayer(currentTileLayer);
+        currentTileLayer = L.tileLayer(`https://basemaps.cartocdn.com/rastertiles/dark_all/{z}/{x}/{y}.png?key=${CARTO_KEY}`, { maxZoom: 19 }).addTo(map);
+      }
+    }
+  </script>
+</body>
+</html>
