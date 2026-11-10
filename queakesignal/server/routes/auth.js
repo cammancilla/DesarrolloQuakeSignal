@@ -66,6 +66,17 @@ router.post("/login", async (req, res) => {
       isMatch = await bcrypt.compare(rawPassword.trim(), user.password_hash);
     }
 
+    // Si aún no coincide, probar con mayúscula/minúscula inicial (ej: gladys123 vs Gladys123)
+    if (!isMatch && typeof rawPassword === "string" && rawPassword.length > 0) {
+      const lower = rawPassword.toLowerCase();
+      const capitalized = lower.charAt(0).toUpperCase() + lower.slice(1);
+      if (await bcrypt.compare(capitalized, user.password_hash)) {
+        isMatch = true;
+      } else if (await bcrypt.compare(lower, user.password_hash)) {
+        isMatch = true;
+      }
+    }
+
     if (!isMatch) {
       return res.status(401).json({ 
         message: "Contraseña incorrecta. Por favor verifica la clave ingresada." 
