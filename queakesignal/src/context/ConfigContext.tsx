@@ -1,3 +1,4 @@
+import { getApiUrl } from "../utils/auth";
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 import { ConfiguracionSistema } from "../types";
 
@@ -77,7 +78,7 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const fetchConfig = async () => {
       try {
-        const res = await fetch("https://quakesignal.duckdns.org/api/configuracion");
+        const res = await fetch(getApiUrl("/api/configuracion"));
         if (res.ok) {
           const data = await res.json();
           if (data && data.comunicaciones && data.interfaz) {
@@ -114,7 +115,7 @@ export function ConfigProvider({ children }: { children: ReactNode }) {
 
     // Sincronizar con backend si está disponible
     try {
-      const res = await fetch("https://quakesignal.duckdns.org/api/configuracion", {
+      const res = await fetch(getApiUrl("/api/configuracion"), {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newConfig),

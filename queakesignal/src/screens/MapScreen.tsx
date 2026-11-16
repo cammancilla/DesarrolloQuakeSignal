@@ -1,3 +1,4 @@
+import { getApiUrl } from "../utils/auth";
 import { useState, useEffect } from "react";
 import SantiagoMap from "../components/SantiagoMap.tsx";
 import { CommMode, Alerta } from "../types";
@@ -59,7 +60,7 @@ export default function MapScreen({ mode: modeProp }: MapScreenProps) {
   useEffect(() => {
     const fetchBackendAlertas = async () => {
       try {
-        const res = await fetch("https://quakesignal.duckdns.org/api/alertas");
+        const res = await fetch(getApiUrl("/api/alertas"));
         if (res.ok) {
           const data = await res.json();
           const lista = Array.isArray(data) ? data : data.alertas;

@@ -1,3 +1,4 @@
+import { getApiUrl } from "../utils/auth";
 import { useState, useEffect } from "react";
 import { CommMode, NodoIoT } from "../types";
 import StatusDot from "../components/StatusDot.tsx";
@@ -15,7 +16,7 @@ export default function DevicesScreen({ mode }: { mode: CommMode }) {
   useEffect(() => {
     const fetchNodos = async () => {
       try {
-        const res = await fetch("https://quakesignal.duckdns.org/api/nodos/status");
+        const res = await fetch(getApiUrl("/api/nodos/status"));
         if (res.ok) {
           const data = await res.json();
           if (data && Array.isArray(data.detalle) && data.detalle.length > 0) {

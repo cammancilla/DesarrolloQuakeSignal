@@ -1,6 +1,5 @@
 // services/mqttService.js
 const mqtt = require('mqtt');
-const os = require('os');
 
 let client = null;
 
@@ -9,16 +8,9 @@ const initMQTT = (config = {}) => {
     client.end();
   }
 
-  // IP/Dominio de origen
-  let host = config.broker || "136.112.57.163";
-
-  // Si corre en Linux (la máquina virtual de GCP donde corre Mosquitto localmente):
-  // SIEMPRE debe conectarse a 127.0.0.1 para evitar Hairpin NAT / Timeout.
-  if (os.platform() === 'linux') {
-    host = "127.0.0.1";
-  } else if (host === "broker.emqx.io" || host === "136.112.57.163") {
-    host = "quakesignal.duckdns.org";
-  }
+  // Respetar el broker configurado también dentro de contenedores Linux.
+  // MQTT_HOST permite indicar 127.0.0.1 si Mosquitto comparte el entorno.
+  const host = process.env.MQTT_HOST || config.broker || "quakesignal.duckdns.org";
 
   const port = parseInt(config.puerto) || 1883;
   const brokerUrl = `mqtt://${host}:${port}`;

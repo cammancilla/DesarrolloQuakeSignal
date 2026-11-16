@@ -1,0 +1,19 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    environment:
+      PORT: "8443"
+    ports:
+      - "127.0.0.1:8443:8443"
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - ./server/data:/app/data
+      - ./server/logs:/app/logs

@@ -1,3 +1,4 @@
+import { getApiUrl } from "../utils/auth";
 import { useState, useEffect } from 'react';
 
 // Definimos la estructura de los datos (Si usas JS puro, puedes borrar esta interface)
@@ -16,7 +17,7 @@ export default function Dispositivos() {
   const fetchNodos = async () => {
     try {
       // Consumimos el endpoint real de nuestro backend
-      const response = await fetch('https://quakesignal.duckdns.org/api/nodos/status');
+      const response = await fetch(getApiUrl("/api/nodos/status"));
       if (!response.ok) throw new Error('Error al conectar con la API');
       
       const data = await response.json();

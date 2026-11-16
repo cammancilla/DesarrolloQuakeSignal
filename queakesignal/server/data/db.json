@@ -1,6 +1,3233 @@
 {
   "alertas": [
     {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T04:35:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:35:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T05:05:37.964Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T04:33:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:33:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T05:03:37.963Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7973",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T04:31:37.973Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7973",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:31:37.973Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T05:01:37.973Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T04:29:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:29:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:59:37.964Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7967",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T04:27:37.967Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7967",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:27:37.967Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:57:37.967Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7966",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T04:25:37.966Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7966",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:25:37.966Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:55:37.966Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7966",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T04:23:37.966Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7966",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:23:37.966Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:53:37.966Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7968",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T04:21:37.968Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7968",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:21:37.968Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:51:37.968Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T04:19:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:19:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:49:37.963Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7961",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T04:17:37.961Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7961",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:17:37.961Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:47:37.961Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T04:15:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:15:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:45:37.964Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7965",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T04:13:37.965Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7965",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:13:37.965Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:43:37.965Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7960",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T04:11:37.960Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7960",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:11:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:41:37.960Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T04:09:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:09:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:39:37.964Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7965",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T04:07:37.965Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7965",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:07:37.965Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:37:37.965Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T04:05:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:05:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:35:37.964Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7965",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T04:03:37.965Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7965",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:03:37.965Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:33:37.965Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T04:01:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T04:01:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:31:37.963Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T03:59:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:59:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:29:37.964Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T03:57:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:57:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:27:37.963Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7964",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T03:55:37.964Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7964",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:55:37.964Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:25:37.964Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T03:53:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:53:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:23:37.963Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T03:51:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:51:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:21:37.963Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:49:37.963Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:49:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:19:37.963Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T03:47:37.962Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:47:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:17:37.962Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:45:37.962Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:45:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:15:37.962Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T03:43:37.962Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:43:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:13:37.962Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T03:41:37.962Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:41:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:11:37.962Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T03:39:37.962Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:39:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:09:37.962Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7961",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T03:37:37.961Z",
+      "activa": true,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7961",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:37:37.961Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:07:37.961Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:35:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:35:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:05:37.962Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T03:33:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:33:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:03:37.962Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7961",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:31:37.961Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7961",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:31:37.961Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T04:01:37.961Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T03:29:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:29:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:59:37.962Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T03:27:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:27:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:57:37.962Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T03:25:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:25:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:55:37.962Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T03:23:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:23:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:53:37.962Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7958",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:21:37.958Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7958",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:21:37.958Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:51:37.958Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7963",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T03:19:37.963Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7963",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:19:37.963Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:49:37.963Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:17:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:17:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:47:37.962Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7962",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:15:37.962Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7962",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:15:37.962Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:45:37.962Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7959",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T03:13:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:13:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:43:37.960Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7960",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T03:11:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7960",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:11:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:41:37.960Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7960",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T03:09:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7960",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:09:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:39:37.960Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7961",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T03:07:37.961Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7961",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:07:37.961Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:37:37.961Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7960",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T03:05:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7960",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:05:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:35:37.960Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7960",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T03:03:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7960",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:03:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:33:37.960Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7960",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T03:01:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7960",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T03:01:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:31:37.960Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7958",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T02:59:37.959Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7958",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:59:37.959Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:29:37.959Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7959",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T02:57:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:57:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:27:37.960Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7959",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T02:55:37.960Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:55:37.960Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:25:37.960Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7961",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T02:53:37.961Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7961",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:53:37.961Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:23:37.961Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7959",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T02:51:37.959Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:51:37.959Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:21:37.959Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7959",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T02:49:37.959Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:49:37.959Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:19:37.959Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7959",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T02:47:37.959Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7959",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:47:37.959Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:17:37.959Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7957",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T02:45:37.957Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7957",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:45:37.957Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:15:37.957Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7956",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T02:43:37.956Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7956",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:43:37.956Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:13:37.956Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7955",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T02:41:37.955Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7955",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:41:37.955Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:11:37.955Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7953",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T02:39:37.953Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7953",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:39:37.953Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:09:37.953Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7956",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T02:37:37.956Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7956",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:37:37.956Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:07:37.956Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7958",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T02:35:37.958Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7958",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:35:37.958Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:05:37.958Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7957",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T02:33:37.957Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7957",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:33:37.957Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:03:37.957Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-7686",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T02:31:07.686Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-7686",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T02:31:07.686Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T03:01:07.686Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4834",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T01:56:04.834Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4834",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:56:04.834Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:26:04.834Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4829",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T01:54:04.829Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4829",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:54:04.829Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:24:04.829Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4822",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T01:52:04.822Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4822",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:52:04.822Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:22:04.822Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4813",
+      "tipo": "Terremoto",
+      "intensidad": "8.2 Mw",
+      "ubicacion": "Concepción, Chile",
+      "lat": -36.827,
+      "lng": -73.0503,
+      "radioKm": 35,
+      "fecha": "2026-11-16T01:50:04.813Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4813",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:50:04.813Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:20:04.813Z",
+            "headline": "Terremoto: 8.2 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.2 Mw' para la zona de Concepción, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Concepción, Chile",
+              "circle": "-36.827,-73.0503,35"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-4805",
+      "tipo": "Terremoto",
+      "intensidad": "8.0 Mw",
+      "ubicacion": "Antofagasta, Chile",
+      "lat": -23.65,
+      "lng": -70.4,
+      "radioKm": 38,
+      "fecha": "2026-11-16T01:48:04.805Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-4805",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:48:04.805Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:18:04.805Z",
+            "headline": "Terremoto: 8.0 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.0 Mw' para la zona de Antofagasta, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Antofagasta, Chile",
+              "circle": "-23.65,-70.4,38"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-4986",
+      "tipo": "Terremoto (Manual)",
+      "intensidad": "Alerta Crítica",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 20,
+      "fecha": "2026-11-16T01:46:44.986Z",
+      "activa": false,
+      "despachada": true,
+      "manual": true,
+      "origen": "manual",
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-4986",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:46:44.986Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta emitida manualmente por el operador de turno mediante Botón de Pánico.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto (Manual)",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general y equipos de rescate",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:16:44.986Z",
+            "headline": "[ALERTA MANUAL] Terremoto (Manual): Alerta Crítica",
+            "description": "Se ha emitido una 'Terremoto (Manual)' con nivel 'Alerta Crítica' para la zona de Santiago Centro, Chile. Origen: Despacho Manual (Operador).",
+            "instruction": "Alerta sísmica activada manualmente por personal de emergencia. Mantenga la calma, protéjase bajo un elemento resistente y proceda a zona segura.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,20"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-3617",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T01:38:43.617Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-3617",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:38:43.617Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:08:43.617Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-3618",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T01:36:43.618Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-3618",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:36:43.618Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:06:43.618Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1784",
+      "tipo": "Terremoto",
+      "intensidad": "7.5 Mw",
+      "ubicacion": "Santiago Centro, Chile",
+      "lat": -33.4429,
+      "lng": -70.6539,
+      "radioKm": 25,
+      "fecha": "2026-11-16T01:33:41.784Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1784",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:33:41.784Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:03:41.784Z",
+            "headline": "Terremoto: 7.5 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.5 Mw' para la zona de Santiago Centro, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Santiago Centro, Chile",
+              "circle": "-33.4429,-70.6539,25"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1770",
+      "tipo": "Terremoto",
+      "intensidad": "7.8 Mw",
+      "ubicacion": "Coquimbo, Chile",
+      "lat": -29.9533,
+      "lng": -71.3436,
+      "radioKm": 30,
+      "fecha": "2026-11-16T01:31:41.770Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1770",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:31:41.770Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T02:01:41.770Z",
+            "headline": "Terremoto: 7.8 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.8 Mw' para la zona de Coquimbo, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Coquimbo, Chile",
+              "circle": "-29.9533,-71.3436,30"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1765",
+      "tipo": "Terremoto",
+      "intensidad": "8.4 Mw",
+      "ubicacion": "Valparaíso, Chile",
+      "lat": -33.0472,
+      "lng": -71.6127,
+      "radioKm": 40,
+      "fecha": "2026-11-16T01:29:41.765Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1765",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:29:41.765Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T01:59:41.765Z",
+            "headline": "Terremoto: 8.4 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '8.4 Mw' para la zona de Valparaíso, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Valparaíso, Chile",
+              "circle": "-33.0472,-71.6127,40"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "ALERT-SIM-1749",
+      "tipo": "Terremoto",
+      "intensidad": "7.9 Mw",
+      "ubicacion": "Iquique, Chile",
+      "lat": -20.2133,
+      "lng": -70.1503,
+      "radioKm": 32,
+      "fecha": "2026-11-16T01:27:41.749Z",
+      "activa": false,
+      "despachada": true,
+      "cap": {
+        "alert": {
+          "identifier": "ALERT-SIM-1749",
+          "sender": "quakesignal-core@onemi.cl",
+          "sent": "2026-11-16T01:27:41.749Z",
+          "status": "Actual",
+          "msgType": "Alert",
+          "scope": "Public",
+          "note": "Alerta generada por el sistema de detección y simulación.",
+          "info": {
+            "category": "Geo",
+            "event": "Terremoto",
+            "urgency": "Immediate",
+            "severity": "Extreme",
+            "certainty": "Observed",
+            "audience": "Población general",
+            "eventCode": {
+              "valueName": "SAME",
+              "value": "EQW"
+            },
+            "expires": "2026-11-16T01:57:41.749Z",
+            "headline": "Terremoto: 7.9 Mw",
+            "description": "Se ha emitido una 'Terremoto' con nivel '7.9 Mw' para la zona de Iquique, Chile. Origen: Detección Automática.",
+            "instruction": "Mantenga la calma, aléjese de ventanales y objetos colgantes. Busque una zona de seguridad sismo-resistente.",
+            "area": {
+              "areaDesc": "Iquique, Chile",
+              "circle": "-20.2133,-70.1503,32"
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "ALERT-SIM-0078",
       "tipo": "Terremoto",
       "intensidad": "8.4 Mw",
@@ -9,7 +3236,7 @@
       "lng": -71.6127,
       "radioKm": 40,
       "fecha": "2026-11-10T18:43:00.078Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -52,7 +3279,7 @@
       "lng": -70.4,
       "radioKm": 38,
       "fecha": "2026-11-10T18:41:00.076Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -95,7 +3322,7 @@
       "lng": -73.0503,
       "radioKm": 35,
       "fecha": "2026-11-10T18:39:00.066Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -138,7 +3365,7 @@
       "lng": -70.1503,
       "radioKm": 32,
       "fecha": "2026-11-10T18:37:00.066Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -181,7 +3408,7 @@
       "lng": -71.3436,
       "radioKm": 30,
       "fecha": "2026-11-10T18:35:00.061Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -224,7 +3451,7 @@
       "lng": -70.1503,
       "radioKm": 32,
       "fecha": "2026-11-10T18:33:00.052Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -267,7 +3494,7 @@
       "lng": -71.6127,
       "radioKm": 40,
       "fecha": "2026-11-10T18:31:00.054Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -310,7 +3537,7 @@
       "lng": -70.6539,
       "radioKm": 25,
       "fecha": "2026-11-10T18:29:00.051Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -353,7 +3580,7 @@
       "lng": -71.3436,
       "radioKm": 30,
       "fecha": "2026-11-10T18:27:00.038Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -396,7 +3623,7 @@
       "lng": -71.3436,
       "radioKm": 30,
       "fecha": "2026-11-10T18:25:00.039Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -439,7 +3666,7 @@
       "lng": -70.4,
       "radioKm": 38,
       "fecha": "2026-11-10T18:23:00.026Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -482,7 +3709,7 @@
       "lng": -71.6127,
       "radioKm": 40,
       "fecha": "2026-11-10T18:21:00.009Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -525,7 +3752,7 @@
       "lng": -71.3436,
       "radioKm": 30,
       "fecha": "2026-11-10T18:13:09.165Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -568,7 +3795,7 @@
       "lng": -71.6127,
       "radioKm": 40,
       "fecha": "2026-11-10T18:11:09.153Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -611,7 +3838,7 @@
       "lng": -71.3436,
       "radioKm": 30,
       "fecha": "2026-11-10T18:09:09.147Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -654,7 +3881,7 @@
       "lng": -70.6539,
       "radioKm": 25,
       "fecha": "2026-11-10T18:07:09.138Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -697,7 +3924,7 @@
       "lng": -73.0503,
       "radioKm": 35,
       "fecha": "2026-11-10T18:04:38.248Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -740,7 +3967,7 @@
       "lng": -70.6539,
       "radioKm": 25,
       "fecha": "2026-11-10T18:02:38.242Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -783,7 +4010,7 @@
       "lng": -70.4,
       "radioKm": 38,
       "fecha": "2026-11-10T18:00:38.240Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -826,7 +4053,7 @@
       "lng": -70.6539,
       "radioKm": 25,
       "fecha": "2026-11-10T17:58:38.225Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -869,7 +4096,7 @@
       "lng": -73.0503,
       "radioKm": 20,
       "fecha": "2026-11-10T17:55:59.193Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -912,7 +4139,7 @@
       "lng": -71.3436,
       "radioKm": 25,
       "fecha": "2026-11-10T17:53:28.015Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -955,7 +4182,7 @@
       "lng": -70.6539,
       "radioKm": 15,
       "fecha": "2026-11-10T17:51:28.001Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -998,7 +4225,7 @@
       "lng": -70.1503,
       "radioKm": 25,
       "fecha": "2026-11-10T17:49:27.984Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -1041,7 +4268,7 @@
       "lng": -71.6127,
       "radioKm": 12,
       "fecha": "2026-11-10T17:47:27.980Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
@@ -1084,7 +4311,7 @@
       "lng": -73.0503,
       "radioKm": 35,
       "fecha": "2026-11-10T17:45:27.976Z",
-      "activa": true,
+      "activa": false,
       "despachada": true,
       "cap": {
         "alert": {
